@@ -1,0 +1,38 @@
+{% extends "sep/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="{% static '/watchlist.css' %}" rel="stylesheet">
+
+<div class="container note-has-grid">
+    <ul class="nav nav-pills p-0.5 bg-info mb-2">
+        <li class="nav-item">
+            <div class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3">
+                <i class="icon-layers mr-1"></i><span class="d-none d-md-block text-white">My Watchlist</span>
+            </div>
+        </li>
+    </ul>
+    <div class="mb-2"><i class="fas fa-angle-left"></i><a href="{% url 'index' %}"><medium class="text-black-50"> Back</medium></a></div>
+    <div class="tab-content bg-transparent">
+        <div id="note-full-container" class="note-has-grid row">
+            {% for item in watchlist %}
+            <div class="col-md-4 single-note-item note-business">
+                <div class="card card-body">
+                    <span class="side-stick"></span>
+                    <span class="text-truncate mb-0">{{ item.opening.title }}<i class="point fas fa-sticky-note ml-2"></i></span>
+                    <small class="note-date font-12">{{ item.opening.date }}</small><br />
+                    <div>
+                        <small>{{ item.opening.text }}</small>
+                    </div><br />
+                    <div class="d-flex align-items-center">
+                        <a href="{% url 'delete_watchlist' item.opening.title %}"><span class="mr-1"><i class="point fa fa-trash remove-note"></i></span></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

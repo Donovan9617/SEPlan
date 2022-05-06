@@ -1,0 +1,74 @@
+{% extends "sep/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+<link href="{% static '/page.css' %}" rel="stylesheet">
+
+<div class="container">
+    <h1 class="h3 mb-3">Student Exchange Programme Reviews</h1>
+    <div><i class="fas fa-angle-left"></i><a href="{% url 'reviews' %}"><medium class="h5 text-black-50"> Back</medium></a></div> <br />
+    <div class="row">
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">University</h5>
+                </div>
+                <div class="card-body text-center">
+                    <!-- <img src="https://media-cdn.tripadvisor.com/media/photo-s/04/83/13/5e/peking-university-beijing.jpg" alt="Marie Salter" class="img-fluid rounded-circle mb-2" width="128" height="128"> -->
+                    <h4 class="card-title mb-0">{{ university }}</h4> <br />
+                    <div>
+                        <a class="btn btn-warning btn-sm" href="#">Review Count: {{ count }} </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-8 col-xl-9">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Reviews</h5>
+                </div>
+                    {% for review in reviews %}
+                    <div class="card-body">
+                        <div class="media">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" width="36" height="36" class="rounded-circle mr-2" alt="Andrew Jones">
+                            <div class="media-body">
+                                {% if review.user != request.user %}
+                                    <strong>{{ review.user.username }}</strong> created a review.
+                                    <a class="btn btn-warning btn-sm float-right" href="{% url 'messages' review.user.username %}">
+                                        <i class="fa fa-comment text-95"></i>
+                                        Message {{ review.user.username }}</a>
+                                {% else %}
+                                    <strong>You</strong> created a review.
+                                {% endif %}
+                                <br>
+                                <small class="text-muted">{{ review.date }}</small>
+        
+                                <div class="border text-sm text-muted p-2">
+                                    <strong>Review: </strong><br /> {{ review.review }} <br />
+                                    <strong>Living Environment: </strong><br /> {{ review.living }} <br />
+                                    <strong>Things to Prepare: </strong><br /> {{ review.prepare}} <br />
+                                </div>
+                                <div class="col-xl-9 p-2"><strong>Most memorable picture I wish to share: </strong></div><img class="col-xl-9 p-1" src="{{ review.attachments }}" style="width: 50%; margin-right: 10px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    <div class="btn btn-warning">
+                        {% if reviews.has_previous %}
+                        <a href="?page={{ reviews.previous_page_number }}" class="float-left text-white">Previous</a>
+                        {% endif %}
+                        Page {{ reviews.number }} of {{reviews.paginator.num_pages}}
+                        {% if reviews.has_next %}
+                        <a href="?page={{ reviews.next_page_number }}" class="float-right text-white">Next</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

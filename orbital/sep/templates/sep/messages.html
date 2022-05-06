@@ -1,0 +1,89 @@
+{% extends "sep/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="{% static '/message.css' %}" rel="stylesheet" />
+
+<div class="container">
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card chat-app">
+            <div id="plist" class="people-list">
+                <form class="input-group" action="{% url 'search' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="student" placeholder="Search for a student...">
+                    </div>
+                </form>
+                <ul class="list-unstyled chat-list mt-2 mb-0">
+                    {% for message in messages %}
+                    <li class="clearfix">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                        <div class="about">
+                            <div class="name"><a href = "{% url 'messages' message %}" >{{ message }}</a></div>
+                                           
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="chat">
+                <div class="chat-header clearfix">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="chat-about">
+                                {% if to.username != request.user.username %}
+                                    <h6 class="m-b-0" id="chatName">{{ to.username }}, from {{ to.faculty }}</h6>
+                                {% else %}
+                                    <h6 class="m-b-0" id="chatName">Messages</h6>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-history">
+                    <ul class="m-b-0">
+                        {% for m in pm %}
+                            {% if m.fromAddress == request.user.username %}
+                            <li class="clearfix">
+                                <div class="message-data text-right">
+                                    <span class="message-data-time">{{ m.date }}</span>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                </div>
+                                <div class="message other-message float-right"> {{ m.text }} </div>
+                            </li>
+                            {% else %}
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">{{ m.date }}</span>
+                                </div>
+                                <div class="message my-message">{{ m.text }}</div>                                    
+                            </li>
+                            {% endif %}                             
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="chat-message clearfix">
+                    <form class="input-group mb-0" action="{% url 'messages' to %}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-send"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="text" placeholder="Enter text here...">
+                        <div class="input-group-prepend">
+                            <input type="submit" class="form-control" value="Send">
+                        </div>                                    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

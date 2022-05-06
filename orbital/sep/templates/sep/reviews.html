@@ -1,0 +1,160 @@
+{% extends "sep/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="{% static '/review.css' %}" rel="stylesheet">
+
+<div class="container pt-3 pb-1">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card radius-t-0 h-100">
+                <div class="card-header pb-3 brc-secondary-l3 bg-primary">
+                    <h5 class="text-white">
+                        Write a Review...
+                    </h5>
+                </div>
+                <div class="card-body pt-2 pb-1">
+                    <div role="button" class="d-flex flex-wrap align-items-center p-2">
+                        <span class="text-default-d3 text-90 text-600">
+                            My SEP Experience
+                        </span> 
+                        <span class="ml-2">
+                            <i class="fa fa-globe text-green-m1 text-95"></i>
+                        </span>
+                    </div>
+                    <form class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style"
+                        action="{% url 'reviews' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <span class="text-default-d3 text-90 text-600">
+                            My SEP university
+                        </span>
+                        <span class="ml-auto text-dark-l2 text-nowrap">
+                            <select name="university" class="text-default-d3 text-90 text-600">
+                                <option value="Monash University" class="text-default-d3 text-90 text-600">Monash University</option>
+                                <option value="University of Adelaide" class="text-default-d3 text-90 text-600">University of Adelaide</option>
+                                <option value="University of Melbourne" class="text-default-d3 text-90 text-600">University of Melbourne</option>
+                                <option value="Chongqing University" class="text-default-d3 text-90 text-600">Chongqing University</option>
+                                <option value="Fudan University" class="text-default-d3 text-90 text-600">Fudan University</option>
+                                <option value="Peking University" class="text-default-d3 text-90 text-600">Peking University</option>
+                                <option value="Tsinghua University" class="text-default-d3 text-90 text-600">Tsinghua University</option>
+                                <option value="Zhejiang University" class="text-default-d3 text-90 text-600">Zhejiang University</option>
+                                <option value="The University of Hong Kong" class="text-default-d3 text-90 text-600">The University of Hong Kong</option>
+                                <option value="Hindu College, University of Delhi" class="text-default-d3 text-90 text-600">Hindu College, University of Delhi</option>
+                                <option value="The University of Tokyo" class="text-default-d3 text-90 text-600">The University of Tokyo</option>
+                                <option value="Waseda University" class="text-default-d3 text-90 text-600">Waseda University</option>
+                                <option value="Osaka University" class="text-default-d3 text-90 text-600">Osaka University</option>
+                                <option value="University of Auckland" class="text-default-d3 text-90 text-600">University of Auckland</option>
+                                <option value="Yonsei University" class="text-default-d3 text-90 text-600">Yonsei University</option>
+                                <option value="Seoul National University" class="text-default-d3 text-90 text-600">Seoul National University</option>
+                                <option value="University of Toronto" class="text-default-d3 text-90 text-600">University of Toronto</option>
+                                <option value="University of Waterloo" class="text-default-d3 text-90 text-600">University of Waterloo</option>
+                                <option value="Imperial College London" class="text-default-d3 text-90 text-600">Imperial College London</option>
+                                <option value="Univeristy of Warwick" class="text-default-d3 text-90 text-600">University of Warwick</option>
+                                <option value="University College London"class="text-default-d3 text-90 text-600">University College London</option>
+                                <option value="King's College London" class="text-default-d3 text-90 text-600">King's College London</option>
+                                <option value="Carnegie Mellon University" class="text-default-d3 text-90 text-600">Carnegie Mellon University</option>
+                                <option value="University of Pennsylvania" class="text-default-d3 text-90 text-600">University of Pennsylvania</option>
+                                <option value="University of Michigan" class="text-default-d3 text-90 text-600">University of Michigan</option>
+                                <option value="Georgetown University" class="text-default-d3 text-90 text-600">Georgetown University</option>
+                                <option value="Georgia Institute of Technology" class="text-default-d3 text-90 text-600">Georgia Institute of Technology</option>
+                            </select>
+                        </span>
+                        <div class="input-group pt-2 pb-1">
+                            <textarea class="form-control bg-light border-0" name="review" placeholder="Description..."></textarea>
+                        </div>
+                        <span class="text-default-d3 text-90 text-600">
+                            Period of Exchange
+                        </span>
+                        <div class="input-group pt-2 pb-1">
+                            <textarea class="form-control bg-light border-0" name="period" placeholder="Description..."></textarea>
+                        </div>
+                        <span class="text-default-d3 text-90 text-600">
+                            Mapped Modules
+                        </span>
+                        <div class="input-group pt-2 pb-1">
+                            <textarea class="form-control bg-light border-0" name="modules" placeholder="Description..."></textarea>
+                        </div>
+                        <span class="text-default-d3 text-90 text-600">
+                            Living Environment, Accomodation, and Finance
+                        </span>
+                        <div class="input-group pt-2 pb-1">
+                            <textarea class="form-control bg-light border-0" name="living" placeholder="Description..."></textarea>
+                        </div>
+                        <span class="text-default-d3 text-90 text-600">
+                            Things to Prepare
+                        </span>
+                        <div class="input-group pt-2 pb-1">
+                            <textarea class="form-control bg-light border-0" name="prepare" placeholder="Description..."></textarea>
+                        </div>
+                        <span class="text-default-d3 text-90 text-600">
+                            Favourite Memory
+                        </span>
+                        <div class="input-group pt-2 pb-1">
+                            <input class="form-control bg-light border-0"  type="file" name="attachments" />
+                        </div>
+                        <div class="ml-auto pt-2 pb-1">
+                            <input type="submit" value="Review" class="btn btn-primary btn-user btn-block text-center"
+                            accept="image/jpeg" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card ccard radius-t-0 h-100">
+                <div class="card-header pb-3 brc-secondary-l3 bg-primary">
+                    <h5 class="text-white">
+                        View Exchange Reviews...
+                    </h5>
+                </div>
+                <div class="card-body pt-2 pb-1">
+                    {% for review in reviews %}
+                    <div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
+                        <span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2">
+                            <img alt="Alexa's avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" class="h-4 w-4" />
+                        </span>
+
+                        <a href="{% url 'page' review %}">
+                            <span class="text-default-d3 text-90 text-600">
+                                {{ review }}
+                            </span>
+                        </a>
+                        <span class="ml-auto">
+                            <i class="fa fa-file-text text-green-m1 text-95"></i>
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card ccard radius-t-0 h-100">
+                <div class="card-header pb-3 brc-secondary-l3 bg-primary">
+                    <h5 class="text-white">
+                        My Reviews...
+                    </h5>
+                </div>
+                <div class="card-body pt-2 pb-1">
+                    {% for item in history %}
+                    <div role="button" class="align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
+                        <div class="text-default-d3 text-90 text-600">
+                            {{ item.university }}
+                        </div>
+                        <small class="bgc-secondary-l4">{{ item.date }}</small><br />
+                        <a href="{% url 'delete_review' item.id %}"><div><i class="text-green-m1 fa fa-trash remove-note"></i></div></a>
+                    </div>
+                    {% empty %}
+                    <span class="text-default-d3 text-90 text-600radius-1 p-2">
+                        No reviews.
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
