@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
 
-from .models import User, Chat, Review, Opening, Watchlist
+from .models import User, Chat, Review, Opening, Watchlist, PartnerUniversity
 
 def index(request):
     if not request.user.is_authenticated:
@@ -164,3 +164,17 @@ def delete_watchlist(request, title):
     w = Watchlist.objects.filter(user=request.user, opening=opening)
     w.delete()
     return watchlist(request)
+
+def modules(request):
+    if request.method == "POST":
+        faculty = request.user.faculty
+        module = request.POST['module']
+        search = True
+        mappable = PartnerUniversity.objects.filter(forfaculty=faculty, nusmodulecode=module)
+        return render(request, "sep/modules.html", {
+            "mappable": mappable, "module": module, "search": search
+        })
+    search = False
+    return render(request, "sep/modules.html", {
+        "search": search
+    })
