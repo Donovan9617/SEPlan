@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
+import time
 
 from .models import User, Chat, Review, Opening, Watchlist, PartnerUniversity
 
@@ -45,6 +46,7 @@ def register(request):
                 "message": "*Error: This username has already been taken, please choose another username!"
             })
         login(request, user)
+        time.sleep(2)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "sep/register.html")
 
@@ -121,6 +123,7 @@ def reviews(request):
         period=period, modules=modules,
         living=living, prepare=prepare, attachments=url)
         review.save()
+        time.sleep(2)
         return HttpResponseRedirect(reverse('reviews'))
     history = Review.objects.filter(user=request.user).order_by('-date')
     reviews = list(Review.objects.all())
@@ -145,6 +148,7 @@ def page(request, university):
 def delete_review(request, id):
     r = Review.objects.filter(id=id).first()
     r.delete()
+    time.sleep(2)
     return reviews(request)
 
 def watchlist(request):
