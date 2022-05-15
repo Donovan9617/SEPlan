@@ -2,11 +2,9 @@
 {% load static %}
 
 {% block body %}
-<!DOCTYPE html>
-<html lang="en">
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="{% static '/index.css' %}" rel="stylesheet">
 <body id="page-top">
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -16,11 +14,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <a href="{% url 'index' %}"><h1 class="h3 mb-0 text-gray-800">Home</h1></a>
-                    </div>
-
                     <!-- Content Row -->
                     <div class="row">
 
@@ -29,14 +22,12 @@
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="h4 font-weight-bold text-primary text-uppercase mb-1">
+                                        <div class="col mr-2" style="display:inline-block">
+                                            <div class="h3 font-weight-bold text-primary text-uppercase">
                                                 Query </div>
-                                            <div class="text-xs mb-0 font-weight-bold text-gray-800">Start a discussion!</div>
+                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Start a discussion!</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fa fa-paper-plane fa-2x text-gray-300"></i>
-                                        </div>
+                                        <img class="col-xl-7" src="/media/index/undraw_Public_discussion_re_w9up.png" style="width: 20%; margin-right: 10px;" />
                                     </div>
                                 </div>
                             </div>
@@ -47,14 +38,12 @@
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <a href="{% url 'reviews' %}"><div class="h4 font-weight-bold text-success text-uppercase mb-1">
+                                        <div class="col mr-2" style="display:inline-block;">
+                                            <a href="{% url 'reviews' %}"><div class="h3 font-weight-bold text-success text-uppercase">
                                                 Reviews</div></a>
-                                            <div class="text-xs mb-0 font-weight-bold text-gray-800">Help another student!</div>
+                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Help another student!</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-sticky-note fa-2x text-gray-300"></i>
-                                        </div>
+                                        <img class="col-xl-4" src="/media/index/undraw_Add_notes_re_ln36.png" style="width: 50%; margin-right: 10px;" />
                                     </div>
                                 </div>
                             </div>
@@ -65,25 +54,12 @@
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="h5 font-weight-bold text-info text-uppercase mb-1">
-                                                Modules</div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="text-xs mb-0 mr-3 font-weight-bold text-gray-800">Map overseas modules!</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col mr-2" style="display:inline-block;">
+                                            <a href="{% url 'modules' %}"><div class="h3 font-weight-bold text-info text-uppercase">
+                                                Modules</div></a>
+                                            <div class="text-xs mb-0 ml-1 font-weight-bold text-gray-800">Map overseas modules!</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-university fa-2x text-gray-300"></i>
-                                        </div>
+                                        <img class="col-xl-5" src="/media/index/undraw_Adventure_re_ncqp.png" style="width: 50%; margin-right: 10px;" />
                                     </div>
                                 </div>
                             </div>
@@ -94,45 +70,38 @@
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <a href="{% url 'messages' request.user.username %}"> <div class="h5 font-weight-bold text-warning text-uppercase mb-1">
+                                        <div class="col mr-2" style="display:inline-block;">
+                                            <a href="{% url 'messages' request.user.username %}"> <div class="h3 font-weight-bold text-warning text-uppercase">
                                                 Messages</div> </a>
-                                            <div class="text-xs mb-0 font-weight-bold text-gray-800">Connect with SEP!</div>
+                                            <div class="text-xs mb-0 ml-1 font-weight-bold text-gray-800">Connect with SEP!</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
+                                        <img class="col-xl-5" src="/media/index/undraw_Share_opinion_re_4qk7.png" style="width: 50%; margin-right: 10px;" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Content Row -->
-
                     <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <!-- Announcement texts -->
+                        <div class="col-xl-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">New Student Exchange Programme Openings</h6>
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    <h6 class="m-0 font-weight-bold text-primary">SEP Announcements</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
+                                    <div>
                                         {% for opening in openings %}
                                             <div>
-                                                <strong>Announcement: {{ opening.title }}</strong>
+                                                <strong>Opportunities: {{ opening.title }}</strong>
                                                 <div style="float:right;"><small><strong>Updated on: {{ opening.date }}</strong></small></div> <br />
                                                 {% if opening.title in watchlist %}
-                                                    <div style="float:right;"><strong><small>Already on watchlist</small></strong></div>
+                                                    <div style="float:right;"><strong><small>Already saved</small></strong></div>
                                                 {% else %}
                                                     <div style="float:right;" class="bg-white">
-                                                        <a href="{% url 'save_watchlist' opening.title %}"><small class="mr-1 font-weight-bold"><i class="fa fa-plus"></i> To Watchlist</small></a>
-                                                    </div><br />
+                                                        <a href="{% url 'save_watchlist' opening.title %}"><small class="mr-1 font-weight-bold"><i class="fa fa-plus"></i> Save for later</small></a>
+                                                    </div>
                                                 {% endif %}
                                             </div><br />
                                             {{ opening.text }}
@@ -151,200 +120,142 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Application Status</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+
 
                     <!-- Content Row -->
                     <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                        <!-- Announcement texts -->
+                        <div class="col-xl-4 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">SEP Results</h6>
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <img class="col-xl-11" src="/media/index/undraw_Information_tab_re_f0w3.png" style="width: 200%; margin-right: 10px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Content Progress Bar -->
+                        <div class="col-xl-5 col-lg-5">
 
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">SEP Planner</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
+                                    <h4 class="small font-weight-bold">Progress of SEP Application <span
+                                            class="float-right">80% complete</span></h4>
                                     <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div><br />
+                                    <h4 class="small font-weight-bold">Progress of Module Selection <span
+                                        class="float-right">50% complete</span></h4>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div><br />
+                                    <h4 class="small font-weight-bold">Deadline for SEP Application <span class="float-right">In 29 days</span></h4>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div><br />
+                                    <div></div>
+                                        <div class="row text-center">
+                                          <div class="col-6 princing-item blue">
+                                            <div class="pricing-divider ">
+                                                <h5 class="text-light"><i class="fas fa-book"></i> Shortlisted Modules</h5>
+                                               <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+                                            <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                                      c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+                                            <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                                      c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+                                            <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                                      H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+                                            <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                                      c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+                                          </svg>
+                                            </div> 
+                                            {% for item in shortlist %}
+                                            Mapping: <a href="{% url 'delete_shortlist' item.partneruniversity.nusmodulecode %}"><i style="float:left; margin:3px;" class="fas fa-trash"></i></a> {{ item.partneruniversity.nusmodulecode }} <i class="fa fa-long-arrow-right"></i> {{ item.partneruniversity.pumodulecode }}
+                                            <hr>
+                                            {% endfor %}
+                                          </div><br />
+                                          <div class="col-6 princing-item green">
+                                            <div class="pricing-divider ">
+                                                <h5 class="text-light"><i class="fas fa-school"></i> Shortlisted Universities</h5>
+                                               <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+                                            <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                                      c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+                                            <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                                      c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+                                            <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                                      H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+                                            <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                                      c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+                                          </svg>
+                                            </div>
+                                            {% for item in lst2 %}
+                                            {{ item }}
+                                            <hr>
+                                            {% endfor %}
+                                          </div>
+                                      </div>
                                 </div>
                             </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
+                        <!-- Doughnut Chart -->
+                        <div class="col-xl-3 col-lg-5">
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="https://www.google.com/" alt="...">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Where SEP students go</h6>
+                                    <div class="dropdown no-arrow">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
                                 </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
+                                <!-- Card Body -->
                                 <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
+                                    <canvas id="myChart"></canvas>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+                                    <script>
+                                        const ctx = document.getElementById('myChart').getContext('2d');
+                                        const myChart = new Chart(ctx, {
+                                            type: 'doughnut',
+                                            data: {
+                                                labels: ['US', 'UK', 'China', 'Australia', 'Others'],
+                                                datasets: [{
+                                                    label: 'Dataset 1',
+                                                    data: [91, 44, 65, 32, 33],
+                                                    backgroundColor: [
+                                                        'rgba(255, 99, 132)',
+                                                        'rgba(255, 159, 64)',
+                                                        'rgba(255, 205, 86)',
+                                                        'rgba(75, 192, 192)',
+                                                        'rgba(54, 162, 235)',
+                                                        'rgba(153, 102, 255)',
+                                                    ],
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    legend: {
+                                                        position: 'top',
+                                                    },
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Where our students go'
+                                                    }
+                                                }
+                                            },
+                                        });
+                                    </script>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -358,7 +269,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; NUS Orbital SEPlan 2022</span>
                     </div>
                 </div>
             </footer>
@@ -366,32 +277,6 @@
 
         </div>
         <!-- End of Content Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
-
 </html>
 {% endblock %}

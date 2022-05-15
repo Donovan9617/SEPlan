@@ -3,6 +3,12 @@
 {% load static %}
 
 {% block body %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function sweetAlert() {
+        swal("Account created!", "", "success");
+    }
+</script>
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -22,16 +28,25 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" action="{% url 'register' %}" method="POST">
+                            <form class="user" action="{% url 'register' %}" method="POST" onsubmit="sweetAlert()">
                                 {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" 
                                         name="username" placeholder="Username">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user"
-                                        name = "major" placeholder="Student's Major">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <select class="form-control" name="faculty">
+                                            <option value="" disabled selected hidden>Select your faculty</option>
+                                            <option value="College of Humanities and Sciences">College of Humanities and Sciences</option>
+                                            <option value="NUS Business School">NUS Business School</option>
+                                            <option value="School of Computing">School of Computing</option>
+                                            <option value="Faculty of Dentistry">Faculty of Dentistry</option>
+                                            <option value="College of Design and Engineering">College of Design and Engineering</option>
+                                            <option value="Faculty of Law">Faculty of Law</option>
+                                            <option value="Yong Loo Lin School of Medicine">Yong Loo Lin School of Medicine</option>
+                                            <option value="Yong Siew Toh Conservatory of Music">Yong Siew Toh Conservatory of Music</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -41,7 +56,7 @@
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" 
-                                        name="faculty" placeholder="Faculty">
+                                        name="major" placeholder="Major">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -61,9 +76,9 @@
                                 <input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block">
                             </form>
                             <hr>
-                            <div class="text-center">
+                            <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
+                            </div> -->
                             <div class="text-center">
                                 <a class="small" href="{% url 'login' %}">Already have an account? Login!</a>
                             </div>

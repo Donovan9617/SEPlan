@@ -3,6 +3,12 @@
 {% load static %}
 
 {% block body %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function loginAlert() {
+        swal("Welcome back!", "", "success");
+    }
+</script>
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -27,7 +33,7 @@
                                     <div class="text-center">
                                         <h1 class="h3 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="{% url 'login' %}" method="POST">
+                                    <form class="user" action="{% url 'login' %}" method="POST" onsubmit="loginAlert()">
                                         {% csrf_token %}
                                         <div class="form-group text-center">
                                             <input type="text" placeholder="Username" name="username" 
@@ -40,9 +46,9 @@
                                         <input type="submit" value="Login" class="btn btn-primary btn-user btn-block text-center">
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    </div> -->
                                     <div class="text-center">
                                         <a class="small" href="{% url 'register' %}">Create an Account!</a>
                                     </div>
