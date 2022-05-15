@@ -32,6 +32,7 @@
                                     <th>Module Code</th>
                                     <th>NUS Module</th>
                                     <th>NUS Module Code</th>
+                                    <th>Add</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,6 +45,11 @@
                                     <td>{{ item.pumodulecode }}</td>
                                     <td>{{ item.nusmodule }}</td>
                                     <td>{{ item.nusmodulecode }}</td>
+                                    {% if item.nusmodulecode not in added %}
+                                    <td><small class="mr-1 font-weight-bold"><i class="fa fa-check"></i>ok</small></td>
+                                    {% else %}
+                                    <td><a href="{% url 'planner' item.id %}"><small class="mr-1 font-weight-bold"><i class="fa fa-plus"></i></small></a></td>
+                                    {% endif %}
                                 </tr>
                                 {% endfor %}
                                 {% else %}

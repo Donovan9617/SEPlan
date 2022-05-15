@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
 import time
 
-from .models import User, Chat, Review, Opening, Watchlist, PartnerUniversity
+from .models import User, Chat, Review, Opening, Watchlist, PartnerUniversity, Shortlist
 
 def index(request):
     if not request.user.is_authenticated:
@@ -21,8 +21,14 @@ def index(request):
         lst.append(item.opening.title)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    shortlist = Shortlist.objects.filter(user=request.user)
+    lst2 = []
+    for item in shortlist:
+        if item.partneruniversity.puname not in lst2:
+            lst2.append(item.partneruniversity.puname)
+    time.sleep(0.5)
     return render(request, "sep/index.html", {
-        "openings": page_obj, "watchlist": lst
+        "openings": page_obj, "watchlist": lst, "shortlist": shortlist, "lst2": lst2
     })
 
 def register(request):
@@ -179,6 +185,22 @@ def modules(request):
             "mappable": mappable, "module": module, "search": search
         })
     search = False
+    shortlist = Shortlist.objects.filter(user=request.user)
+    added = []
+    for item in shortlist:
+        added.append(item.partneruniversity.nusmodulecode)
     return render(request, "sep/modules.html", {
-        "search": search
+        "search": search, "added": added
     })
+
+def planner(request, id):
+    partneruniversity = PartnerUniversity.objects.filter(id=id).first()
+    shortlist = Shortlist(user=request.user, partneruniversity=partneruniversity)
+    shortlist.save()
+    return HttpResponseRedirect(reverse('index'))
+
+def delete_shortlist(request, mod):
+    partneruniversity=PartnerUniversity.objects.get(nusmodulecode=mod)
+    shortlist=Shortlist.objects.get(user=request.user, partneruniversity=partneruniversity)
+    shortlist.delete()
+    return HttpResponseRedirect(reverse('index'))

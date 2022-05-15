@@ -41,12 +41,12 @@
             {% endif %}
 
             <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav">
                 {% if user.is_authenticated %}
 
                 <!-- Nav Item - Home -->
-                <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" role="button"
+                <li class="nav-item ml-auto">
+                    <a class="nav-link dropdown-toggle"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         href="{% url 'index' %}">
                         <span class="text-white small">Home</span>
@@ -58,7 +58,15 @@
                     <a class="nav-link dropdown-toggle" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         href="{% url 'watchlist' %}">
-                        <span class="text-white small">Watchlist</span>
+                        <span class="text-white small">Saved</span>
+                    </a>
+                </li>
+
+                <!-- Nav Item - Print -->
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        href="javascript:window.print();"><span class="text-white small">Print</span>
                     </a>
                 </li>
 
@@ -71,12 +79,14 @@
                     </a>
                 </li>
 
+                <div class="topbar-divider d-none d-sm-block"></div>
+
                 <!-- Nav Item - User Information -->
                 <li class="nav-item">
-                    <a class="nav-link dropdown-toggle"  
-                        aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-white medium">Welcome, {{ request.user.username }}!</span>
-                    </a>
+                    <div class="nav-link">
+                        <span class="mr-2 d-none d-lg-inline text-white small">{{ request.user.username }}</span>
+                        <img class="img-profile rounded-circle" src="/media/index/undraw_profile.svg">
+                    </div>
                 </li>
                 {% else %}
                 <li class="nav-item">

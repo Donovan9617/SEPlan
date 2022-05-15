@@ -6,7 +6,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     function sweetAlert() {
-        swal("Thanks for reviewing!", "Have a nice day!", "success");
+        swal("Reviewed!", "", "success");
     }
 </script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -38,6 +38,7 @@
                         </span>
                         <span class="ml-auto text-dark-l2 text-nowrap">
                             <select name="university" class="text-default-d3 text-90 text-600">
+                                <option value="" disabled selected hidden>Select your SEP university...</option>
                                 <option value="Monash University" class="text-default-d3 text-90 text-600">Monash University</option>
                                 <option value="University of Adelaide" class="text-default-d3 text-90 text-600">University of Adelaide</option>
                                 <option value="University of Melbourne" class="text-default-d3 text-90 text-600">University of Melbourne</option>
