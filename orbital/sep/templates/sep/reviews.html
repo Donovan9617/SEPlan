@@ -5,8 +5,12 @@
 {% block body %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    function sweetAlert() {
-        swal("Reviewed!", "", "success");
+    function sweetReview() {
+        swal("Posted review!", "", "success");
+    }
+    
+    function sweetDelete() {
+        swal("Deleted review!", "", "success")
     }
 </script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -30,7 +34,7 @@
                             <i class="fa fa-globe text-green-m1 text-95"></i>
                         </span>
                     </div>
-                    <form onsubmit="sweetAlert()" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style"
+                    <form onsubmit="sweetReview()" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style"
                         action="{% url 'reviews' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <span class="text-default-d3 text-90 text-600">
@@ -38,7 +42,7 @@
                         </span>
                         <span class="ml-auto text-dark-l2 text-nowrap">
                             <select name="university" class="text-default-d3 text-90 text-600">
-                                <option value="" disabled selected hidden>Select your SEP university...</option>
+                                <!-- <option value="" disabled selected hidden>Select your SEP university...</option> -->
                                 <option value="Monash University" class="text-default-d3 text-90 text-600">Monash University</option>
                                 <option value="University of Adelaide" class="text-default-d3 text-90 text-600">University of Adelaide</option>
                                 <option value="University of Melbourne" class="text-default-d3 text-90 text-600">University of Melbourne</option>
@@ -152,7 +156,7 @@
                             {{ item.university }}
                         </div>
                         <small class="bgc-secondary-l4">{{ item.date }}</small><br />
-                        <a href="{% url 'delete_review' item.id %}"><div><i class="text-green-m1 fa fa-trash remove-note"></i></div></a>
+                        <a href="{% url 'delete_review' item.id %}"><div><i class="text-green-m1 fa fa-trash remove-note" onclick="sweetDelete()"></i></div></a>
                     </div>
                     {% empty %}
                     <span class="text-default-d3 text-90 text-600radius-1 p-2">

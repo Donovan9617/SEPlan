@@ -52,7 +52,7 @@ def register(request):
                 "message": "*Error: This username has already been taken, please choose another username!"
             })
         login(request, user)
-        time.sleep(2)
+        time.sleep(1)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "sep/register.html")
 
@@ -112,7 +112,7 @@ def search(request):
 
 def reviews(request):
     if request.method == "POST":
-        university = request.POST['university']
+        uni = request.POST['university']
         review = request.POST['review']
         period = request.POST['period']
         modules = request.POST['modules']
@@ -125,11 +125,11 @@ def reviews(request):
             filename = fs.save(myfile.name, myfile)
             url = fs.url(filename)
 
-        review = Review(user=request.user, university=university, review=review,
+        review = Review(user=request.user, university=uni, review=review,
         period=period, modules=modules,
         living=living, prepare=prepare, attachments=url)
         review.save()
-        time.sleep(2)
+        time.sleep(1.5)
         return HttpResponseRedirect(reverse('reviews'))
     history = Review.objects.filter(user=request.user).order_by('-date')
     reviews = list(Review.objects.all())
@@ -154,7 +154,7 @@ def page(request, university):
 def delete_review(request, id):
     r = Review.objects.filter(id=id).first()
     r.delete()
-    time.sleep(2)
+    time.sleep(1.5)
     return reviews(request)
 
 def watchlist(request):
@@ -181,6 +181,7 @@ def modules(request):
         module = request.POST['module']
         search = True
         mappable = PartnerUniversity.objects.filter(forfaculty=faculty, nusmodulecode=module)
+        time.sleep(1.5)
         return render(request, "sep/modules.html", {
             "mappable": mappable, "module": module, "search": search
         })
@@ -197,10 +198,12 @@ def planner(request, id):
     partneruniversity = PartnerUniversity.objects.filter(id=id).first()
     shortlist = Shortlist(user=request.user, partneruniversity=partneruniversity)
     shortlist.save()
+    time.sleep(1)
     return HttpResponseRedirect(reverse('index'))
 
 def delete_shortlist(request, mod):
     partneruniversity=PartnerUniversity.objects.get(nusmodulecode=mod)
     shortlist=Shortlist.objects.get(user=request.user, partneruniversity=partneruniversity)
     shortlist.delete()
+    time.sleep(1)
     return HttpResponseRedirect(reverse('index'))

@@ -2,6 +2,12 @@
 {% load static %}
 
 {% block body %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function sweetAlert() {
+        swal("Removed from planner!", "", "success");
+    }
+</script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="{% static '/index.css' %}" rel="stylesheet">
 <body id="page-top">
@@ -179,7 +185,7 @@
                                           </svg>
                                             </div> 
                                             {% for item in shortlist %}
-                                            Mapping: <a href="{% url 'delete_shortlist' item.partneruniversity.nusmodulecode %}"><i style="float:left; margin:3px;" class="fas fa-trash"></i></a> {{ item.partneruniversity.nusmodulecode }} <i class="fa fa-long-arrow-right"></i> {{ item.partneruniversity.pumodulecode }}
+                                            Mapping: <a href="{% url 'delete_shortlist' item.partneruniversity.nusmodulecode %}"><i style="float:left; margin:3px;" class="fas fa-trash" onclick="sweetAlert()"></i></a> {{ item.partneruniversity.nusmodulecode }} <i class="fa fa-long-arrow-right"></i> {{ item.partneruniversity.pumodulecode }}
                                             <hr>
                                             {% endfor %}
                                           </div><br />
@@ -212,7 +218,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Where SEP students go</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">SEP Destinations</h6>
                                     <div class="dropdown no-arrow">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </div>

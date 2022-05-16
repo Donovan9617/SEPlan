@@ -2,6 +2,12 @@
 {% load static %}
 
 {% block body %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function sweetAlert() {
+        swal("Added to planner!", "", "success");
+    }
+</script>
 <link href="{% static '/modules.css' %}" rel="stylesheet" />
 <div class="container">
     <div class="row">
@@ -48,7 +54,7 @@
                                     {% if item.nusmodulecode not in added %}
                                     <td><small class="mr-1 font-weight-bold"><i class="fa fa-check"></i>ok</small></td>
                                     {% else %}
-                                    <td><a href="{% url 'planner' item.id %}"><small class="mr-1 font-weight-bold"><i class="fa fa-plus"></i></small></a></td>
+                                    <td><a href="{% url 'planner' item.id %}"><small class="mr-1 font-weight-bold"><i class="fa fa-plus" onclick="sweetAlert()"></i></small></a></td>
                                     {% endif %}
                                 </tr>
                                 {% endfor %}
