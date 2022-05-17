@@ -1,1 +1,5 @@
-# SEPlan
+**SEPlan**
+SEPlan is a one-stop platform for NUS students who intend to go on SEP to obtain resources, contribute reviews, map modules, plan timetables, and connect with exchange alumni. Built using Django and Bootstrap, we aim to create a user-friendly platform for students to ask questions and receive quality answers about SEP universities, modules and the module planning process in a timely manner.
+
+**The Application**
+In the Modules route, a user who had just returned from SEP may write a review of their own SEP experience, including the learning environment at their SEP university, the modules they managed to map over, and the living environment and favourite pictures at their overseas destination. Upon clicing the "review" button, an alert thanks the user for submitting the review, which is then added to the library of reviews available for other users intending to embark on SEP. As reviews are categorised by partner universities, a user looking for information about a particular partner university can easily find all the reviews about it and directly contact the reviewer should they require more information. Users are also able to view their history of reviews and have the option to delete their past reviews.
