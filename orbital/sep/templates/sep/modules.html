@@ -51,8 +51,8 @@
                                     <td>{{ item.pumodulecode }}</td>
                                     <td>{{ item.nusmodule }}</td>
                                     <td>{{ item.nusmodulecode }}</td>
-                                    {% if item.nusmodulecode not in added %}
-                                    <td><small class="mr-1 font-weight-bold"><i class="fa fa-check"></i>ok</small></td>
+                                    {% if item.nusmodulecode in added %}
+                                    <td><small class="mr-1 font-weight-bold"><i class="fa fa-check-circle fa-2x" style="color:rgb(106, 242, 106);"></i></small></td>
                                     {% else %}
                                     <td><a href="{% url 'planner' item.id %}"><small class="mr-1 font-weight-bold"><i class="fa fa-plus" onclick="sweetAlert()"></i></small></a></td>
                                     {% endif %}

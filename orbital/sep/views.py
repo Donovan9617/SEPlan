@@ -181,17 +181,17 @@ def modules(request):
         module = request.POST['module']
         search = True
         mappable = PartnerUniversity.objects.filter(forfaculty=faculty, nusmodulecode=module)
+        shortlist = Shortlist.objects.filter(user=request.user)
+        added = []
+        for item in shortlist:
+            added.append(item.partneruniversity.nusmodulecode)
         time.sleep(1.5)
         return render(request, "sep/modules.html", {
-            "mappable": mappable, "module": module, "search": search
+            "mappable": mappable, "module": module, "search": search, "added": added
         })
     search = False
-    shortlist = Shortlist.objects.filter(user=request.user)
-    added = []
-    for item in shortlist:
-        added.append(item.partneruniversity.nusmodulecode)
     return render(request, "sep/modules.html", {
-        "search": search, "added": added
+        "search": search
     })
 
 def planner(request, id):
