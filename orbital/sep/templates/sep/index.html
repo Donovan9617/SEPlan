@@ -10,6 +10,7 @@
 </script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="{% static '/index.css' %}" rel="stylesheet">
+<link href="{% static '/calendar.css' %}" rel="stylesheet">
 <body id="page-top">
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -144,19 +145,6 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <img class="col-xl-11" src="/media/index/undraw_Information_tab_re_f0w3.png" style="width: 200%; margin-right: 10px;" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SEP Planner -->
-                        <div class="col-xl-5 col-lg-5">
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">SEP Planner</h6>
-                                </div>
-                                <div class="card-body">
                                     <h4 class="small font-weight-bold">Progress of SEP Application <span class="float-right">80% complete</span></h4>
                                     <div class="progress">
                                         <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
@@ -169,47 +157,137 @@
                                     <div class="progress">
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div><br />
-                                        <div class="row text-center">
-                                          <div class="col-6 princing-item blue">
-                                            <div class="pricing-divider ">
-                                                <h5 class="text-light"><i class="fas fa-book"></i> Shortlisted Modules</h5>
-                                               <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
-                                            <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
-                                      c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
-                                            <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
-                                      c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
-                                            <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
-                                      H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
-                                            <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
-                                      c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
-                                          </svg>
-                                            </div> 
-                                            {% for item in shortlist %}
-                                            Mapping: <a href="{% url 'delete_shortlist' item.partneruniversity.nusmodulecode %}"><i style="float:left; margin:3px;" class="fas fa-trash" onclick="sweetAlert()"></i></a> {{ item.partneruniversity.nusmodulecode }} <i class="fa fa-long-arrow-right"></i> {{ item.partneruniversity.pumodulecode }}
-                                            <hr>
-                                            {% endfor %}
-                                          </div><br />
-                                          <div class="col-6 princing-item green">
-                                            <div class="pricing-divider ">
-                                                <h5 class="text-light"><i class="fas fa-school"></i> Shortlisted Universities</h5>
-                                               <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
-                                            <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
-                                      c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
-                                            <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
-                                      c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
-                                            <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
-                                      H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
-                                            <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
-                                      c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
-                                          </svg>
-                                            </div>
-                                            {% for item in lst2 %}
-                                            {{ item }}
-                                            <hr>
-                                            {% endfor %}
-                                          </div>
-                                      </div>
-                                      
+                                    <img class="col-xl-11" src="/media/index/undraw_Information_tab_re_f0w3.png" style="width: 200%; margin-right: 10px;" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEP Planner -->
+                        <div class="col-xl-5 col-lg-5">
+                            <!-- Project Card Example -->
+                            <div class="card">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">SEP Planner</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row text-center">
+                                        <div class="col-6 princing-item blue">
+                                        <div class="pricing-divider ">
+                                            <h5 class="text-light"><i class="fas fa-book"></i> Shortlisted Modules</h5>
+                                            <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+                                        <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                                    c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                                    c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                                    H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+                                        <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                                    c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+                                        </svg>
+                                        </div> 
+                                        {% for item in shortlist %}
+                                        Mapping: <a href="{% url 'delete_shortlist' item.partneruniversity.nusmodulecode %}"><i style="float:left; margin:3px;" class="fas fa-trash" onclick="sweetAlert()"></i></a> {{ item.partneruniversity.nusmodulecode }} <i class="fa fa-long-arrow-right"></i> {{ item.partneruniversity.pumodulecode }}
+                                        <hr>
+                                        {% endfor %}
+                                        </div><br />
+                                        <div class="col-6 princing-item green">
+                                        <div class="pricing-divider ">
+                                            <h5 class="text-light"><i class="fas fa-school"></i> Shortlisted Universities</h5>
+                                            <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+                                        <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                                    c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                                    c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                                    H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+                                        <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                                    c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+                                        </svg>
+                                        </div>
+                                        {% for item in lst2 %}
+                                        {{ item }}
+                                        <hr>
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+                                    
+                                      <!-- Calendar -->
+                                    <div id="calender">
+                                        <table colspan="10">
+                                            <thead class="color">
+                                                <tr>
+                                                    <th colspan="7" class="bg-info">
+                                                        <div>
+                                                            <i class="fas fa-caret-left icon mr-4"> </i>
+                                                            <h4 id="cal-month"> July </h4>
+                                                            <i class="fas fa-caret-right icon ml-4"> </i>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="col-1.5 bg-info">Sun</th>
+                                                    <th class="col-1.5 bg-info">Mon</th>
+                                                    <th class="col-1.5 bg-info">Tue</th>
+                                                    <th class="col-1.5 bg-info">Wed</th>
+                                                    <th class="col-1.5 bg-info">Thu</th>
+                                                    <th class="col-1.5 bg-info">Fri</th>
+                                                    <th class="col-1.5 bg-info">Sat</th>
+                                                </tr>
+                                            </thead>
+                                    
+                                            <tbody id="table-body">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>2</td>
+                                                    <td>3 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td>4</td>
+                                                    <td>5</td>
+                                                    <td>6</td>
+                                                    <td>7</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td>9</td>
+                                                    <td>10</td>
+                                                    <td>11</td>
+                                                    <td>12 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td>13</td>
+                                                    <td>14</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>15</td>
+                                                    <td>16</td>
+                                                    <td>17</td>
+                                                    <td>18 <i class="fa fa-circle" style="color: rgba(253, 77, 180, 0.5)"></i></td>
+                                                    <td>19</td>
+                                                    <td>20</td>
+                                                    <td>21</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>22</td>
+                                                    <td>23 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td>24</td>
+                                                    <td>25</td>
+                                                    <td>26</td>
+                                                    <td>27 <i class="fa fa-circle" style="color: rgba(253, 77, 180, 0.5)"></i></td>
+                                                    <td>28</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>29</td>
+                                                    <td>30</td>
+                                                    <td>31</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="row ml-5">
+                                            <i class="fa fa-circle ml-5 mr-2" style="color: rgba(44, 208, 126, .5)"></i> SEP Information Session
+                                            <i class="fa fa-circle ml-5 mr-2" style="color: rgba(253, 77, 180, 0.5)"></i> SEP Document Deadline
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
