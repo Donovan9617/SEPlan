@@ -16,5 +16,5 @@ In the Modules route, a user can easily find modules from partner universities t
 In the Message route, a user may start a conversation with another user by using the search bar on the left to search for their username, or through the "message" button in the review platform. Chats with other users are listed to the left while the main flow of conversation with a particular user is displayed on the right. By displaying the username and faculty of users, a user is able to ask questions for faculty-based SEP and have them answered in a more personal and informative manner. Additionally, users from the same faculty intending to embark on SEP to similar countries may easily form groups and connections.
 
 **Tech Stack** \
-Languages: Python, HTML, CSS, JavaScript
+Languages: Python, HTML, CSS, JavaScript \
 Framework: Django, Bootstrap
