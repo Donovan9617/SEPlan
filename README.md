@@ -14,3 +14,7 @@ In the Reviews route, a user who had just returned from SEP may write a review o
 In the Modules route, a user can easily find modules from partner universities that can be mapped to their corresponding NUS modules. After entering an NUS module code into the search bar and clicking the "search" button, a list of partner universities with mappable modules, along with their module names and codes and a "plus" button, would be displayed. On clicking the "plus" button, an alert informs the user that he has shortlisted this overseas module and university into his SEP planner table in the home page. If there are no modules which map to the entered NUS module code, no results will be displayed.
 
 In the Message route, a user may start a conversation with another user by using the search bar on the left to search for their username, or through the "message" button in the review platform. Chats with other users are listed to the left while the main flow of conversation with a particular user is displayed on the right. By displaying the username and faculty of users, a user is able to ask questions for faculty-based SEP and have them answered in a more personal and informative manner. Additionally, users from the same faculty intending to embark on SEP to similar countries may easily form groups and connections.
+
+**Tech Stack** \
+Languages: Python, HTML, CSS, JavaScript
+Framework: Django, Bootstrap
