@@ -1,3 +1,6 @@
+**GitHub link to SEPlan** \
+https://github.com/Donovan9617/SEPlan
+
 **NUS Orbital SEPlan** \
 SEPlan is a one-stop platform for NUS students who intend to go on SEP to obtain resources, contribute reviews, map modules, plan timetables, and connect with exchange alumni. Built using Django, JavaScript, and Bootstrap, we aim to create a user-friendly platform for students to ask questions and receive quality answers about SEP universities, modules and the module planning process in a timely manner.
 
