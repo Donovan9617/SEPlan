@@ -20,3 +20,14 @@ In the Message route, a user may start a conversation with another user by using
 **Tech Stack** \
 Languages: Python, HTML, CSS, JavaScript \
 Framework: Django, Bootstrap
+
+**Technical Proof of Progress** \
+To view our website on your own system, please run the following steps to install the necessary packages in your terminal:
+Django: pip install django (Windows) / pip3 install django (Mac)
+Git: https://github.com/git-guides/install-git
+To run server: pip install psycopg2, then pip install django-heroku (Windows) / pip3 install psycopg2, then pip3 install django-heroku (Mac)
+
+Using a source-code editor, clone our Github repository by running this command in your terminal: git clone https://github.com/Donovan9617/SEPlan
+Change directory by running these commands in your terminal in order: cd SEPlan, cd orbital
+Once in the directory orbital, run this command in your terminal: python manage.py runserver (Windows) / python3 manage.py runserver (Mac)
+Copy and paste the URL of the development server into a web browser and add "/sep" to run the page.
