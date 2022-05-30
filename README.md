@@ -21,7 +21,7 @@ In the Message route, a user may start a conversation with another user by using
 Languages: Python, HTML, CSS, JavaScript \
 Framework: Django, Bootstrap
 
-**Technical Proof of Progress** \
+**Steps to Run the Application** \
 To view our website on your own system, please run the following steps to install the necessary packages in your terminal:
 Django: pip install django (Windows) / pip3 install django (Mac)
 Git: https://github.com/git-guides/install-git
