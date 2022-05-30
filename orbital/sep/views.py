@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
@@ -7,7 +8,7 @@ from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
 import time
 
-from .models import User, Chat, Review, Opening, Watchlist, PartnerUniversity, Shortlist
+from .models import Forum, User, Chat, Review, Opening, Watchlist, PartnerUniversity, Shortlist
 
 def index(request):
     if not request.user.is_authenticated:
@@ -207,3 +208,28 @@ def delete_shortlist(request, mod):
     shortlist.delete()
     time.sleep(1)
     return HttpResponseRedirect(reverse('index'))
+
+def forum(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        query = request.POST['query']
+
+        if request.FILES['attachments']:
+            myfile = request.FILES['attachments']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            url = fs.url(filename)
+
+        new_post = Forum(user=request.user, query=query, attachments=url)
+        new_post.save()
+        time.sleep(1.5)
+        return HttpResponseRedirect(reverse('forum'))
+    history = Forum.objects.all().order_by('-date')
+    queries = list(Forum.objects.all())
+    lst = []
+    for item in queries:
+        if item not in lst:
+            lst.append(item)
+    return render(request, "sep/forum.html", {
+        "queries": lst, "history": history
+    })
