@@ -1,1 +1,1 @@
-web: gunicorn orbital/orbital/.wsgi:app
+web: gunicorn orbital/orbital/wsgi:app
