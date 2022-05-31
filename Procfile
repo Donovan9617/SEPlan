@@ -1,1 +1,1 @@
-web: gunicorn orbital.wsgi --log-file -
+web: gunicorn orbital.wsgi
