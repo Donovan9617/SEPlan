@@ -1,1 +1,1 @@
-web: gunicorn SEPlan.wsgi
+web: gunicorn orbital.wsgi
