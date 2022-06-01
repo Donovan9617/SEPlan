@@ -78,6 +78,8 @@ def login_view(request):
 
 
 def messages(request, to):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     if request.method == "POST":
         fromAddress = request.user.username
         toAddress = to
@@ -104,6 +106,8 @@ def messages(request, to):
     })
 
 def search(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     searchTerm = request.POST['student']
     users = User.objects.all()
     for user in users:
@@ -112,6 +116,8 @@ def search(request):
     return HttpResponseRedirect(reverse('messages', args=[request.user.username]))
 
 def reviews(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     if request.method == "POST":
         uni = request.POST['university']
         review = request.POST['review']
@@ -143,6 +149,8 @@ def reviews(request):
     })
 
 def page(request, university):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     reviews = Review.objects.filter(university=university).order_by('-date')
     numOfItemsPerPage = 1
     paginator = Paginator(reviews, numOfItemsPerPage)
@@ -153,30 +161,40 @@ def page(request, university):
     })
 
 def delete_review(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     r = Review.objects.filter(id=id).first()
     r.delete()
     time.sleep(1.5)
     return reviews(request)
 
 def watchlist(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     watchlist = Watchlist.objects.filter(user=request.user).order_by('-id')
     return render(request, "sep/watchlist.html", {
         "watchlist": watchlist
     })
 
 def save_watchlist(request, title):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     opening = Opening.objects.filter(title=title).first()
     w = Watchlist(user=request.user, opening=opening)
     w.save()
     return index(request)
 
 def delete_watchlist(request, title):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     opening = Opening.objects.filter(title=title).first()
     w = Watchlist.objects.filter(user=request.user, opening=opening)
     w.delete()
     return watchlist(request)
 
 def modules(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     if request.method == "POST":
         faculty = request.user.faculty
         module = request.POST['module']
@@ -196,6 +214,8 @@ def modules(request):
     })
 
 def planner(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     partneruniversity = PartnerUniversity.objects.filter(id=id).first()
     shortlist = Shortlist(user=request.user, partneruniversity=partneruniversity)
     shortlist.save()
@@ -203,6 +223,8 @@ def planner(request, id):
     return HttpResponseRedirect(reverse('index'))
 
 def delete_shortlist(request, mod):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     partneruniversity=PartnerUniversity.objects.get(nusmodulecode=mod)
     shortlist=Shortlist.objects.get(user=request.user, partneruniversity=partneruniversity)
     shortlist.delete()
@@ -210,6 +232,8 @@ def delete_shortlist(request, mod):
     return HttpResponseRedirect(reverse('index'))
 
 def forum(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
     if request.method == "POST":
         title = request.POST['title']
         query = request.POST['query']
