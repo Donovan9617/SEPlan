@@ -29,12 +29,12 @@
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2" style="display:inline-block">
-                                            <div class="h3 font-weight-bold text-primary text-uppercase">
-                                                Query </div>
-                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Start a discussion!</div>
+                                        <div class="col mr-2" style="display:inline-block;">
+                                            <a href="{% url 'forum' %}"><div class="h3 font-weight-bold text-primary text-uppercase">
+                                                Forum </div></a>
+                                            <div class="text-xs mb-0 ml-1 font-weight-bold text-gray-800">Start a discussion!</div>
                                         </div>
-                                        <img class="col-xl-7" src="/media/index/undraw_Public_discussion_re_w9up.png" style="width: 20%; margin-right: 10px;" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Public_discussion_re_w9up.png" width="10" height="100" />
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                                 Reviews</div></a>
                                             <div class="text-xs ml-1 font-weight-bold text-gray-800">Help another student!</div>
                                         </div>
-                                        <img class="col-xl-4" src="/media/index/undraw_Add_notes_re_ln36.png" style="width: 50%; margin-right: 10px;" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Add_notes_re_ln36.png" width="500" height="90" />
                                     </div>
                                 </div>
                             </div>
@@ -64,9 +64,9 @@
                                         <div class="col mr-2" style="display:inline-block;">
                                             <a href="{% url 'modules' %}"><div class="h3 font-weight-bold text-info text-uppercase">
                                                 Modules</div></a>
-                                            <div class="text-xs mb-0 ml-1 font-weight-bold text-gray-800">Map overseas modules!</div>
+                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Map overseas modules!</div>
                                         </div>
-                                        <img class="col-xl-5" src="/media/index/undraw_Adventure_re_ncqp.png" style="width: 50%; margin-right: 10px;" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Adventure_re_ncqp.png"  width="500" height="90" />
                                     </div>
                                 </div>
                             </div>
@@ -80,9 +80,9 @@
                                         <div class="col mr-2" style="display:inline-block;">
                                             <a href="{% url 'messages' request.user.username %}"> <div class="h3 font-weight-bold text-warning text-uppercase">
                                                 Messages</div> </a>
-                                            <div class="text-xs mb-0 ml-1 font-weight-bold text-gray-800">Connect with SEP!</div>
+                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Connect with SEP!</div>
                                         </div>
-                                        <img class="col-xl-5" src="/media/index/undraw_Share_opinion_re_4qk7.png" style="width: 50%; margin-right: 10px;" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Share_opinion_re_4qk7.png" />
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +188,8 @@
                                         {% for item in shortlist %}
                                         Mapping: <a href="{% url 'delete_shortlist' item.partneruniversity.nusmodulecode %}"><i style="float:left; margin:3px;" class="fas fa-trash" onclick="sweetAlert()"></i></a> {{ item.partneruniversity.nusmodulecode }} <i class="fa fa-long-arrow-right"></i> {{ item.partneruniversity.pumodulecode }}
                                         <hr>
+                                        {% empty %}
+                                        No modules shortlisted.
                                         {% endfor %}
                                         </div><br />
                                         <div class="col-6 princing-item green">
@@ -207,6 +209,8 @@
                                         {% for item in lst2 %}
                                         {{ item }}
                                         <hr>
+                                        {% empty %}
+                                        No SEP universities shortlisted.
                                         {% endfor %}
                                         </div>
                                     </div>

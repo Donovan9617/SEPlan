@@ -46,11 +46,13 @@
                                 <small class="text-muted">{{ review.date }}</small>
         
                                 <div class="border text-sm text-muted p-2">
-                                    <strong>Review: </strong><br /> {{ review.review }} <br />
-                                    <strong>Living Environment: </strong><br /> {{ review.living }} <br />
-                                    <strong>Things to Prepare: </strong><br /> {{ review.prepare}} <br />
+                                    <strong>Review: </strong><br /> {{ review.review }} <br /><br />
+                                    <strong>Period: </strong><br /> {{ review.period }} <br /><br />
+                                    <strong>Modules Mapped: </strong><br /> {{ review.modules }} <br /><br />
+                                    <strong>Living Environment: </strong><br /> {{ review.living }} <br /><br />
+                                    <strong>Things to Prepare: </strong><br /> {{ review.prepare}} <br /><br />
                                 </div>
-                                <div class="col-xl-9 p-2"><strong>Most memorable picture I wish to share: </strong></div><img class="col-xl-9 p-1" src="{{ review.attachments }}" style="width: 50%; margin-right: 10px;" />
+                                <div class="col-xl-9 p-2"><strong>Most memorable picture I wish to share: </strong></div><img class="col-xl-9 p-1" src="{{ review.attachments }}"  style="width:50%; margin-right: 10px;" />
                             </div>
                         </div>
                     </div>

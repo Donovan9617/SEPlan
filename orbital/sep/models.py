@@ -65,3 +65,13 @@ class Shortlist(models.Model):
 
     def __str__(self):
         return f"{self.user} placed {self.partneruniversity} on watchlist."
+
+class Forum(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    title = models.TextField(blank=True, null=True)
+    query = models.TextField(blank=True, null=True)
+    attachments = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return f'User: {self.user} Date: {str(self.date)} Query: {self.query} Attachments: {self.attachments}'
