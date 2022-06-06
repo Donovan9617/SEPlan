@@ -1,0 +1,25 @@
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-gray-800">Add event</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                <!-- <form hx-post="{% url 'add_events' %}"> -->
+                    {% csrf_token %}
+                    <div class="input-group pt-2 pb-1">
+                        <textarea class="form-control bg-light border-0" name="addCalendar" placeholder="Description..."></textarea>
+                    </div>
+                    <div class="ml-auto pt-2 pb-1">
+                        <input type="submit" value="Add to Calendar" onclick="sweetAddCalendar()" class="btn btn-primary btn-user btn-block text-center"/>
+                    </div>
+                </form>   
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

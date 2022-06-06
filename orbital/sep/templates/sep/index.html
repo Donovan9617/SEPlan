@@ -7,6 +7,22 @@
     function sweetAlert() {
         swal("Removed from planner!", "", "success");
     }
+    function sweetAddCalendar() {
+        swal("Added to calendar!", "", "success");
+    }
+    function closeModal() {
+        var container = document.getElementById("modals-here")
+        var backdrop = document.getElementById("modal-backdrop")
+        var modal = document.getElementById("modal")
+
+        modal.classList.remove("show")
+        backdrop.classList.remove("show")
+
+        setTimeout(function() {
+            container.removeChild(backdrop)
+            container.removeChild(modal)
+        }, 200)
+    }
 </script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="{% static '/index.css' %}" rel="stylesheet">
@@ -215,7 +231,7 @@
                                         </div>
                                     </div>
                                     
-                                      <!-- Calendar -->
+                                    <!-- Calendar -->
                                     <div id="calender">
                                         <table colspan="10">
                                             <thead class="color">
@@ -225,6 +241,15 @@
                                                             <i class="fas fa-caret-left icon mr-4"> </i>
                                                             <h4 id="cal-month"> July </h4>
                                                             <i class="fas fa-caret-right icon ml-4"> </i>
+                                                        </div>
+                                                        <div style="float:right;" class="mr-3">
+                                                            <script src="https://unpkg.com/htmx.org@1.7.0" ></script>
+                                                            <button 
+                                                            class="btn btn-info" 
+                                                            hx-get="{% url 'add_events' %}" 
+                                                            hx-target="#modals-here" 
+                                                            hx-trigger="click">Add Event +</button>
+                                                            <div id="modals-here"></div>
                                                         </div>
                                                     </th>
                                                 </tr>
@@ -241,45 +266,45 @@
                                     
                                             <tbody id="table-body">
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
-                                                    <td>4</td>
-                                                    <td>5</td>
-                                                    <td>6</td>
-                                                    <td>7</td>
+                                                    <td id="1">1</td>
+                                                    <td id="2">2</td>
+                                                    <td id="3">3 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td id="4">4</td>
+                                                    <td id="5">5</td>
+                                                    <td id="6">6</td>
+                                                    <td id="7">7</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>8 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
-                                                    <td>9</td>
-                                                    <td>10</td>
-                                                    <td>11</td>
-                                                    <td>12 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
-                                                    <td>13</td>
-                                                    <td>14</td>
+                                                    <td id="8">8 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td id="9">9</td>
+                                                    <td id="10">10</td>
+                                                    <td id="11">11</td>
+                                                    <td id="12">12 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td id="13">13</td>
+                                                    <td id="14">14</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>15</td>
-                                                    <td>16</td>
-                                                    <td>17</td>
-                                                    <td>18 <i class="fa fa-circle" style="color: rgba(253, 77, 180, 0.5)"></i></td>
-                                                    <td>19</td>
-                                                    <td>20</td>
-                                                    <td>21</td>
+                                                    <td id="15">15</td>
+                                                    <td id="16">16</td>
+                                                    <td id="17">17</td>
+                                                    <td id="18">18 <i class="fa fa-circle" style="color: rgba(253, 77, 180, 0.5)"></i></td>
+                                                    <td id="19">19</td>
+                                                    <td id="20">20</td>
+                                                    <td id="21">21</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>22</td>
-                                                    <td>23 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
-                                                    <td>24</td>
-                                                    <td>25</td>
-                                                    <td>26</td>
-                                                    <td>27 <i class="fa fa-circle" style="color: rgba(253, 77, 180, 0.5)"></i></td>
-                                                    <td>28</td>
+                                                    <td id="22">22</td>
+                                                    <td id="23">23 <i class="fa fa-circle" style="color: rgba(44, 208, 126, .5)"></i></td>
+                                                    <td id="24">24</td>
+                                                    <td id="25">25</td>
+                                                    <td id="26">26</td>
+                                                    <td id="27">27 <i class="fa fa-circle" style="color: rgba(253, 77, 180, 0.5)"></i></td>
+                                                    <td id="28">28</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>29</td>
-                                                    <td>30</td>
-                                                    <td>31</td>
+                                                    <td id="29">29</td>
+                                                    <td id="30">30</td>
+                                                    <td id="31">31</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -287,7 +312,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div class="row ml-5">
+                                        <div class="row ml-2">
                                             <i class="fa fa-circle ml-5 mr-2" style="color: rgba(44, 208, 126, .5)"></i> SEP Information Session
                                             <i class="fa fa-circle ml-5 mr-2" style="color: rgba(253, 77, 180, 0.5)"></i> SEP Document Deadline
                                         </div>

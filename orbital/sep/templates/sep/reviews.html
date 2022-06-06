@@ -4,6 +4,7 @@
 
 {% block body %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/htmx.org@1.7.0" ></script>
 <script>
     function sweetReview() {
         swal("Posted review!", "", "success");
@@ -11,6 +12,19 @@
     
     function sweetDelete() {
         swal("Deleted review!", "", "success")
+    }
+    function closeModal() {
+        var container = document.getElementById("modals-here")
+        var backdrop = document.getElementById("modal-backdrop")
+        var modal = document.getElementById("modal")
+
+        modal.classList.remove("show")
+        backdrop.classList.remove("show")
+
+        setTimeout(function() {
+            container.removeChild(backdrop)
+            container.removeChild(modal)
+        }, 200)
     }
 </script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -151,12 +165,21 @@
                 </div>
                 <div class="card-body pt-2 pb-1">
                     {% for item in history %}
-                    <div role="button" class="align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
+                    <div class="align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
                         <div class="text-default-d3 text-90 text-600">
                             {{ item.university }}
                         </div>
                         <small class="bgc-secondary-l4">{{ item.date }}</small><br />
                         <a href="{% url 'delete_review' item.id %}"><div><i class="text-green-m1 fa fa-trash remove-note" onclick="sweetDelete()"></i></div></a>
+
+                        <button 
+                        hx-get="{% url 'view_review' item.id %}" 
+                        hx-target="#modals-here" 
+                        hx-trigger="click"
+                        class="btn btn-primary"
+                        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">View</button>
+                    
+                    <div id="modals-here"></div>
                     </div>
                     {% empty %}
                     <span class="text-default-d3 text-90 text-600radius-1 p-2">

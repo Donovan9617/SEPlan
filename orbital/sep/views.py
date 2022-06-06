@@ -257,3 +257,14 @@ def forum(request):
     return render(request, "sep/forum.html", {
         "queries": lst, "history": history
     })
+
+def view_review(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    review = Review.objects.get(id=id)
+    return render(request, "sep/view_review.html", {"review": review})
+
+def add_events(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    return render(request, "sep/add_events.html")
