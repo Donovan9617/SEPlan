@@ -1,0 +1,22 @@
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Your review dated on {{ review.date }}</h5>
+            </div>
+            <div class="modal-body">
+                <div class="border text-sm text-muted p-2">
+                    <strong>Review: </strong><br /> {{ review.review }} <br /><br />
+                    <strong>Modules Mapped: </strong><br /> {{ review.modules }} <br /><br />
+                    <strong>Living Environment: </strong><br /> {{ review.living }} <br /><br />
+                    <strong>Things to Prepare: </strong><br /> {{ review.prepare}} <br /><br />
+                </div>
+                <div class="col-xl-9 p-2"><strong>Most memorable picture I wish to share: </strong></div><img class="col-xl-9 p-1" src="{{ review.attachments }}"  style="width:50%; margin-right: 10px;" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

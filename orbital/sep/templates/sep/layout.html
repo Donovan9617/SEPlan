@@ -29,8 +29,8 @@
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand text-white">Student Exchange Programme</a>
-
+            <a class="navbar-brand text-white" href="{% url 'index' %}">Student Exchange Programme</a>
+            
             <!-- Topbar Search -->
             {% if user.is_authenticated %}
             <div class="mr-auto ml-md-3  navbar-search">
@@ -43,15 +43,6 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-
-                <!-- Nav Item - Home -->
-                <li class="nav-item ml-auto">
-                    <a class="nav-link dropdown-toggle"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        href="{% url 'index' %}">
-                        <span class="text-white small">Home</span>
-                    </a>
-                </li>
 
                 <!-- Nav Item - Watchlist -->
                 <li class="nav-item">
