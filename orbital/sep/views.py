@@ -84,6 +84,8 @@ def messages(request, to):
         fromAddress = request.user.username
         toAddress = to
         text = request.POST["text"]
+        if text == "":
+            return HttpResponseRedirect(reverse('messages', args=[to]))
         chat = Chat.objects.create(fromAddress=fromAddress, toAddress=toAddress, text=text)
         chat.save()
         return HttpResponseRedirect(reverse('messages', args=[to]))
