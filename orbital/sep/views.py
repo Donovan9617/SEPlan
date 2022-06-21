@@ -128,12 +128,13 @@ def reviews(request):
         living = request.POST['living']
         prepare = request.POST['prepare']
 
-        if request.FILES['attachments']:
-            myfile = request.FILES['attachments']
+        myfile = request.FILES.get('attachments', False)
+        url=""
+        if myfile:
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
             url = fs.url(filename)
-
+   
         review = Review(user=request.user, university=uni, review=review,
         period=period, modules=modules,
         living=living, prepare=prepare, attachments=url)
