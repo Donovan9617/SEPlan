@@ -22,5 +22,5 @@ In the Message route, a user may start a conversation with another user by using
 
 **Tech Stack** \
 Languages: Python, HTML, CSS, JavaScript \
-Framework: Django, Bootstrap \
-Database: SQLite
+Framework: Django (Backend), Bootstrap (Frontend) \
+Database: SQLite (in Django local server) -> PostgreSQL (after deployment)
