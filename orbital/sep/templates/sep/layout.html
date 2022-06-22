@@ -8,7 +8,7 @@
         
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
     
@@ -20,86 +20,84 @@
         <!-- Custom styles for this template-->
         <link href="{% static '/sb-admin-2.min.css' %}" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{% static '/layout.css' %}" rel="stylesheet">
     </head>
+    <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "navbar-nav topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "navbar-nav topnav";
+        }
+        }
+    </script>
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
-
-            <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand text-white" href="{% url 'index' %}">Student Exchange Programme</a>
-            
-            <!-- Topbar Search -->
-            {% if user.is_authenticated %}
-            <div class="mr-auto ml-md-3  navbar-search">
-                <!-- <div class="input-group">
-                    <input type="text" class="form-control bg-light small" placeholder="Search for...">
-                </div> -->
-            </div>  
-            {% endif %}
-
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav">
-                {% if user.is_authenticated %}
-
-                <!-- Nav Item - Watchlist -->
-                <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        href="{% url 'watchlist' %}">
-                        <span class="text-white small">Saved</span>
-                    </a>
-                </li>
-
-                <!-- Nav Item - Print -->
-                <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        href="javascript:window.print();"><span class="text-white small">Print</span>
-                    </a>
-                </li>
-
-                <!-- Nav Item - Log Out -->
-                <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        href="{% url 'logout' %}">
-                        <span class="text-white small">Log Out</span>
-                    </a>
-                </li>
-
-                <div class="topbar-divider d-none d-sm-block"></div>
-
-                <!-- Nav Item - User Information -->
-                <li class="nav-item">
-                    <div class="nav-link">
-                        <span class="mr-2 d-none d-lg-inline text-white small">{{ request.user.username }}</span>
-                        <img class="img-profile rounded-circle" src="/media/index/undraw_profile.svg">
-                    </div>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        href="{% url 'login' %}">
-                        <span class="text-white medium">Log In</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        href="{% url 'register' %}">
-                        <span class="text-white medium">Register</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
+    <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
         
-        <!-- End of Topbar -->
-        {% block body %}
-        {% endblock %}
+        <!-- Topbar Student Exchange Programme -->
+        <a class="navbar-brand text-white sep" href="{% url 'index' %}">Student Exchange Programme</a>
+        <div class="mr-auto"></div> 
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav topnav" id="myTopnav">
+            {% if user.is_authenticated %}
+
+            <!-- Nav Item - Watchlist -->
+            <li class="nav-item menu-item login-item">
+                <a class="nav-link" href="{% url 'watchlist' %}">
+                    <span class="text-white small">Saved</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Print -->
+            <li class="nav-item menu-item login-item">
+                <a class="nav-link" href="javascript:window.print();">
+                    <span class="text-white small">Print</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Log Out -->
+            <li class="nav-item menu-item login-item">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <span class="text-white small">Log Out</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item menu-item login-item">
+                <div class="nav-link">
+                    <span class="mr-2 d-none d-lg-inline text-white small">{{ request.user.username }}</span>
+                    <img class="img-profile rounded-circle" src="/media/index/undraw_profile.svg">
+                </div>
+            </li>
+            {% else %}
+            <li class="nav-item menu-item">
+                <a class="nav-link" href="{% url 'login' %}">
+                    <span class="text-white medium">Log In</span>
+                </a>
+            </li>
+
+            <li class="nav-item menu-item">
+                <a class="nav-link" href="{% url 'register' %}">
+                    <span class="text-white medium">Register</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="nav-item menu-item">
+                <div class="nav-link"></div>
+            </li>
+            <li class="nav-item menu-bars">
+                <a href="javascript:void(0);" class="nav-link" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- End of Topbar -->
+    {% block body %}
+    {% endblock %}
 </html>
