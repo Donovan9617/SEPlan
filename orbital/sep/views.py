@@ -267,7 +267,7 @@ def view_review(request, id):
     review = Review.objects.get(id=id)
     return render(request, "sep/view_review.html", {"review": review})
 
-def add_events(request):
+def new_discussion(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
-    return render(request, "sep/add_events.html")
+    return render(request, "sep/new_discussion.html")

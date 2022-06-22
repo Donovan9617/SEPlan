@@ -19,5 +19,5 @@ urlpatterns = [
     path("delete_shortlist/<str:mod>", views.delete_shortlist, name="delete_shortlist"),
     path("forum", views.forum, name="forum"),
     path("view_review/<int:id>", views.view_review, name="view_review"),
-    path("add_events", views.add_events, name="add_events")
+    path("new_discussion", views.new_discussion, name="new_discussion")
 ]
