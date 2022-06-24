@@ -3,14 +3,17 @@
 {% load static %}
 
 {% block body %}
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="{% static '/watchlist.css' %}" rel="stylesheet">
 
+<!-- Watclist landing page -->
 <div class="container note-has-grid">
+
+    <!-- Watchlist header -->
     <div class="nav-link bg-info rounded-pill px-md-3">
         <span style="color:white;">My Watchlist</span>
     </div><br />
 
+    <!-- Watchlist content -->
     <div class="mb-2"><i class="fas fa-angle-left"></i><a href="{% url 'index' %}"><medium class="text-black-50"> Back</medium></a></div>
     <div class="tab-content bg-transparent">
         <div id="note-full-container" class="note-has-grid row">
@@ -31,5 +34,6 @@
             {% endfor %}
         </div>
     </div>
+
 </div>
 {% endblock %}

@@ -5,10 +5,15 @@
 {% block body %}
 <link href="{% static '/page.css' %}" rel="stylesheet">
 
+<!-- Individual review landing page -->
 <div class="container">
+
+    <!-- Header -->
     <h1 class="h3 mb-3">Student Exchange Programme Reviews</h1>
     <div><i class="fas fa-angle-left"></i><a href="{% url 'reviews' %}"><medium class="h5 text-black-50"> Back</medium></a></div> <br />
     <div class="row">
+
+        <!-- Section for details about the SEP university -->
         <div class="col-md-4 col-xl-3">
             <div class="card mb-3">
                 <div class="card-header">
@@ -22,13 +27,16 @@
                 </div>
             </div>
         </div>
-    
+        
+        <!-- Section showing all reviews for that SEP university -->
         <div class="col-md-8 col-xl-9">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Reviews</h5>
                 </div>
                     {% for review in reviews %}
+
+                    <!-- Individual review -->
                     <div class="card-body">
                         <div class="media">
                             <img src="https://bootdey.com/img/Content/avatar/avatar6.png" width="36" height="36" class="rounded-circle mr-2" alt="Andrew Jones">
@@ -43,7 +51,6 @@
                                 {% endif %}
                                 <br>
                                 <small class="text-muted">{{ review.date }}</small>
-        
                                 <div class="border text-sm text-muted p-2">
                                     <strong>Review: </strong><br /> {{ review.review }} <br /><br />
                                     <strong>Modules Mapped: </strong><br /> {{ review.modules }} <br /><br />
@@ -54,8 +61,12 @@
                             </div>
                         </div>
                     </div>
+                    
                     <hr>
+
                     {% endfor %}
+                    
+                    <!-- Paginator -->
                     <div class="btn btn-warning">
                         {% if reviews.has_previous %}
                         <a href="?page={{ reviews.previous_page_number }}" class="float-left text-white">Previous</a>
@@ -65,10 +76,11 @@
                         <a href="?page={{ reviews.next_page_number }}" class="float-right text-white">Next</a>
                         {% endif %}
                     </div>
+
                 </div>
             </div>
         </div>
-    </div>
+
     </div>
 </div>
 {% endblock %}

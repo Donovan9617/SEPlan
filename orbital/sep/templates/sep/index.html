@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block body %}
+
+<!-- Removed from SEP planner alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     function sweetAlert() {
@@ -21,9 +23,11 @@
         }, 200)
     }
 </script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Stylesheets -->
 <link href="{% static '/index.css' %}" rel="stylesheet">
 <link href="{% static '/calendar.css' %}" rel="stylesheet">
+
 <body id="page-top">
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -31,13 +35,13 @@
             <!-- Main Content -->
             <div id="content">
                 
-                <!-- Begin Page Content -->
+                <!-- Index Content -->
                 <div class="container-fluid">
 
-                    <!-- Content Row -->
+                    <!-- Content Row with Forum, Reviews, Modules, Messages -->
                     <div class="row">
 
-                        <!--Query -->
+                        <!--Forum -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
@@ -45,9 +49,9 @@
                                         <div class="col mr-2" style="display:inline-block;">
                                             <a href="{% url 'forum' %}"><div class="h3 font-weight-bold text-primary text-uppercase">
                                                 Forum </div></a>
-                                            <div class="text-xs mb-0 ml-1 font-weight-bold text-gray-800">Start a discussion!</div>
+                                            <div class="text-xs font-weight-bold text-gray-800">Start a discussion!</div>
                                         </div>
-                                        <img class="col-xl-5" src="/media/index/undraw_Public_discussion_re_w9up.png" style="max-width:60%" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Public_discussion_re_w9up.png" style="max-width:40%" />
                                     </div>
                                 </div>
                             </div>
@@ -61,9 +65,9 @@
                                         <div class="col mr-2" style="display:inline-block;">
                                             <a href="{% url 'reviews' %}"><div class="h3 font-weight-bold text-success text-uppercase">
                                                 Reviews</div></a>
-                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Help another student!</div>
+                                            <div class="text-xs font-weight-bold text-gray-800">Help another student!</div>
                                         </div>
-                                        <img class="col-xl-5" src="/media/index/undraw_Add_notes_re_ln36.png" style="max-width:40%" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Add_notes_re_ln36.png" style="max-width:25%" />
                                     </div>
                                 </div>
                             </div>
@@ -77,9 +81,9 @@
                                         <div class="col mr-2" style="display:inline-block;">
                                             <a href="{% url 'modules' %}"><div class="h3 font-weight-bold text-info text-uppercase">
                                                 Modules</div></a>
-                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Map overseas modules!</div>
+                                            <div class="text-xs font-weight-bold text-gray-800">Map overseas modules!</div>
                                         </div>
-                                        <img class="col-xl-5" src="/media/index/undraw_Adventure_re_ncqp.png"  style="max-width:40%" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Adventure_re_ncqp.png"  style="max-width:30%" />
                                     </div>
                                 </div>
                             </div>
@@ -93,26 +97,29 @@
                                         <div class="col mr-2" style="display:inline-block;">
                                             <a href="{% url 'messages' request.user.username %}"> <div class="h3 font-weight-bold text-warning text-uppercase">
                                                 Messages</div> </a>
-                                            <div class="text-xs ml-1 font-weight-bold text-gray-800">Connect with SEP!</div>
+                                            <div class="text-xs font-weight-bold text-gray-800">Connect with SEP!</div>
                                         </div>
-                                        <img class="col-xl-5" src="/media/index/undraw_Share_opinion_re_4qk7.png" style="max-width:40%" />
+                                        <img class="col-xl-5" src="/media/index/undraw_Share_opinion_re_4qk7.png" style="max-width:30%" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Announcement Panel Row -->
+                    <!-- Content Row with SEP Announcements -->
                     <div class="row">
-                        <!-- Announcement Panel -->
                         <div class="col-xl-12">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+
+                                <!-- Announcements title -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">SEP Announcements</h6>
                                 </div>
-                                <!-- Card Body -->
+
+                                <!-- Announements body -->
                                 <div class="card-body">
+
+                                    <!-- Announcements content -->
                                     <div>
                                         {% for opening in openings %}
                                             <div>
@@ -130,6 +137,8 @@
                                             <hr>
                                         {% endfor %}
                                     </div>
+
+                                    <!-- Announcements Pagination -->
                                     <div class="btn btn-warning" style="width:100%;">
                                         {% if openings.has_previous %}
                                         <a href="?page={{ openings.previous_page_number }}" class="text-white" style="float:left;">Previous </a>
@@ -139,24 +148,28 @@
                                         <a href="?page={{ openings.next_page_number }}" class="text-white" style="float:right;"> Next</a>
                                         {% endif %}
                                     </div>
+
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
 
 
-                    <!-- More Content Row -->
+                    <!-- Content Row with SEP Results, Planner, Destinations -->
                     <div class="row">
 
                         <!-- SEP Results -->
                         <div class="col-xl-4 col-lg-7">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+                                
+                                <!-- Results title -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">SEP Results</h6>
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                 </div>
-                                <!-- Card Body -->
+
+                                <!-- Results content -->
                                 <div class="card-body">
                                     <h4 class="small font-weight-bold">Progress of SEP Application <span class="float-right">80% complete</span></h4>
                                     <div class="progress">
@@ -177,11 +190,14 @@
 
                         <!-- SEP Planner -->
                         <div class="col-xl-5 col-lg-5">
-                            <!-- Project Card Example -->
                             <div class="card">
+
+                                <!-- Planner title -->
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">SEP Planner</h6>
                                 </div>
+
+                                <!-- Planner shortlisted -->
                                 <div class="card-body">
                                     <div class="row text-center">
                                         <div class="col-6 princing-item blue">
@@ -228,7 +244,7 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Calendar -->
+                                    <!-- Planner calendar -->
                                     <div id="calender">
                                         <table colspan="10">
                                             <thead class="color">
@@ -305,14 +321,17 @@
                                             <i class="fa fa-circle ml-5 mr-2" style="color: rgba(253, 77, 180, 0.5)"></i> SEP Document Deadline
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
 
                         <!-- SEP Destinations -->
                         <div class="col-xl-3 col-lg-5">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+
+                                <!-- Destinations title -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">SEP Destinations</h6>
@@ -320,7 +339,8 @@
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </div>
                                 </div>
-                                <!-- Card Body -->
+
+                                <!-- Destinations content -->
                                 <div class="card-body">
                                     <canvas id="myChart"></canvas>
                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
@@ -358,6 +378,7 @@
                                         });
                                     </script>
                                 </div>
+                                
                             </div>
                         </div>
 

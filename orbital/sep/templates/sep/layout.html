@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %} Student Exchange Portal {% endblock %}</title>
+        <!-- Title of application -->
+        <title>{% block title %} SEPlan {% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
+        <!-- Mobile responsiveness -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +25,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="{% static '/layout.css' %}" rel="stylesheet">
     </head>
+
+    <!-- Javascript -->
     <script>
+        
+    // Toggling bars menu on small screen
         function myFunction() {
         var x = document.getElementById("myTopnav");
         if (x.className === "navbar-nav topnav") {
@@ -32,12 +38,21 @@
             x.className = "navbar-nav topnav";
         }
         }
+
+    //Clock
+    var myVar = setInterval(function() {
+        myTimer();
+    });
+    function myTimer() {
+        var d = new Date();
+        document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+    }
     </script>
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
         
-        <!-- Topbar Student Exchange Programme -->
+        <!-- Topbar SEPlan -->
         <a class="navbar-brand text-white sep" href="{% url 'index' %}">SEPlan</a>
         <div class="mr-auto"></div> 
 
@@ -45,17 +60,17 @@
         <ul class="navbar-nav topnav" id="myTopnav">
             {% if user.is_authenticated %}
 
-            <!-- Nav Item - Watchlist -->
+            <!-- Nav Item - Clock -->
             <li class="nav-item menu-item login-item">
-                <a class="nav-link" href="{% url 'watchlist' %}">
-                    <span class="text-white small">Saved</span>
+                <a class="nav-link">
+                    <span class="text-white small" id="clock"></span>
                 </a>
             </li>
 
-            <!-- Nav Item - Print -->
+            <!-- Nav Item - Saved -->
             <li class="nav-item menu-item login-item">
-                <a class="nav-link" href="javascript:window.print();">
-                    <span class="text-white small">Print</span>
+                <a class="nav-link" href="{% url 'watchlist' %}">
+                    <span class="text-white small">Saved</span>
                 </a>
             </li>
 
@@ -66,26 +81,33 @@
                 </a>
             </li>
 
-            <!-- Nav Item - User Information -->
+            <!-- Nav Item - User Picture -->
             <li class="nav-item menu-item login-item">
                 <div class="nav-link">
                     <span class="mr-2 d-none d-lg-inline text-white small">{{ request.user.username }}</span>
                     <img class="img-profile rounded-circle" src="/media/index/undraw_profile.svg">
                 </div>
             </li>
+
             {% else %}
+
+            <!-- Nav Item - Log In -->
             <li class="nav-item menu-item">
                 <a class="nav-link" href="{% url 'login' %}">
                     <span class="text-white medium">Log In</span>
                 </a>
             </li>
 
+            <!-- Nav Item - Register -->
             <li class="nav-item menu-item">
                 <a class="nav-link" href="{% url 'register' %}">
                     <span class="text-white medium">Register</span>
                 </a>
             </li>
+
             {% endif %}
+
+            <!-- Nav Item - Bars menu for small screens -->
             <li class="nav-item menu-item">
                 <div class="nav-link"></div>
             </li>

@@ -2,34 +2,47 @@
 {% load static %}
 
 {% block body %}
+
+<!-- Added to SEP planner alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     function sweetAlert() {
         swal("Added to planner!", "", "success");
     }
 </script>
+
 <link href="{% static '/modules.css' %}" rel="stylesheet" />
+
 <div class="container">
+
+    <!-- Modules landing page -->
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
+
+                    <!-- Module header -->
                     <h5 class="header-title pb-4">Mapping NUS Modules to SEP Universities</h5>
                     <div class="pb-3">
                         <div class="pb-3">Your faculty: {{ request.user.faculty }}</div>
+
+                        <!-- Module search bar -->
                         <form class="input-group" action="{% url 'modules' %}" method="POST">
                             {% csrf_token %}
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
-                                <input type="text" class="form-control" name="module" placeholder="Enter NUS module code...">
+                                <input type="text" class="form-control" name="module" placeholder="Enter NUS module...">
                                 <input type="submit" value="Search" class="btn btn-info">
                             </div>
                         </form>
                     </div><br />
+
+                    <!-- Module search results table -->
                     <div class="table-responsive">
                         {% if search %}
                         <div class="pb-2">Search results for: "{{ module }}"</div>
                         {% endif %}
+
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr class="align-self-center">
@@ -46,7 +59,6 @@
                                 {% for item in mappable %}
                                 <tr>
                                     <td>{{ item.puname }}</td>
-                                    <!-- <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="thumb-sm rounded-circle mr-2"> Kevin Heal</td> -->
                                     <td>{{ item.pumodule }}</td>
                                     <td>{{ item.pumodulecode }}</td>
                                     <td>{{ item.nusmodule }}</td>
@@ -72,9 +84,11 @@
                             </tbody>
                         </table>
                     </div>
+                
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 {% endblock %}

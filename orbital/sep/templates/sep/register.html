@@ -3,24 +3,28 @@
 {% load static %}
 
 {% block body %}
+
+<!-- Successfully created account alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     function sweetAlert() {
         swal("Account created!", "", "success");
     }
 </script>
-<body class="bg-gradient-primary">
 
+<body class="bg-gradient-primary">
     <div class="container">
         {% if message %}
         <div style="color: white;">
             {{ message }}
         </div>
         {% endif %}
-
+        
+        <!-- Register landing page -->
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
+
+                <!-- Register display body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
@@ -76,17 +80,16 @@
                                 <input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block">
                             </form>
                             <hr>
-                            <!-- <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div> -->
                             <div class="text-center">
                                 <a class="small" href="{% url 'login' %}">Already have an account? Login!</a>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </body>
 {% endblock %}
