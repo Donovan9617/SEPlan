@@ -9,9 +9,12 @@ body{
     height: calc(100vh - 3.5rem);
     transition: transform 0.3s;
 }
-@media (min-width: 992px) {
+@media (max-width: 600px) {
     .sticky-navbar .inner-wrapper {
         height: calc(100vh - 3.5rem - 48px);
+    }
+    .timestamp {
+        font-size: 30px;
     }
 }
 
@@ -67,7 +70,7 @@ body{
     height: auto;
     min-height: 3.5rem;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 600px) {
     .inner-sidebar {
         left: -235px;
     }
