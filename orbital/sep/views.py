@@ -211,19 +211,19 @@ def delete_shortlist(request, mod):
 
 def forum(request):
     if request.method == "POST":
-        title = request.POST['title']
-        query = request.POST['query']
+        title = request.POST.get('threadTitle', False)
+        query = request.POST.get('threadQuery', False)
 
-        if request.FILES['attachments']:
-            myfile = request.FILES['attachments']
+        if request.FILES['threadFile']:
+            myfile = request.FILES.get('threadFile', False)
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
             url = fs.url(filename)
 
-        new_post = Forum(user=request.user, query=query, attachments=url)
+        new_post = Forum(user=request.user, title=title, query=query, attachments=url)
         new_post.save()
         time.sleep(1.5)
-        return HttpResponseRedirect(reverse('forum'))
+        return HttpResponseRedirect(reverse("forum_post", args=(new_post.id,)))
     history = Forum.objects.all().order_by('-date')
     queries = list(Forum.objects.all())
     lst = []
@@ -232,4 +232,10 @@ def forum(request):
             lst.append(item)
     return render(request, "sep/forum.html", {
         "queries": lst, "history": history
+    })
+
+def forum_post(request, id):
+    forum_post = Forum.objects.get(pk=id)
+    return render(request, "sep/forumpost.html", {
+        "forum_post": forum_post
     })
