@@ -1,95 +1,137 @@
-{% extends "sep/layout.html" %}
-
-{% load static %}
-
-{% block body %}
+{% extends "sep/layout.html" %} {% load static %} {% block body %}
 
 <!-- Successfully created account alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    function sweetAlert() {
-        swal("Account created!", "", "success");
-    }
+  function sweetAlert() {
+    swal("Account created!", "", "success");
+  }
 </script>
 
 <body class="bg-gradient-primary">
-    <div class="container">
-        {% if message %}
-        <div style="color: white;">
-            {{ message }}
-        </div>
-        {% endif %}
-        
-        <!-- Register landing page -->
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
+  <div class="container">
+    {% if message %}
+    <div style="color: white">{{ message }}</div>
+    {% endif %}
 
-                <!-- Register display body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
-                            <form class="user" action="{% url 'register' %}" method="POST" onsubmit="sweetAlert()">
-                                {% csrf_token %}
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" 
-                                        name="username" placeholder="Username">
-                                    </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <select class="form-control" name="faculty">
-                                            <option value="" disabled selected hidden>Select your faculty</option>
-                                            <option value="College of Humanities and Sciences">College of Humanities and Sciences</option>
-                                            <option value="NUS Business School">NUS Business School</option>
-                                            <option value="School of Computing">School of Computing</option>
-                                            <option value="Faculty of Dentistry">Faculty of Dentistry</option>
-                                            <option value="College of Design and Engineering">College of Design and Engineering</option>
-                                            <option value="Faculty of Law">Faculty of Law</option>
-                                            <option value="Yong Loo Lin School of Medicine">Yong Loo Lin School of Medicine</option>
-                                            <option value="Yong Siew Toh Conservatory of Music">Yong Siew Toh Conservatory of Music</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" 
-                                        name="year" placeholder="Year">
-                                    </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" 
-                                        name="major" placeholder="Major">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" 
-                                        name="email" placeholder="Email Address">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            name="password" placeholder="Password">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            name="confirmation" placeholder="Confirm Password">
-                                    </div>
-                                </div>
-                                <input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block">
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="{% url 'login' %}">Already have an account? Login!</a>
-                            </div>
-                        </div>
-                        
-                    </div>
+    <!-- Register landing page -->
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Register display body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+              </div>
+              <form
+                class="user"
+                action="{% url 'register' %}"
+                method="POST"
+                onsubmit="sweetAlert()"
+              >
+                {% csrf_token %}
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      name="username"
+                      placeholder="Username"
+                    />
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <select class="form-control" name="faculty">
+                      <option value="" disabled selected hidden>
+                        Select your faculty
+                      </option>
+                      <option value="College of Humanities and Sciences">
+                        College of Humanities and Sciences
+                      </option>
+                      <option value="NUS Business School">
+                        NUS Business School
+                      </option>
+                      <option value="School of Computing">
+                        School of Computing
+                      </option>
+                      <option value="Faculty of Dentistry">
+                        Faculty of Dentistry
+                      </option>
+                      <option value="College of Design and Engineering">
+                        College of Design and Engineering
+                      </option>
+                      <option value="Faculty of Law">Faculty of Law</option>
+                      <option value="Yong Loo Lin School of Medicine">
+                        Yong Loo Lin School of Medicine
+                      </option>
+                      <option value="Yong Siew Toh Conservatory of Music">
+                        Yong Siew Toh Conservatory of Music
+                      </option>
+                    </select>
+                  </div>
                 </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      name="year"
+                      placeholder="Year"
+                    />
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      name="major"
+                      placeholder="Major"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    name="email"
+                    placeholder="Email Address"
+                  />
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input
+                      type="password"
+                      class="form-control form-control-user"
+                      name="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div class="col-sm-6">
+                    <input
+                      type="password"
+                      class="form-control form-control-user"
+                      name="confirmation"
+                      placeholder="Confirm Password"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="submit"
+                  value="Register Account"
+                  class="btn btn-primary btn-user btn-block"
+                />
+              </form>
+              <hr />
+              <div class="text-center">
+                <a class="small" href="{% url 'login' %}"
+                  >Already have an account? Login!</a
+                >
+              </div>
             </div>
+          </div>
         </div>
-
+      </div>
     </div>
+  </div>
 </body>
 {% endblock %}

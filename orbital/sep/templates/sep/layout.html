@@ -2,124 +2,141 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Title of application -->
-        <title>{% block title %} SEPlan {% endblock %}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        
-        <!-- Mobile responsiveness -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-    
-        <!-- Custom fonts for this template-->
-        <link href="{% static '/all.min.css' %}" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" 
-            rel="stylesheet">
-    
-        <!-- Custom styles for this template-->
-        <link href="{% static '/sb-admin-2.min.css' %}" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="{% static '/layout.css' %}" rel="stylesheet">
-    </head>
+  <head>
+    <!-- Title of application -->
+    <title>{% block title %} SEPlan {% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
-    <!-- Javascript -->
-    <script>
-        
+    <!-- Mobile responsiveness -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static '/all.min.css' %}" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="{% static '/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="{% static '/layout.css' %}" rel="stylesheet" />
+  </head>
+
+  <!-- Javascript -->
+  <script>
     // Toggling bars menu on small screen
-        function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "navbar-nav topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "navbar-nav topnav";
-        }
-        }
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "navbar-nav topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "navbar-nav topnav";
+      }
+    }
 
     //Clock
-    var myVar = setInterval(function() {
-        myTimer();
+    var myVar = setInterval(function () {
+      myTimer();
     });
     function myTimer() {
-        var d = new Date();
-        document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+      var d = new Date();
+      document.getElementById("clock").innerHTML = d.toLocaleTimeString();
     }
-    </script>
+  </script>
 
-    <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
-        
-        <!-- Topbar SEPlan -->
-        <a class="navbar-brand text-white sep" href="{% url 'index' %}">SEPlan</a>
-        <div class="mr-auto"></div> 
+  <!-- Topbar -->
+  <nav
+    class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow"
+  >
+    <!-- Topbar SEPlan -->
+    <a class="navbar-brand text-white sep" href="{% url 'index' %}">SEPlan</a>
+    <div class="mr-auto"></div>
 
-        <!-- Topbar Navbar -->
-        <ul class="navbar-nav topnav" id="myTopnav">
-            {% if user.is_authenticated %}
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav topnav" id="myTopnav">
+      {% if user.is_authenticated %}
 
-            <!-- Nav Item - Clock -->
-            <li class="nav-item menu-item login-item">
-                <a class="nav-link">
-                    <span class="text-white small" id="clock"></span>
-                </a>
-            </li>
+      <!-- Nav Item - Clock -->
+      <li class="nav-item menu-item login-item">
+        <a class="nav-link">
+          <span class="text-white small" id="clock"></span>
+        </a>
+      </li>
 
-            <!-- Nav Item - Saved -->
-            <li class="nav-item menu-item login-item">
-                <a class="nav-link" href="{% url 'watchlist' %}">
-                    <span class="text-white small">Saved</span>
-                </a>
-            </li>
+      <!-- Nav Item - Saved -->
+      <li class="nav-item menu-item login-item">
+        <a class="nav-link" href="{% url 'watchlist' %}">
+          <span class="text-white small">Saved</span>
+        </a>
+      </li>
 
-            <!-- Nav Item - Log Out -->
-            <li class="nav-item menu-item login-item">
-                <a class="nav-link" href="{% url 'logout' %}">
-                    <span class="text-white small">Log Out</span>
-                </a>
-            </li>
+      <!-- Nav Item - Log Out -->
+      <li class="nav-item menu-item login-item">
+        <a class="nav-link" href="{% url 'logout' %}">
+          <span class="text-white small">Log Out</span>
+        </a>
+      </li>
 
-            <!-- Nav Item - User Picture -->
-            <li class="nav-item menu-item login-item">
-                <div class="nav-link">
-                    <span class="mr-2 d-none d-lg-inline text-white small">{{ request.user.username }}</span>
-                    <img class="img-profile rounded-circle" src="/media/index/undraw_profile.svg">
-                </div>
-            </li>
+      <!-- Nav Item - User Picture -->
+      <li class="nav-item menu-item login-item">
+        <div class="nav-link">
+          <span class="mr-2 d-none d-lg-inline text-white small"
+            >{{ request.user.username }}</span
+          >
+          <img
+            class="img-profile rounded-circle"
+            src="/media/index/undraw_profile.svg"
+          />
+        </div>
+      </li>
 
-            {% else %}
+      {% else %}
 
-            <!-- Nav Item - Log In -->
-            <li class="nav-item menu-item">
-                <a class="nav-link" href="{% url 'login' %}">
-                    <span class="text-white medium">Log In</span>
-                </a>
-            </li>
+      <!-- Nav Item - Log In -->
+      <li class="nav-item menu-item">
+        <a class="nav-link" href="{% url 'login' %}">
+          <span class="text-white medium">Log In</span>
+        </a>
+      </li>
 
-            <!-- Nav Item - Register -->
-            <li class="nav-item menu-item">
-                <a class="nav-link" href="{% url 'register' %}">
-                    <span class="text-white medium">Register</span>
-                </a>
-            </li>
+      <!-- Nav Item - Register -->
+      <li class="nav-item menu-item">
+        <a class="nav-link" href="{% url 'register' %}">
+          <span class="text-white medium">Register</span>
+        </a>
+      </li>
 
-            {% endif %}
+      {% endif %}
 
-            <!-- Nav Item - Bars menu for small screens -->
-            <li class="nav-item menu-item">
-                <div class="nav-link"></div>
-            </li>
-            <li class="nav-item menu-bars">
-                <a href="javascript:void(0);" class="nav-link" onclick="myFunction()">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    
-    <!-- End of Topbar -->
-    {% block body %}
-    {% endblock %}
+      <!-- Nav Item - Bars menu for small screens -->
+      <li class="nav-item menu-item">
+        <div class="nav-link"></div>
+      </li>
+      <li class="nav-item menu-bars">
+        <a href="javascript:void(0);" class="nav-link" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- End of Topbar -->
+  {% block body %} {% endblock %}
 </html>
