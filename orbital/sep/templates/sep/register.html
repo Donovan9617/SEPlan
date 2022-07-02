@@ -1,13 +1,5 @@
 {% extends "sep/layout.html" %} {% load static %} {% block body %}
 
-<!-- Successfully created account alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-  function sweetAlert() {
-    swal("Account created!", "", "success");
-  }
-</script>
-
 <body class="bg-gradient-primary">
   <div class="container">
     {% if message %}
@@ -25,12 +17,7 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form
-                class="user"
-                action="{% url 'register' %}"
-                method="POST"
-                onsubmit="sweetAlert()"
-              >
+              <form class="user" action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -43,9 +30,6 @@
                   </div>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <select class="form-control" name="faculty">
-                      <option value="" disabled selected hidden>
-                        Select your faculty
-                      </option>
                       <option value="College of Humanities and Sciences">
                         College of Humanities and Sciences
                       </option>
@@ -122,6 +106,12 @@
                 />
               </form>
               <hr />
+              <div class="small">
+                Please ensure your password contains a minimum of 8 characters
+                and at least 1 lower case letter, 1 upper case letter, 1 number,
+                and 1 special character.
+              </div>
+              <br />
               <div class="text-center">
                 <a class="small" href="{% url 'login' %}"
                   >Already have an account? Login!</a

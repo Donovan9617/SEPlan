@@ -41,6 +41,28 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         confirmation = request.POST['confirmation']
+        capitalalphabets="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        smallalphabets="abcdefghijklmnopqrstuvwxyz"
+        specialchar="~`!@#$%^&*()-_+=}{][|\/:;'><'.?"
+        digits="0123456789"
+        l, u, p, d = 0, 0, 0, 0
+        if len(password) < 8:
+            return render(request, "sep/register.html", {
+                "message": "*Error: Password needs to have a minimum of 8 characters!"
+            })
+        for character in password:        
+            if (character in smallalphabets):
+                l+=1           
+            if (character in capitalalphabets):
+                u+=1           
+            if (character in digits):
+                d+=1           
+            if (character in specialchar):
+                p+=1
+        if not (l>=1 and u>=1 and p>=1 and d>=1 and l+p+u+d==len(password)):
+            return render(request, "sep/register.html", {
+                "message": "*Error: Password needs to contain at least 1 lower case letter, 1 upper case letter, 1 number, and 1 special character!"
+            })
         if password != confirmation:
             return render(request, "sep/register.html", {
                 "message": "*Error: Please ensure password and confirmation password is the same!"
@@ -53,7 +75,6 @@ def register(request):
                 "message": "*Error: This username has already been taken, please choose another username!"
             })
         login(request, user)
-        time.sleep(1)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "sep/register.html")
 
@@ -72,7 +93,7 @@ def login_view(request):
             return HttpResponseRedirect(reverse('index'))
         else:
             return render(request, "sep/login.html", {
-                "message": "*Error: Invalid username and password or account does not exist!"
+                "message": "*Error: Invalid username and password, or account does not exist!"
             })
     return render(request, "sep/login.html")
 

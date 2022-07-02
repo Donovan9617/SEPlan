@@ -1,13 +1,5 @@
 {% extends "sep/layout.html" %} {% load static %} {% block body %}
 
-<!-- Welcome back to SEPlan alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-  function loginAlert() {
-    swal("Welcome back!", "", "success");
-  }
-</script>
-
 <body class="bg-gradient-primary">
   <div class="container">
     {% if message %}
@@ -27,12 +19,7 @@
                   <div class="text-center">
                     <h1 class="h3 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form
-                    class="user"
-                    action="{% url 'login' %}"
-                    method="POST"
-                    onsubmit="loginAlert()"
-                  >
+                  <form class="user" action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group text-center">
                       <input
