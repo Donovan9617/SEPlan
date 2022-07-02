@@ -1,8 +1,11 @@
 {% extends "sep/layout.html" %} {% load static %} {% block body %}
 <link href="{% static '/watchlist.css' %}" rel="stylesheet" />
 
-<!-- Watclist landing page -->
+<!-- Watclist back -->
 <div class="container note-has-grid">
+  <a href="{% url 'index' %}" class="btn btn-light btn-sm mb-3 has-icon"
+    ><i class="fa fa-arrow-left mr-2"></i>Back</a
+  >
   <!-- Watchlist header -->
   <div class="nav-link bg-info rounded-pill px-md-3">
     <span style="color: white">My Watchlist</span>
@@ -10,12 +13,6 @@
   <br />
 
   <!-- Watchlist content -->
-  <div class="mb-2">
-    <i class="fas fa-angle-left"></i
-    ><a href="{% url 'index' %}"
-      ><medium class="text-black-50"> Back</medium></a
-    >
-  </div>
   <div class="tab-content bg-transparent">
     <div id="note-full-container" class="note-has-grid row">
       {% for item in watchlist %}
