@@ -37,21 +37,95 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link href="{% static '/layout.css' %}" rel="stylesheet" />
+    <style>
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 900;
+        top: 0;
+        left: 0;
+        background-color: rgb(19, 64, 130);
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #d0caca;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 15px;
+        font-size: 25px;
+      }
+
+      .centralise {
+        text-align: center;
+      }
+
+      #menu-bars {
+        display: none;
+        color: antiquewhite;
+      }
+
+      #account {
+        font-size: 25px;
+        font-family: sans-serif;
+      }
+
+      #clock {
+        font-size: 70%;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav .closebtn {
+          font-size: 20px;
+          right: 10px;
+        }
+        .sidenav a {
+          font-size: 15px;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        #menu-bars {
+          display: block;
+        }
+        .home {
+          margin-left: 130%;
+        }
+        .menu-item {
+          display: none;
+        }
+      }
+    </style>
   </head>
 
   <!-- Javascript -->
   <script>
-    // Toggling bars menu on small screen
-    function myFunction() {
-      var x = document.getElementById("myTopnav");
-      if (x.className === "navbar-nav topnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "navbar-nav topnav";
-      }
+    // Open side navigation bar
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "180px";
     }
 
-    //Clock
+    // Close side navigation bar
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+
+    // Clock
     var myVar = setInterval(function () {
       myTimer();
     });
@@ -63,78 +137,151 @@
 
   <!-- Topbar -->
   <nav
-    class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow"
+    class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+    style="background-color: rgb(16, 16, 167)"
   >
     <!-- Topbar SEPlan -->
-    <a class="navbar-brand text-white sep" href="{% url 'index' %}">SEPlan</a>
-    <div class="mr-auto"></div>
+    <a
+      href="javascript:void(0);"
+      class="nav-link"
+      onclick="openNav()"
+      id="menu-bars"
+    >
+      <i class="fa fa-bars"></i>
+    </a>
 
-    <!-- Topbar Navbar -->
-    <ul class="navbar-nav topnav" id="myTopnav">
+    {% if user.is_authenticated %}
+
+    <div style="margin-left: 10%">
+      <a
+        class="navbar-brand text-white centralise home"
+        href="{% url 'index' %}"
+        ><i class="fa fa-home"></i>
+        <div class="h6 font-weight-bold text-light text-uppercase">
+          SEPlan
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a
+        class="navbar-brand text-white centralise menu-item"
+        href="{% url 'forum' %}"
+        ><i class="fas fa-paper-plane"></i>
+        <div class="h6 font-weight-bold text-danger text-uppercase">
+          Forum
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a
+        class="navbar-brand text-white centralise menu-item"
+        href="{% url 'reviews' %}"
+        ><i class="fa fa-book"></i>
+        <div class="h6 font-weight-bold text-success text-uppercase">
+          Reviews
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a
+        class="navbar-brand text-white centralise menu-item"
+        href="{% url 'modules' %}"
+        ><i class="fas fa-school"></i>
+        <div class="h6 font-weight-bold text-info text-uppercase">
+          Modules
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a
+        class="navbar-brand text-white centralise menu-item"
+        href="{% url 'messages' request.user.username %}"
+        ><i class="fas fa-comments"></i>
+        <div class="h6 font-weight-bold text-warning text-uppercase">
+          Messages
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a
+        class="navbar-brand text-white centralise menu-item"
+        href="{% url 'watchlist' %}"
+        ><i class="fas fa-file"></i>
+        <div class="h6 font-weight-bold text-secondary text-uppercase">
+          Saved
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a
+        class="navbar-brand text-white centralise menu-item"
+        href="{% url 'logout' %}"
+        ><i class="fa fa-sign-out"></i>
+        <div class="h6 font-weight-bold text-white text-uppercase">
+          Logout
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a
+        class="navbar-brand text-white centralise menu-item"
+        href="javascript:void(0)"
+        ><img class="rounded-circle" src="/media/index/undraw_profile.svg" />
+        <div class="mr-4 d-none d-lg-inline text-white">
+          {{ request.user.username }}
+        </div></a
+      >
+    </div>
+
+    {% else %}
+
+    <div style="margin-left: 5%">
+      <a class="navbar-brand text-white" href="{% url 'login' %}"
+        ><div class="h6 font-weight-bold text-white text-uppercase">
+          Login
+        </div></a
+      >
+    </div>
+    <div style="margin-left: 5%">
+      <a class="navbar-brand text-white" href="{% url 'register' %}"
+        ><div class="h6 font-weight-bold text-white text-uppercase">
+          Register
+        </div></a
+      >
+    </div>
+
+    {% endif %}
+
+    <!-- Animated Side Navbar -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+        <i class="fa fa-close"></i>
+      </a>
+
       {% if user.is_authenticated %}
 
-      <!-- Nav Item - Clock -->
-      <li class="nav-item menu-item login-item">
-        <a class="nav-link">
-          <span class="text-white small" id="clock"></span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Saved -->
-      <li class="nav-item menu-item login-item">
-        <a class="nav-link" href="{% url 'watchlist' %}">
-          <span class="text-white small">Saved</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Log Out -->
-      <li class="nav-item menu-item login-item">
-        <a class="nav-link" href="{% url 'logout' %}">
-          <span class="text-white small">Log Out</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - User Picture -->
-      <li class="nav-item menu-item login-item">
-        <div class="nav-link">
-          <span class="mr-2 d-none d-lg-inline text-white small"
-            >{{ request.user.username }}</span
-          >
-          <img
-            class="img-profile rounded-circle"
-            src="/media/index/undraw_profile.svg"
-          />
-        </div>
-      </li>
+      <img
+        class="ml-4"
+        style="max-width: 50%"
+        src="/media/index/undraw_profile.svg"
+      />
+      <a href="javascript:void(0)" id="account">{{ request.user.username }}</a>
+      <a href="{% url 'forum' %}">Forum</a>
+      <a href="{% url 'reviews' %}">Reviews</a>
+      <a href="{% url 'modules' %}">Modules</a>
+      <a href="{% url 'messages' request.user.username %}">Messages</a>
+      <a href="{% url 'watchlist' %}">Saved</a>
+      <a href="{% url 'logout' %}">Log Out</a>
+      <br />
+      <a href="javascript:void(0)" id="clock"></a>
 
       {% else %}
 
-      <!-- Nav Item - Log In -->
-      <li class="nav-item menu-item">
-        <a class="nav-link" href="{% url 'login' %}">
-          <span class="text-white medium">Log In</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Register -->
-      <li class="nav-item menu-item">
-        <a class="nav-link" href="{% url 'register' %}">
-          <span class="text-white medium">Register</span>
-        </a>
-      </li>
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
 
       {% endif %}
-
-      <!-- Nav Item - Bars menu for small screens -->
-      <li class="nav-item menu-item">
-        <div class="nav-link"></div>
-      </li>
-      <li class="nav-item menu-bars">
-        <a href="javascript:void(0);" class="nav-link" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
-      </li>
-    </ul>
+    </div>
   </nav>
 
   <!-- End of Topbar -->

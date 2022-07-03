@@ -19,117 +19,6 @@
     <div id="content">
       <!-- Index Content -->
       <div class="container-fluid">
-        <!-- Content Row with Forum, Reviews, Modules, Messages -->
-        <div class="row">
-          <!--Forum -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2" style="display: inline-block">
-                    <a href="{% url 'forum' %}"
-                      ><div
-                        class="h3 font-weight-bold text-primary text-uppercase"
-                      >
-                        Forum
-                      </div></a
-                    >
-                    <div class="text-xs font-weight-bold text-gray-800">
-                      Start a discussion!
-                    </div>
-                  </div>
-                  <img
-                    class="col-xl-5"
-                    src="/media/index/undraw_Public_discussion_re_w9up.png"
-                    style="max-width: 40%"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Reviews -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2" style="display: inline-block">
-                    <a href="{% url 'reviews' %}"
-                      ><div
-                        class="h3 font-weight-bold text-success text-uppercase"
-                      >
-                        Reviews
-                      </div></a
-                    >
-                    <div class="text-xs font-weight-bold text-gray-800">
-                      Help another student!
-                    </div>
-                  </div>
-                  <img
-                    class="col-xl-5"
-                    src="/media/index/undraw_Add_notes_re_ln36.png"
-                    style="max-width: 25%"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Modules -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2" style="display: inline-block">
-                    <a href="{% url 'modules' %}"
-                      ><div
-                        class="h3 font-weight-bold text-info text-uppercase"
-                      >
-                        Modules
-                      </div></a
-                    >
-                    <div class="text-xs font-weight-bold text-gray-800">
-                      Map overseas modules!
-                    </div>
-                  </div>
-                  <img
-                    class="col-xl-5"
-                    src="/media/index/undraw_Adventure_re_ncqp.png"
-                    style="max-width: 30%"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Messages -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2" style="display: inline-block">
-                    <a href="{% url 'messages' request.user.username %}">
-                      <div
-                        class="h3 font-weight-bold text-warning text-uppercase"
-                      >
-                        Messages
-                      </div>
-                    </a>
-                    <div class="text-xs font-weight-bold text-gray-800">
-                      Connect with SEP!
-                    </div>
-                  </div>
-                  <img
-                    class="col-xl-5"
-                    src="/media/index/undraw_Share_opinion_re_4qk7.png"
-                    style="max-width: 30%"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Content Row with SEP Announcements -->
         <div class="row">
           <div class="col-xl-12">
@@ -157,11 +46,11 @@
                     </div>
                     <br />
                     {% if opening.title in watchlist %}
-                    <div style="float: right">
+                    <div style="float: right" class="save">
                       <strong><small>Already saved</small></strong>
                     </div>
                     {% else %}
-                    <div style="float: right" class="bg-white">
+                    <div style="float: right" class="bg-white save">
                       <a href="{% url 'save_watchlist' opening.title %}"
                         ><small class="mr-1 font-weight-bold"
                           ><i class="fa fa-plus"></i> Save for later</small
@@ -511,7 +400,7 @@
                   </table>
                   <div class="row ml-2">
                     <i
-                      class="fa fa-circle ml-5 mr-2"
+                      class="fa fa-circle mr-2"
                       style="color: rgba(44, 208, 126, 0.5)"
                     ></i>
                     SEP Information Session

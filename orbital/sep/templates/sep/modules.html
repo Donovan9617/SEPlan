@@ -10,20 +10,15 @@
 
 <link href="{% static '/modules.css' %}" rel="stylesheet" />
 
+<!-- Modules landing page -->
 <div class="container">
-  <!-- Modules landing page -->
+  <!-- Module header -->
+  <h6 class="header-title pb-2">Map NUS Modules to SEP Universities!</h6>
   <div class="row">
     <!-- Modules back -->
     <div class="col-xl-12">
-      <a href="{% url 'index' %}" class="btn btn-light btn-sm mb-3 has-icon"
-        ><i class="fa fa-arrow-left mr-2"></i>Back</a
-      >
       <div class="card">
         <div class="card-body">
-          <!-- Module header -->
-          <h5 class="header-title pb-4">
-            Mapping NUS Modules to SEP Universities
-          </h5>
           <div class="pb-3">
             <div class="pb-3">Your faculty: {{ request.user.faculty }}</div>
 

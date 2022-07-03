@@ -1,14 +1,10 @@
 {% extends "sep/layout.html" %} {% load static %} {% block body %}
 
 <link href="{% static '/message.css' %}" rel="stylesheet" />
-
-<!-- Messages back -->
+<!-- Messages platform -->
 <div class="container">
-  <a href="{% url 'index' %}" class="btn btn-light btn-sm mb-3 has-icon"
-    ><i class="fa fa-arrow-left mr-2"></i>Back</a
-  >
-  <!-- Messaging platform -->
-  <h5 class="mb-3">Messages</h5>
+  <!-- Messages header -->
+  <h6 class="mb-3">Connect with SEP!</h6>
   <div class="row clearfix">
     <div class="col-xl-12">
       <div class="card chat-app">

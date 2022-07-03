@@ -6,21 +6,12 @@
     swal("Posted!", "", "success");
   }
 </script>
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
-  integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o="
-  crossorigin="anonymous"
-/>
 <link href="{% static '/forum.css' %}" rel="stylesheet" />
 
 <div class="container">
+  <!-- Forum header -->
+  <h6 class="header-title pb-2">Map NUS Modules to SEP Universities!</h6>
   <div class="main-body p-0">
-    <!-- Forum back -->
-    <a href="{% url 'index' %}" class="btn btn-light btn-sm mb-3 has-icon"
-      ><i class="fa fa-arrow-left mr-2"></i>Back</a
-    >
     <div class="inner-wrapper">
       <!-- Inner sidebar -->
       <div class="inner-sidebar">
