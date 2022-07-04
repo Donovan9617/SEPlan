@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
 import time
 
-from .models import Forum, User, Chat, Review, Opening, Watchlist, PartnerUniversity, Shortlist
+from .models import Comment, Forum, User, Chat, Review, Opening, Watchlist, PartnerUniversity, Shortlist
 
 def index(request):
     if not request.user.is_authenticated:
@@ -273,7 +273,7 @@ def forum(request):
         time.sleep(1.5)
         return HttpResponseRedirect(reverse("forum_post", args=(new_post.id,)))
     history = Forum.objects.all().order_by('-date')
-    queries = list(Forum.objects.all())
+    queries = list(Forum.objects.all().order_by('-date'))
     lst = []
     for item in queries:
         if item not in lst:
@@ -289,7 +289,22 @@ def view_review(request, id):
     return render(request, "sep/view_review.html", {"review": review})
 
 def forum_post(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    if request.method == "POST":
+        comment = request.POST.get('new_comment', False)
+        post = Forum.objects.get(pk=id)
+        new_comment = Comment(user=request.user, post=post, comment=comment)
+        new_comment.save()
+        time.sleep(1.5)
+        return HttpResponseRedirect(reverse("forum_post", args=(id,)))
     forum_post = Forum.objects.get(pk=id)
-    return render(request, "sep/forumpost.html", {
-        "forum_post": forum_post
+    history = forum_post.comments.all().order_by('-date')
+    comments = list(forum_post.comments.all().order_by('-date'))
+    lst = []
+    for item in comments:
+        if item not in lst:
+            lst.append(item)
+    return render(request, "sep/forum_post.html", {
+        "forum_post": forum_post, "comments":lst, "history": history
     })
