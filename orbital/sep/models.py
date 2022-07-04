@@ -12,7 +12,7 @@ class User(AbstractUser):
 class Chat(models.Model):
     fromAddress = models.CharField(max_length=120)
     toAddress = models.CharField(max_length=120)
-    text = models.CharField(max_length=1000)
+    text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
