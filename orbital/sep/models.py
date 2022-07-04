@@ -75,3 +75,12 @@ class Forum(models.Model):
 
     def __str__(self):
         return f'User: {self.user} Date: {str(self.date)} Query: {self.query} Attachments: {self.attachments}'
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name="comments")
+    comment = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f'User: {self.user} Date: {str(self.date)} Post: {self.post} Comment: {self.comment}'
