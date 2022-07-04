@@ -226,7 +226,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="javascript:void(0)"
-        ><img class="rounded-circle" src="/media/index/undraw_profile.svg" />
+        ><img class="rounded-circle" src="/media/index/undraw_profile.svg" style="margin-right: 5px;" />
         <div class="mr-4 d-none d-lg-inline text-white">
           {{ request.user.username }}
         </div></a
@@ -236,14 +236,14 @@
     {% else %}
 
     <div style="margin-left: 5%">
-      <a class="navbar-brand text-white" href="{% url 'login' %}"
+      <a class="navbar-brand text-white menu-item" href="{% url 'login' %}"
         ><div class="h6 font-weight-bold text-white text-uppercase">
           Login
         </div></a
       >
     </div>
     <div style="margin-left: 5%">
-      <a class="navbar-brand text-white" href="{% url 'register' %}"
+      <a class="navbar-brand text-white menu-item" href="{% url 'register' %}"
         ><div class="h6 font-weight-bold text-white text-uppercase">
           Register
         </div></a
