@@ -262,8 +262,9 @@ def forum(request):
         title = request.POST.get('threadTitle', False)
         query = request.POST.get('threadQuery', False)
 
-        if request.FILES['threadFile']:
-            myfile = request.FILES.get('threadFile', False)
+        myfile = request.FILES.get('threadFile', False)
+        url=""
+        if myfile:
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
             url = fs.url(filename)

@@ -37,80 +37,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link href="{% static '/layout.css' %}" rel="stylesheet" />
-    <style>
-      .sidenav {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 900;
-        top: 0;
-        left: 0;
-        background-color: rgb(19, 64, 130);
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-      }
-
-      .sidenav a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #d0caca;
-        display: block;
-        transition: 0.3s;
-      }
-
-      .sidenav a:hover {
-        color: #f1f1f1;
-      }
-
-      .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        right: 15px;
-        font-size: 25px;
-      }
-
-      .centralise {
-        text-align: center;
-      }
-
-      #menu-bars {
-        display: none;
-        color: antiquewhite;
-      }
-
-      #account {
-        font-size: 25px;
-        font-family: sans-serif;
-      }
-
-      #clock {
-        font-size: 70%;
-      }
-
-      @media screen and (max-height: 450px) {
-        .sidenav .closebtn {
-          font-size: 20px;
-          right: 10px;
-        }
-        .sidenav a {
-          font-size: 15px;
-        }
-      }
-
-      @media screen and (max-width: 600px) {
-        #menu-bars {
-          display: block;
-        }
-        .home {
-          margin-left: 130%;
-        }
-        .menu-item {
-          display: none;
-        }
-      }
-    </style>
   </head>
 
   <!-- Javascript -->
@@ -138,7 +64,7 @@
   <!-- Topbar -->
   <nav
     class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
-    style="background-color: rgb(16, 16, 167)"
+    style="background-color: rgb(16, 16, 167); height: 70%;"
   >
     <!-- Topbar SEPlan -->
     <a
@@ -152,11 +78,11 @@
 
     {% if user.is_authenticated %}
 
-    <div style="margin-left: 10%">
+    <div style="margin-left: 15%;">
       <a
         class="navbar-brand text-white centralise home"
         href="{% url 'index' %}"
-        ><i class="fa fa-home"></i>
+        ><i class="fa fa-home fa-2x"></i>
         <div class="h6 font-weight-bold text-light text-uppercase">
           SEPlan
         </div></a
@@ -166,7 +92,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'forum' %}"
-        ><i class="fas fa-paper-plane"></i>
+        ><i class="fas fa-paper-plane fa-2x"></i>
         <div class="h6 font-weight-bold text-danger text-uppercase">
           Forum
         </div></a
@@ -176,7 +102,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'reviews' %}"
-        ><i class="fa fa-book"></i>
+        ><i class="fa fa-book fa-2x"></i>
         <div class="h6 font-weight-bold text-success text-uppercase">
           Reviews
         </div></a
@@ -186,7 +112,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'modules' %}"
-        ><i class="fas fa-school"></i>
+        ><i class="fas fa-school fa-2x"></i>
         <div class="h6 font-weight-bold text-info text-uppercase">
           Modules
         </div></a
@@ -196,7 +122,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'messages' request.user.username %}"
-        ><i class="fas fa-comments"></i>
+        ><i class="fas fa-comments fa-2x"></i>
         <div class="h6 font-weight-bold text-warning text-uppercase">
           Messages
         </div></a
@@ -206,7 +132,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'watchlist' %}"
-        ><i class="fas fa-file"></i>
+        ><i class="fas fa-file fa-2x"></i>
         <div class="h6 font-weight-bold text-light text-uppercase">
           Saved
         </div></a
@@ -216,7 +142,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'logout' %}"
-        ><i class="fa fa-sign-out"></i>
+        ><i class="fa fa-sign-out fa-2x"></i>
         <div class="h6 font-weight-bold text-white text-uppercase">
           Logout
         </div></a
@@ -226,7 +152,7 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'profile' %}"
-        ><img src="/media/index/undraw_profile.svg" style="max-width: 50%; margin-right: 5px;" />
+        ><img src="/media/index/undraw_profile.svg" style="max-width: 200%; margin-right: 5px;" />
         <div class="mr-4 d-none d-lg-inline text-white">
           {{ request.user.username }}
         </div></a
@@ -265,7 +191,7 @@
         style="max-width: 50%"
         src="/media/index/undraw_profile.svg"
       />
-      <a href="javascript:void(0)" id="account">{{ request.user.username }}</a>
+      <a href="{% url 'profile' %}" id="account">{{ request.user.username }}</a>
       <a href="{% url 'forum' %}">Forum</a>
       <a href="{% url 'reviews' %}">Reviews</a>
       <a href="{% url 'modules' %}">Modules</a>
