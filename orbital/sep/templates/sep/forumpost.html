@@ -20,15 +20,15 @@
               />
               <div class="media-body ml-2">
                 <span class="text-muted small"
-                  >Posted by: {{ forum_post.user }} | {{ forum_post.date
-                  }}</span
+                  >Posted by: {{ forum_post.user }}</span
                 >
+                <span class="text-muted small">| {{ forum_post.date }}</span>
 
                 {% if item.user != request.user %}
                 <span class="text-muted small"
                   >|
                   <a href="{% url 'messages' forum_post.user.username %}"
-                    ><i class="far fa-comment ml-2"></i></a
+                    ><i class="far fa-comments ml-2"></i></a
                 ></span>
                 {% endif %}
 

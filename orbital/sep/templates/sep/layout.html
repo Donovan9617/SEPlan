@@ -225,8 +225,8 @@
     <div style="margin-left: 5%">
       <a
         class="navbar-brand text-white centralise menu-item"
-        href="javascript:void(0)"
-        ><img class="rounded-circle" src="/media/index/undraw_profile.svg" style="margin-right: 5px;" />
+        href="{% url 'profile' %}"
+        ><img src="/media/index/undraw_profile.svg" style="max-width: 50%; margin-right: 5px;" />
         <div class="mr-4 d-none d-lg-inline text-white">
           {{ request.user.username }}
         </div></a

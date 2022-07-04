@@ -293,3 +293,6 @@ def forum_post(request, id):
     return render(request, "sep/forumpost.html", {
         "forum_post": forum_post
     })
+
+def profile(request):
+    return render(request, "sep/profile.html")
