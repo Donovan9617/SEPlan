@@ -64,7 +64,7 @@
   <!-- Topbar -->
   <nav
     class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
-    style="background-color: rgb(16, 16, 167); height: 70%;"
+    style="background-color: rgb(16, 16, 167); height: 70%"
   >
     <!-- Topbar SEPlan -->
     <a
@@ -78,7 +78,7 @@
 
     {% if user.is_authenticated %}
 
-    <div style="margin-left: 15%;">
+    <div style="margin-left: 15%">
       <a
         class="navbar-brand text-white centralise home"
         href="{% url 'index' %}"
@@ -152,7 +152,10 @@
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'profile' %}"
-        ><img src="/media/index/undraw_profile.svg" style="max-width: 200%; margin-right: 5px;" />
+        ><img
+          src="/media/index/undraw_profile.svg"
+          style="max-width: 200%; margin-right: 5px"
+        />
         <div class="mr-4 d-none d-lg-inline text-white">
           {{ request.user.username }}
         </div></a
@@ -161,15 +164,21 @@
 
     {% else %}
 
-    <div style="margin-left: 5%">
-      <a class="navbar-brand text-white menu-item" href="{% url 'login' %}"
+    <div style="margin-left: 43%">
+      <a
+        class="navbar-brand text-white menu-item"
+        style="margin-top: 10px"
+        href="{% url 'login' %}"
         ><div class="h6 font-weight-bold text-white text-uppercase">
           Login
         </div></a
       >
     </div>
     <div style="margin-left: 5%">
-      <a class="navbar-brand text-white menu-item" href="{% url 'register' %}"
+      <a
+        class="navbar-brand text-white menu-item"
+        style="margin-top: 10px"
+        href="{% url 'register' %}"
         ><div class="h6 font-weight-bold text-white text-uppercase">
           Register
         </div></a
