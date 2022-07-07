@@ -310,5 +310,12 @@ def forum_post(request, id):
         "forum_post": forum_post, "comments":lst, "history": history
     })
 
-def profile(request):
-    return render(request, "sep/profile.html")
+def profile(request, username):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    user = User.objects.get(username=username)
+    posts = Forum.objects.filter(user=user).order_by('-date')
+    reviews = Review.objects.filter(user=user).order_by('-date')
+    return render(request, "sep/profile.html",{
+        "user": user, "username": username, "posts": posts, "reviews": reviews
+    })

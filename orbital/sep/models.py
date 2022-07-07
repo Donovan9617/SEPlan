@@ -7,7 +7,9 @@ class User(AbstractUser):
     year = models.IntegerField(blank=True, null=True)
     major = models.CharField(max_length=120)
     sep = models.BooleanField(blank=True, null=True)
-    pass
+    
+    def __str__(self):
+        return self.username
 
 class Chat(models.Model):
     fromAddress = models.CharField(max_length=120)
@@ -19,7 +21,7 @@ class Chat(models.Model):
          return f'From: {self.fromAddress} To: {self.toAddress} Text: {self.text} Date: {str(self.date)}'
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
     university = models.CharField(max_length=120)
     date = models.DateTimeField(auto_now_add=True)
     review = models.TextField(blank=True, null=True)
@@ -67,7 +69,7 @@ class Shortlist(models.Model):
         return f"{self.user} placed {self.partneruniversity} on watchlist."
 
 class Forum(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     date = models.DateTimeField(auto_now_add=True)
     title = models.TextField(blank=True, null=True)
     query = models.TextField(blank=True, null=True)
@@ -77,7 +79,7 @@ class Forum(models.Model):
         return f'User: {self.user} Date: {str(self.date)} Query: {self.query} Attachments: {self.attachments}'
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     date = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name="comments")
     comment = models.TextField(blank=True, null=True)

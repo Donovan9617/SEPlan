@@ -20,5 +20,5 @@ urlpatterns = [
     path("forum", views.forum, name="forum"),
     path("view_review/<int:id>", views.view_review, name="view_review"),
     path("forum/<int:id>", views.forum_post, name="forum_post"),
-    path("profile", views.profile, name="profile")
+    path("profile/<str:username>", views.profile, name="profile")
 ]

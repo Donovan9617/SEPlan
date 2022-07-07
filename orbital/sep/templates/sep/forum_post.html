@@ -60,7 +60,7 @@
       </div>
       <!-- /Forum Detail -->
 
-      <!-- Comments -->
+      <!-- All comments -->
       <strong class="ml-3">All Comments:</strong>
       <div class="inner-main-body">
  
@@ -103,11 +103,11 @@
 
         {% endfor %}
         <br />
-        <!-- Close all comments -->
+        <!-- /All comments -->
 
         <!-- Add a comment -->
         <form
-        action="{% url 'forum_post' id=forum_post.id %}"
+        action="{% url 'forum_post' forum_post.id %}"
         method="POST"
         enctype="multipart/form-data"
         onsubmit="sweetAlert()"
@@ -132,7 +132,7 @@
             <button type="submit" class="btn btn-primary">Post</button>
           </div>
         </form>
-        <!-- Close add a comment -->
+        <!-- /Add a comment -->
   </div>
 </div>
 {% endblock %}

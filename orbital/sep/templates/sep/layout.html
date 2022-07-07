@@ -151,7 +151,7 @@
     <div style="margin-left: 5%">
       <a
         class="navbar-brand text-white centralise menu-item"
-        href="{% url 'profile' %}"
+        href="{% url 'profile' request.user.username %}"
         ><img
           src="/media/index/undraw_profile.svg"
           style="max-width: 200%; margin-right: 5px"
@@ -200,7 +200,7 @@
         style="max-width: 50%"
         src="/media/index/undraw_profile.svg"
       />
-      <a href="{% url 'profile' %}" id="account">{{ request.user.username }}</a>
+      <a href="{% url 'profile' request.user.username %}" id="account">{{ request.user.username }}</a>
       <a href="{% url 'forum' %}">Forum</a>
       <a href="{% url 'reviews' %}">Reviews</a>
       <a href="{% url 'modules' %}">Modules</a>
