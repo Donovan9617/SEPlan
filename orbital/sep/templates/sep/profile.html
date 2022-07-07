@@ -80,7 +80,10 @@
               />
               <div class="media-body">
                 <span class="text-muted small"
-                  >Posted by: {{ post.user }} | {{ post.date }}</span
+                  >Posted by: 
+                  <a href="{% url 'profile' post.user.username %}"
+                  >{{ post.user }}</a
+                  > | {{ post.date }}</span
                 >
 
                 {% if post.user != request.user %}
@@ -127,7 +130,10 @@
               />
               <div class="media-body">
                 <span class="text-muted small"
-                  >Posted by: {{ review.user }} | {{ review.date }}</span
+                  >Posted by: 
+                  <a href="{% url 'profile' review.user.username %}"
+                  >{{ review.user }}</a
+                  > | {{ review.date }}</span
                 >
   
                 {% if review.user != request.user %}

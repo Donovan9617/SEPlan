@@ -151,7 +151,10 @@
                 />
                 <div class="media-body">
                   <span class="text-muted small"
-                    >Posted by: {{ item.user }} | {{ item.date }}</span
+                    >Posted by: 
+                    <a href="{% url 'profile' item.user.username %}"
+                    >{{ item.user }}</a
+                    > | {{ item.date }}</span
                   >
 
                   {% if item.user != request.user %}

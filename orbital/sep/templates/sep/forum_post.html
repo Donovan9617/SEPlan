@@ -18,7 +18,8 @@
             alt="User"
           />
           <div class="media-body ml-2">
-            <span class="text-muted small"><strong>Posted by: {{ forum_post.user }}</strong></span>
+            <span class="text-muted small"><strong>Posted by: 
+              <a href={% url "profile" forum_post.user %}>{{ forum_post.user }}</a></strong></span>
             <span class="text-muted small"><strong>| {{ forum_post.date }} </strong></span>
 
             {% if item.user != request.user %}
@@ -79,7 +80,7 @@
                   </a>
                   <div class="media-body ml-3">
                       <a 
-                      href="javascript:void(0)" 
+                      href={% url "profile" comment.user %} 
                       class="text-secondary"
                       >{{comment.user}}
                       </a>

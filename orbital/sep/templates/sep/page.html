@@ -45,7 +45,10 @@
               />
               <div class="media-body">
                 {% if review.user != request.user %}
-                <strong>{{ review.user.username }}</strong> created a review.
+                <strong>
+                  <a href={% url "profile" review.user.username %}
+                  >{{ review.user.username }}</a
+                  ></strong> created a review.
                 <a
                   class="btn btn-warning btn-sm float-right"
                   href="{% url 'messages' review.user.username %}"
@@ -54,7 +57,11 @@
                   Message {{ review.user.username }}</a
                 >
                 {% else %}
-                <strong>You</strong> created a review. {% endif %}
+                <strong>
+                  <a href={% url "profile" request.user.username %}
+                  >You</a
+                  ></strong> created a review. 
+                {% endif %}
                 <br />
                 <small class="text-muted">{{ review.date }}</small>
                 <div class="border text-sm text-muted p-2">
