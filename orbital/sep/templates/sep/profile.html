@@ -9,13 +9,18 @@
         <div class="about-text go-to">
           <h3 class="dark-color">About Me</h3>
           <h6 class="theme-color lead">
-            A Lead UX &amp; UI designer based in Canada
+            {% if user.tagline %}
+            {{ user.tagline }}
+            {% else %}
+            No tagline.
+            {% endif %}
           </h6>
           <p>
-            I <mark>design and develop</mark> services for customers of all
-            sizes, specializing in creating stylish, modern websites, web
-            services and online stores. My passion is to design digital user
-            experiences through the bold interface and meaningful interactions.
+            {% if user.description %}
+            {{ user.description }}
+            {% else %}
+            No description.
+            {% endif %}
           </p>
           <div class="row about-list">
             <div class="col-md-6">
@@ -39,6 +44,13 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="row mt-2">
+        </div>
+        <div>
+        {% if request.user == user %}
+        <a class="btn btn-primary" href={% url "edit_profile" request.user.username %}>Edit profile</a>
+        {% endif %}
         </div>
       </div>
       <div class="col-lg-6">

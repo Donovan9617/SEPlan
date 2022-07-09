@@ -1,0 +1,120 @@
+{% extends "sep/layout.html" %} {% load static %} {% block body %}
+<!-- Edited Profile alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function sweetAlert() {
+      swal("Edited profile!", "", "success");
+    }
+</script>
+<link href="{% static '/edit_profile.css' %}" rel="stylesheet" />
+
+<div class="container-xl px-4 mt-4">
+    <div class="col-12">
+        <!-- Page title -->
+        <div class="my-5">
+            <h3>My Profile</h3>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+                    <button class="btn btn-primary" type="button">Upload new image</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form
+                        action="{% url 'edit_profile' user.username %}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        onsubmit="sweetAlert()"
+                    >
+                        {% csrf_token %}
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (username)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputUsername">Username</label>
+                                <input readonly class="form-control-plaintext" id="inputUsername" name="inputUsername" type="text" placeholder="Enter your username" value={{ user.username }}>
+                            </div>
+                            <!-- Form Group (year of study)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputYear">Year of Study</label>
+                                <input class="form-control" id="inputYear" name="inputYear" type="text" placeholder="Enter your year of study" value={{ user.year }}>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (faculty)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFaculty">Faculty</label>
+                                <input class="form-control" id="inputFaculty" name="inputFaculty" type="text" placeholder="Enter your faculty" value={{ user.faculty }}>
+                                <!-- <select class="form-control" id="faculty" name="faculty" value={{ user.faculty }}>
+                                    <option value="College of Humanities and Sciences">
+                                      College of Humanities and Sciences
+                                    </option>
+                                    <option value="NUS Business School">
+                                      NUS Business School
+                                    </option>
+                                    <option value="School of Computing">
+                                      School of Computing
+                                    </option>
+                                    <option value="Faculty of Dentistry">
+                                      Faculty of Dentistry
+                                    </option>
+                                    <option value="College of Design and Engineering">
+                                      College of Design and Engineering
+                                    </option>
+                                    <option value="Faculty of Law">Faculty of Law</option>
+                                    <option value="Yong Loo Lin School of Medicine">
+                                      Yong Loo Lin School of Medicine
+                                    </option>
+                                    <option value="Yong Siew Toh Conservatory of Music">
+                                      Yong Siew Toh Conservatory of Music
+                                    </option>
+                                </select>
+                                -->
+                            </div>
+                            <!-- Form Group (major)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputMajor">Major</label>
+                                <input class="form-control" id="inputMajor" name="inputMajor" type="text" placeholder="Enter your major" value={{ user.major }}>
+                            </div>
+                        </div>
+                        <!-- Form Group (email)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmail">Email</label>
+                            <input class="form-control" id="inputEmail" name="inputEmail" type="text" placeholder="Enter your email" value={{ user.email }}>
+                        </div>
+                        <!-- Form Group (tagline)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputTagline">Tagline</label>
+                            <input class="form-control" id="inputTagline" name="inputTagline" type="text" placeholder="Enter your tagline" value={{ user.tagline }}>
+                        </div>
+                        <!-- Form Group (description)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputDescription">Description</label>
+                            <input class="form-control" id="inputDescription" name="inputDescription" type="text" placeholder="Enter your description" value={{ user.description }} rows="3">
+                        </div>
+                        <!-- Save changes button-->
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -317,5 +317,23 @@ def profile(request, username):
     posts = Forum.objects.filter(user=user).order_by('-date')
     reviews = Review.objects.filter(user=user).order_by('-date')
     return render(request, "sep/profile.html",{
-        "user": user, "username": username, "posts": posts, "reviews": reviews
+        "user": user, "posts": posts, "reviews": reviews
     })
+
+def edit_profile(request, username):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    if request.method == "POST":
+        user = User.objects.get(username=username)
+        user.year = request.POST.get('inputYear', False)
+        user.faculty = request.POST.get('inputFaculty', False)
+        user.major = request.POST.get('inputMajor', False)
+        user.email = request.POST.get('inputEmail', False)
+        user.tagline = request.POST.get('inputTagline', False)
+        user.description = request.POST.get('inputDescription', False)
+        user.save()
+        time.sleep(1.5)
+        return HttpResponseRedirect(reverse("profile", args=(username,)))
+    user = User.objects.get(username=username)
+    return render(request, "sep/edit_profile.html",{
+        "user": user})
