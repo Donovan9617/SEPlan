@@ -8,20 +8,6 @@
       <div class="col-lg-6">
         <div class="about-text go-to">
           <h3 class="dark-color">About Me</h3>
-          <h6 class="theme-color lead">
-            {% if user.tagline %}
-            {{ user.tagline }}
-            {% else %}
-            No tagline.
-            {% endif %}
-          </h6>
-          <p>
-            {% if user.description %}
-            {{ user.description }}
-            {% else %}
-            No description.
-            {% endif %}
-          </p>
           <div class="row about-list">
             <div class="col-md-6">
               <div class="media">
@@ -55,11 +41,17 @@
       </div>
       <div class="col-lg-6">
         <div class="about-avatar">
+          {% if user.picture %}
           <img
-            src="https://bootdey.com/img/Content/avatar/avatar7.png"
+            src = {{ user.picture }}
+          />
+          {% else %}
+          <img
+            src="https://bootdey.com/img/Content/avatar/avatar1.png"
             title=""
             alt=""
           />
+          {% endif %}
         </div>
       </div>
     </div>

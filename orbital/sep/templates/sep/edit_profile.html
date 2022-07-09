@@ -18,21 +18,38 @@
     </div>
     <div class="row">
         <div class="col-xl-4">
-            <!-- Profile picture card-->
+            <!-- Profile picture -->
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    {% if user.picture %}
+                    <img
+                        class="img-account-profile rounded-circle mb-2"
+                        alt="Responsive image"
+                        src = {{ user.picture }}
+                    />
+                    {% else %}
+                    <img 
+                        class="img-account-profile rounded-circle mb-2" 
+                        src="http://bootdey.com/img/Content/avatar/avatar1.png" 
+                        alt="">
+                    {% endif %}
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" type="button">Upload new image</button>
+                    <button 
+                        class="btn btn-primary" 
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#pictureModal"
+                        >Upload new image
+                    </button>
                 </div>
             </div>
         </div>
         <div class="col-xl-8">
-            <!-- Account details card-->
+            <!-- Profile details -->
             <div class="card mb-4">
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
@@ -48,12 +65,27 @@
                             <!-- Form Group (username)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputUsername">Username</label>
-                                <input readonly class="form-control-plaintext" id="inputUsername" name="inputUsername" type="text" placeholder="Enter your username" value={{ user.username }}>
+                                <input readonly 
+                                    class="form-control-plaintext" 
+                                    id="inputUsername" 
+                                    name="inputUsername" 
+                                    type="text" 
+                                    value={{ user.username }} 
+                                    required
+                                    >
                             </div>
                             <!-- Form Group (year of study)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputYear">Year of Study</label>
-                                <input class="form-control" id="inputYear" name="inputYear" type="text" placeholder="Enter your year of study" value={{ user.year }}>
+                                <input 
+                                    class="form-control" 
+                                    id="inputYear" 
+                                    name="inputYear" 
+                                    type="text" 
+                                    placeholder="Enter your year of study" 
+                                    value={{ user.year }} 
+                                    required
+                                    >
                             </div>
                         </div>
                         <!-- Form Row        -->
@@ -61,60 +93,148 @@
                             <!-- Form Group (faculty)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFaculty">Faculty</label>
-                                <input class="form-control" id="inputFaculty" name="inputFaculty" type="text" placeholder="Enter your faculty" value={{ user.faculty }}>
-                                <!-- <select class="form-control" id="faculty" name="faculty" value={{ user.faculty }}>
-                                    <option value="College of Humanities and Sciences">
-                                      College of Humanities and Sciences
-                                    </option>
-                                    <option value="NUS Business School">
-                                      NUS Business School
-                                    </option>
-                                    <option value="School of Computing">
-                                      School of Computing
-                                    </option>
-                                    <option value="Faculty of Dentistry">
-                                      Faculty of Dentistry
-                                    </option>
-                                    <option value="College of Design and Engineering">
-                                      College of Design and Engineering
-                                    </option>
-                                    <option value="Faculty of Law">Faculty of Law</option>
-                                    <option value="Yong Loo Lin School of Medicine">
-                                      Yong Loo Lin School of Medicine
-                                    </option>
-                                    <option value="Yong Siew Toh Conservatory of Music">
-                                      Yong Siew Toh Conservatory of Music
-                                    </option>
+                                <!-- <input class="form-control" id="inputFaculty" name="inputFaculty" type="text" placeholder="Enter your faculty" value={{ user.faculty }} required> -->
+                                <select 
+                                    class="form-control" 
+                                    id="inputFaculty" 
+                                    name="inputFaculty"
+                                    required 
+                                    >
+                                    <optgroup label="Current Faculty">
+                                        <option value={{ user.faculty }} selected>
+                                            {{ user.faculty }}
+                                        </option>
+                                    </optgroup>
+                                    <optgroup label="All Faculties">
+                                        <option value="College of Humanities and Sciences">
+                                            College of Humanities and Sciences
+                                        </option>
+                                        <option value="NUS Business School">
+                                            NUS Business School
+                                        </option>
+                                        <option value="School of Computing">
+                                            School of Computing
+                                        </option>
+                                        <option value="Faculty of Dentistry">
+                                            Faculty of Dentistry
+                                        </option>
+                                        <option value="College of Design and Engineering">
+                                            College of Design and Engineering
+                                        </option>
+                                        <option value="Faculty of Law">Faculty of Law</option>
+                                        <option value="Yong Loo Lin School of Medicine">
+                                            Yong Loo Lin School of Medicine
+                                        </option>
+                                        <option value="Yong Siew Toh Conservatory of Music">
+                                            Yong Siew Toh Conservatory of Music
+                                        </option>
+                                    </optgroup>
                                 </select>
-                                -->
                             </div>
                             <!-- Form Group (major)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputMajor">Major</label>
-                                <input class="form-control" id="inputMajor" name="inputMajor" type="text" placeholder="Enter your major" value={{ user.major }}>
+                                <input 
+                                    class="form-control" 
+                                    id="inputMajor" 
+                                    name="inputMajor" 
+                                    type="text" 
+                                    placeholder="Enter your major" 
+                                    value={{ user.major }}
+                                    required
+                                    >
                             </div>
                         </div>
                         <!-- Form Group (email)-->
                         <div class="mb-3">
                             <label class="small mb-1" for="inputEmail">Email</label>
-                            <input class="form-control" id="inputEmail" name="inputEmail" type="text" placeholder="Enter your email" value={{ user.email }}>
-                        </div>
-                        <!-- Form Group (tagline)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputTagline">Tagline</label>
-                            <input class="form-control" id="inputTagline" name="inputTagline" type="text" placeholder="Enter your tagline" value={{ user.tagline }}>
-                        </div>
-                        <!-- Form Group (description)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputDescription">Description</label>
-                            <input class="form-control" id="inputDescription" name="inputDescription" type="text" placeholder="Enter your description" value={{ user.description }} rows="3">
+                            <input 
+                                class="form-control" 
+                                id="inputEmail" 
+                                name="inputEmail" 
+                                type="text" 
+                                placeholder="Enter your email" 
+                                value={{ user.email }}
+                                required
+                                >
                         </div>
                         <!-- Save changes button-->
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary" name="savechanges">Save changes</button>
                     </form>
                 </div>
             </div>
         </div>
+
+        <!-- Upload Profile Picture Modal -->
+        <div
+            class="modal fade"
+            id="pictureModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="pictureModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <form
+                    action="{% url 'edit_profile' user.username %}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    >
+                    {% csrf_token %}
+                    <div
+                        class="modal-header d-flex align-items-center bg-primary text-white"
+                    >
+                        <h6 class="modal-title mb-0" id="pictureModalLabel">
+                        Change Profile Picture
+                        </h6>
+                        <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        >
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                        <label for="inputPicture">Upload Photo</label>
+                        <input
+                            class="form-control"
+                            type="file"
+                            id="inputPicture"
+                            name="inputPicture"
+                        />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">
+                        Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary" name="uploadpic">Upload</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+        ></script>
+
     </div>
 </div>
 {% endblock %}
