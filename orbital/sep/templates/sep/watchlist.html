@@ -3,8 +3,9 @@
 
 <div class="container note-has-grid">
   <!-- Watchlist header -->
-  <div class="nav-link bg-info rounded-pill px-md-3">
-    <span style="color: white">My Saved List</span>
+  <h4><strong>Saved</strong></h4>
+  <h6 class="mb-3">Keep important announcements</h6>
+  <div class="nav-link bg-info rounded-pill">
   </div>
   <br />
 
@@ -33,6 +34,10 @@
           </div>
         </div>
       </div>
+      {% empty %}
+      <span class="text-default-d3 text-90 text-600radius-1 p-2 ml-2">
+        No saved announcements.
+      </span>
       {% endfor %}
     </div>
   </div>

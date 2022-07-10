@@ -19,7 +19,9 @@
     <div id="content">
       <!-- Index Content -->
       <div class="container-fluid">
-        <h4 class="ml-2" style="color: black;"><strong>Welcome back, {{ request.user.username }}</strong></h4>
+        <h4 class="ml-2" style="color: black">
+          <strong>Welcome back, {{ request.user.username }}</strong>
+        </h4>
         <br />
         <!-- Content Row with SEP Announcements -->
         <div class="row">
@@ -231,8 +233,8 @@
                       ></i
                     ></a>
                     {{ item.partneruniversity.nusmodulecode }}
-                    <i class="fa fa-long-arrow-right"></i> {{
-                    item.partneruniversity.pumodulecode }}
+                    <i class="fa fa-long-arrow-right"></i>
+                    {{ item.partneruniversity.pumodulecode }}
                     <hr />
                     {% empty %} No modules shortlisted. {% endfor %}
                   </div>

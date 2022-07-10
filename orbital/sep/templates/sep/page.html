@@ -4,7 +4,7 @@
 <!-- Individual review landing page -->
 <div class="container">
   <!-- Header -->
-  <h4 class="mb-3">Student Exchange Programme Reviews</h4>
+  <h4 class="mb-3">SEP University Reviews</h4>
   <a href="{% url 'reviews' %}" class="btn btn-light btn-sm mb-3 has-icon"
     ><i class="fa fa-arrow-left mr-2"></i>Back</a
   >
@@ -48,7 +48,7 @@
                 <strong>
                   <a href={% url "profile" review.user.username %}
                   >{{ review.user.username }}</a
-                  ></strong> created a review.
+                  ></strong> created this review.
                 <a
                   class="btn btn-warning btn-sm float-right"
                   href="{% url 'messages' review.user.username %}"
@@ -60,7 +60,7 @@
                 <strong>
                   <a href={% url "profile" request.user.username %}
                   >You</a
-                  ></strong> created a review. 
+                  ></strong> created this review. 
                 {% endif %}
                 <br />
                 <small class="text-muted">{{ review.date }}</small>

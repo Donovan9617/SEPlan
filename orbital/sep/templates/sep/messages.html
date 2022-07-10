@@ -56,7 +56,7 @@
                 <div class="chat-about">
                   {% if to.username != request.user.username %}
                   <h6 class="m-b-0" id="chatName">
-                    <a href={% url "profile" to.username%}>{{ to.username }}</a>, 
+                    <a href="{% url 'profile' to.username %}">{{ to.username }}</a>, 
                     from {{ to.faculty }}
                   </h6>
                   {% else %}
