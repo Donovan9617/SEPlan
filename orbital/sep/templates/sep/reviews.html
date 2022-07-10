@@ -312,11 +312,19 @@
             <span
               class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2"
             >
+              {% if user.picture %}
               <img
-                alt="Alexa's avatar"
-                src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                src={{ user.picture }}
                 class="h-4 w-4"
+                alt="User"
               />
+              {% else %}
+              <img
+                src="/media/index/undraw_profile.svg"
+                class="h-4 w-4"
+                alt="User"
+              />
+              {% endif %}
             </span>
 
             <a href="{% url 'page' review %}">

@@ -36,13 +36,23 @@
           <!-- Individual review -->
           <div class="card-body">
             <div class="media">
-              <img
-                src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                width="36"
-                height="36"
-                class="rounded-circle mr-2"
-                alt="Andrew Jones"
-              />
+              {% if user.picture %}
+                <img
+                  class="rounded-circle mr-2" 
+                  src={{ user.picture }}
+                  width="36"
+                  height="36"
+                  alt="User"
+                />
+              {% else %}
+                <img
+                  class="rounded-circle mr-2"
+                  src="/media/index/undraw_profile.svg"
+                  width="36"
+                  height="36"
+                  alt="User"
+                />
+              {% endif %}
               <div class="media-body">
                 {% if review.user != request.user %}
                 <strong>

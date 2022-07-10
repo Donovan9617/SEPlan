@@ -144,12 +144,22 @@
           <div class="card mb-2">
             <div class="card-body p-2 p-sm-3">
               <div class="media forum-item">
+                {% if item.user.picture %}
                 <img
-                  src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                  class="rounded-circle mr-2" 
+                  src={{ item.user.picture }}
+                  width="36"
+                  height="36"
+                  alt="User"
+                />
+                {% else %}
+                <img
                   class="mr-3 rounded-circle"
+                  src="/media/index/undraw_profile.svg"
                   style="max-width: 10%"
                   alt="User"
                 />
+                {% endif %}
                 <div class="media-body">
                   <span class="text-muted small"
                     >Posted by: 
