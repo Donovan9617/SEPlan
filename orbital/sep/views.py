@@ -323,14 +323,25 @@ def profile(request, username):
 def edit_profile(request, username):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
-    if request.method == "POST":
+    if request.method == "POST" and "uploadpic" in request.POST:
+        myfile = request.FILES.get('inputPicture', False)
+        url=""
+        if myfile:
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            url = fs.url(filename)
+        
+        user = User.objects.get(username=username)
+        user.picture = url
+        user.save()
+        time.sleep(1.5)
+        return HttpResponseRedirect(reverse("edit_profile", args=(username,)))
+    if request.method == "POST" and "savechanges" in request.POST:
         user = User.objects.get(username=username)
         user.year = request.POST.get('inputYear', False)
         user.faculty = request.POST.get('inputFaculty', False)
         user.major = request.POST.get('inputMajor', False)
         user.email = request.POST.get('inputEmail', False)
-        user.tagline = request.POST.get('inputTagline', False)
-        user.description = request.POST.get('inputDescription', False)
         user.save()
         time.sleep(1.5)
         return HttpResponseRedirect(reverse("profile", args=(username,)))

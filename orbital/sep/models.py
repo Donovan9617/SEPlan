@@ -7,8 +7,7 @@ class User(AbstractUser):
     year = models.IntegerField(blank=True, null=True)
     major = models.CharField(max_length=120)
     sep = models.BooleanField(blank=True, null=True)
-    tagline = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    picture = models.URLField(blank=True, null=True)
     
     def __str__(self):
         return self.username
