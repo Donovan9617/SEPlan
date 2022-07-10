@@ -320,7 +320,7 @@ def profile(request, username):
         "user": user, "posts": posts, "reviews": reviews
     })
 
-def edit_profile(request, username):
+def editing_profile(request, username):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
     if request.method == "POST" and "uploadpic" in request.POST:
@@ -335,7 +335,7 @@ def edit_profile(request, username):
         user.picture = url
         user.save()
         time.sleep(1.5)
-        return HttpResponseRedirect(reverse("edit_profile", args=(username,)))
+        return HttpResponseRedirect(reverse("editing_profile", args=(username,)))
     if request.method == "POST" and "savechanges" in request.POST:
         user = User.objects.get(username=username)
         user.year = request.POST.get('inputYear', False)
@@ -346,5 +346,5 @@ def edit_profile(request, username):
         time.sleep(1.5)
         return HttpResponseRedirect(reverse("profile", args=(username,)))
     user = User.objects.get(username=username)
-    return render(request, "sep/edit_profile.html",{
+    return render(request, "sep/editing_profile.html",{
         "user": user})

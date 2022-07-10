@@ -1,20 +1,14 @@
 {% extends "sep/layout.html" %} {% load static %} {% block body %}
-<!-- Edited Profile alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    function sweetAlert() {
-      swal("Edited profile!", "", "success");
-    }
-</script>
-<link href="{% static '/edit_profile.css' %}" rel="stylesheet" />
+<link href="{% static '/editing_profile.css' %}" rel="stylesheet" />
 
 <div class="container-xl px-4 mt-4">
     <div class="col-12">
         <!-- Page title -->
-        <div class="my-5">
-            <h3>My Profile</h3>
-            <hr>
-        </div>
+        <a href="{% url 'profile' request.user.username %}" class="btn btn-light btn-sm mb-3 has-icon"
+        ><i class="fa fa-arrow-left mr-2"></i>Back</a
+      >
+      <h4><strong>Edit Profile</strong></h4>
+      <h6 class="mb-3">Update your details!</h6>
     </div>
     <div class="row">
         <div class="col-xl-4">
@@ -60,7 +54,7 @@
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
                     <form
-                        action="{% url 'edit_profile' user.username %}"
+                        action="{% url 'editing_profile' user.username %}"
                         method="POST"
                         enctype="multipart/form-data"
                         onsubmit="sweetAlert()"
@@ -87,7 +81,9 @@
                                     class="form-control" 
                                     id="inputYear" 
                                     name="inputYear" 
-                                    type="text" 
+                                    type="number"
+                                    min="1" 
+                                    max="4"
                                     placeholder="Enter your year of study" 
                                     value={{ user.year }} 
                                     required
@@ -101,7 +97,7 @@
                                 <label class="small mb-1" for="inputFaculty">Faculty</label>
                                 <!-- <input class="form-control" id="inputFaculty" name="inputFaculty" type="text" placeholder="Enter your faculty" value={{ user.faculty }} required> -->
                                 <select 
-                                    class="form-control" 
+                                class="form-control" 
                                     id="inputFaculty" 
                                     name="inputFaculty"
                                     required 
@@ -146,7 +142,7 @@
                                     name="inputMajor" 
                                     type="text" 
                                     placeholder="Enter your major" 
-                                    value={{ user.major }}
+                                    value="{{ user.major }}"
                                     required
                                     >
                             </div>
@@ -183,7 +179,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form
-                    action="{% url 'edit_profile' user.username %}"
+                    action="{% url 'editing_profile' user.username %}"
                     method="POST"
                     enctype="multipart/form-data"
                     >

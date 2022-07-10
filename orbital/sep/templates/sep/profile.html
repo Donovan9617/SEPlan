@@ -4,7 +4,7 @@
 <!-- User's Basic Profile -->
 <section class="about-section" id="about">
   <div class="container">
-    <h4><strong>Profile</strong></h4>
+    <h4><strong>My Profile</strong></h4>
     <h6 class="mb-3">Where students know you!</h6>
     <div class="row align-items-center flex-row-reverse">
       <div class="col-lg-6">
@@ -37,7 +37,7 @@
         </div>
         <div>
         {% if request.user == user %}
-        <a class="btn btn-primary" href={% url "edit_profile" request.user.username %}>Edit profile</a>
+        <a class="btn btn-primary" href={% url "editing_profile" request.user.username %}>Edit profile</a>
         {% endif %}
         </div>
       </div>
@@ -53,8 +53,10 @@
           />
           {% else %}
           <img
-            class="img-account-profile rounded-circle mb-2" 
+            class="mx-auto d-block" 
             src="/media/index/undraw_profile.svg"
+            width="300"
+            height="300"
             title=""
             alt=""
           />
