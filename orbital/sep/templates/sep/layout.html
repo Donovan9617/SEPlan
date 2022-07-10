@@ -151,11 +151,21 @@
     <div style="margin-left: 5%">
       <a
         class="navbar-brand text-white centralise menu-item"
-        href="{% url 'profile' request.user.username %}"
-        ><img
-          src="/media/index/undraw_profile.svg"
-          style="max-width: 200%; margin-right: 5px"
-        />
+        href="{% url 'profile' request.user.username %}">
+        {% if user.picture %}
+          <img
+            class="rounded-circle mr-2" 
+            src={{ user.picture }}
+            width="72"
+            height="72"
+            alt="User"
+          />
+        {% else %}
+          <img
+            src="/media/index/undraw_profile.svg"
+            style="max-width: 200%; margin-right: 5px"
+          />
+        {% endif %}
         <div class="mr-4 d-none d-lg-inline text-white">
           {{ request.user.username }}
         </div></a

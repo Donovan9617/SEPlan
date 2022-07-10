@@ -33,10 +33,20 @@
           <ul class="list-unstyled chat-list mt-2 mb-0">
             {% for message in messages %}
             <li class="clearfix">
+              {% if message.toAddress.picture %}
               <img
-                src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                alt="avatar"
+                class="rounded-circle mr-2" 
+                src={{ message.toAddress.picture }}
+                width="36"
+                height="36"
+                alt="User"
               />
+              {% else %}
+              <img
+                src="/media/index/undraw_profile.svg"
+                alt="User"
+              />
+              {% endif %}
               <div class="about">
                 <div class="name">
                   <a href="{% url 'messages' message %}">{{ message }}</a>
@@ -74,10 +84,20 @@
               <li class="clearfix">
                 <div class="message-data text-right">
                   <span class="message-data-time">{{ m.date }}</span>
+                  {% if request.user.picture %}
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                    alt="avatar"
+                    class="rounded-circle mr-2" 
+                    src={{ request.user.picture }}
+                    width="36"
+                    height="36"
+                    alt="User"
                   />
+                  {% else %}
+                  <img
+                    src="/media/index/undraw_profile.svg"
+                    alt="User"
+                  />
+                  {% endif %}
                 </div>
                 <div class="message other-message float-right">
                   {{ m.text }}

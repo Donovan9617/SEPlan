@@ -11,12 +11,22 @@
           ><i class="fa fa-arrow-left mr-2"></i>Back</a
         >
         <div class="media forum-item">
+          {% if forum_post.user.picture %}
           <img
-            src="https://bootdey.com/img/Content/avatar/avatar1.png"
+            class="rounded-circle mr-2" 
+            src={{ forum_post.user.picture }}
+            width="36"
+            height="36"
+            alt="User"
+          />
+          {% else %}
+          <img
+            src="/media/index/undraw_profile.svg"
             class="rounded-circle"
             width="30"
             alt="User"
           />
+          {% endif %}
           <div class="media-body ml-2">
             <span class="text-muted small"><strong>Posted by: 
               <a href={% url "profile" forum_post.user %}>{{ forum_post.user }}</a></strong></span>
@@ -29,16 +39,10 @@
                 ><i class="fas fa-comment ml-2"></i></a
             ></span>
             {% endif %}
-
-            <br />
-            <strong
-              ><a
-                href="{% url 'forum_post' forum_post.id %}"
-                class="text-body"
-                >{{ item.title }}</a
-              ></strong
-            ><br />
           </div>
+        </div>
+
+        <div class="row mt-3">
         </div>
 
         <div class="card mb-2">
@@ -70,13 +74,25 @@
           <div class="card-body">
               <div class="media forum-item">
                   <a 
-                  href="javascript:void(0)" 
-                  class="card-link">
-                      <img 
-                      src="https://bootdey.com/img/Content/avatar/avatar2.png" 
-                      class="rounded-circle" 
-                      width="50" 
-                      alt="User" />
+                  href={% url "profile" comment.user %} 
+                  class="card-link"
+                  >
+                    {% if comment.user.picture %}
+                    <img
+                      class="rounded-circle mr-2" 
+                      src={{ comment.user.picture }}
+                      width="50"
+                      height="50"
+                      alt="User"
+                    />
+                    {% else %}
+                    <img
+                      class="rounded-circle"
+                      src="/media/index/undraw_profile.svg"
+                      width="50"
+                      alt="User"
+                    />
+                    {% endif %}
                   </a>
                   <div class="media-body ml-3">
                       <a 
