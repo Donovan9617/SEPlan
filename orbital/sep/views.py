@@ -336,6 +336,14 @@ def editing_profile(request, username):
         user.save()
         time.sleep(1.5)
         return HttpResponseRedirect(reverse("editing_profile", args=(username,)))
+    if request.method == "POST" and "removepic" in request.POST:
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('login'))
+        user = User.objects.filter(username=username).first()
+        user.picture = "/media/index/undraw_profile.svg"
+        user.save()
+        time.sleep(1.5)
+        return HttpResponseRedirect(reverse("editing_profile", args=(username,)))
     if request.method == "POST" and "savechanges" in request.POST:
         user = User.objects.get(username=username)
         user.year = request.POST.get('inputYear', False)
