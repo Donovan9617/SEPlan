@@ -106,6 +106,20 @@
               {% else %}
               <li class="clearfix">
                 <div class="message-data">
+                  {% if request.user.picture %}
+                  <img
+                    class="rounded-circle mr-2" 
+                    src={{ request.user.picture }}
+                    width="30"
+                    height="30"
+                    alt="User"
+                  />
+                  {% else %}
+                  <img
+                    src="/media/index/undraw_profile.svg"
+                    alt="User"
+                  />
+                  {% endif %}
                   <span class="message-data-time">{{ m.date }}</span>
                 </div>
                 <div class="message my-message">{{ m.text }}</div>
