@@ -36,7 +36,7 @@
                     <div class="row mt-4">
                     </div>
                     <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <div class="small font-italic text-muted mb-4">JPG or PNG only</div>
                     <!-- Profile picture upload button-->
                     <button 
                         class="btn btn-primary" 
@@ -45,6 +45,22 @@
                         data-target="#pictureModal"
                         >Upload new image
                     </button>
+                    <div class="row mt-2">
+                    </div>
+                    {% if user.picture %}
+                    <form 
+                        action="{% url 'editing_profile' user.username %}"
+                        method="POST"
+                    >
+                    {% csrf_token %}
+                        <input
+                            type="submit"
+                            class="btn btn-primary"
+                            value="Remove current image"
+                            name="removepic" 
+                        />
+                    </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -207,6 +223,7 @@
                             type="file"
                             id="inputPicture"
                             name="inputPicture"
+                            accept="image/png, image/jpeg"
                         />
                         </div>
                     </div>
@@ -214,7 +231,12 @@
                         <button type="button" class="btn btn-light" data-dismiss="modal">
                         Cancel
                         </button>
-                        <button type="submit" class="btn btn-primary" name="uploadpic">Upload</button>
+                        <input
+                            type="submit"
+                            class="btn btn-primary"
+                            value="Upload"
+                            name="uploadpic" 
+                        />
                     </div>
                     </form>
                 </div>

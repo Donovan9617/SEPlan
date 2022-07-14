@@ -57,8 +57,7 @@
             src="/media/index/undraw_profile.svg"
             width="300"
             height="300"
-            title=""
-            alt=""
+            alt="User"
           />
           {% endif %}
         </div>
@@ -95,9 +94,10 @@
               />
               {% else %}
               <img
-                class="mr-3 rounded-circle"
+                class="rounded-circle mr-2"
                 src="/media/index/undraw_profile.svg"
-                style="max-width: 10%"
+                width="36"
+                height="36"
                 alt="User"
               />
               {% endif %}
@@ -114,6 +114,17 @@
                   >|
                   <a href="{% url 'messages' post.user.username %}"
                     ><i class="fas fa-comments ml-2"></i></a
+                ></span>
+                {% endif %}
+
+                {% if post.user == request.user %}
+                <span class="text-muted small"
+                  >|
+                  <a href="{% url 'del_forum_on_profile' post.id %}"
+                    ><i
+                      class="text-green-m1 fa fa-trash remove-note"
+                    ></i
+                  ></a
                 ></span>
                 {% endif %}
 
@@ -155,9 +166,10 @@
               />
               {% else %}
               <img
-                class="mr-3 rounded-circle"
+                class="rounded-circle mr-2"
                 src="/media/index/undraw_profile.svg"
-                style="max-width: 10%"
+                width="36"
+                height="36"
                 alt="User"
               />
               {% endif %}
@@ -174,6 +186,17 @@
                   >|
                   <a href="{% url 'messages' review.user.username %}"
                     ><i class="fas fa-comments ml-2"></i></a
+                ></span>
+                {% endif %}
+
+                {% if review.user == request.user %}
+                <span class="text-muted small"
+                  >|
+                  <a href="{% url 'del_review_on_profile' review.id %}"
+                    ><i
+                      class="text-green-m1 fa fa-trash remove-note"
+                    ></i
+                  ></a
                 ></span>
                 {% endif %}
   
