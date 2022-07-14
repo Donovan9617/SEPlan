@@ -154,9 +154,10 @@
                 />
                 {% else %}
                 <img
-                  class="mr-3 rounded-circle"
+                  class="rounded-circle mr-2"
                   src="/media/index/undraw_profile.svg"
-                  style="max-width: 10%"
+                  width="36"
+                  height="36"
                   alt="User"
                 />
                 {% endif %}
@@ -285,6 +286,16 @@
                   type="file"
                   id="threadFile"
                   name="threadFile"
+                  accept="
+                    image/*,  
+                    .pdf, 
+                    .doc, 
+                    .docx, 
+                    .ppt, 
+                    .pptx,
+                    .xls,
+                    .xlsx,
+                    .csv"
                 />
               </div>
             </div>

@@ -97,7 +97,6 @@ def login_view(request):
             })
     return render(request, "sep/login.html")
 
-
 def messages(request, to):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
@@ -184,13 +183,19 @@ def page(request, university):
         "reviews": page_obj, "university": university, "count": reviews.count
     })
 
+def view_review(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    review = Review.objects.get(id=id)
+    return render(request, "sep/view_review.html", {"review": review})
+
 def delete_review(request, id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
     r = Review.objects.filter(id=id).first()
     r.delete()
     time.sleep(1.5)
-    return reviews(request)
+    return HttpResponseRedirect(reverse('reviews'))
 
 def watchlist(request):
     if not request.user.is_authenticated:
@@ -206,7 +211,7 @@ def save_watchlist(request, title):
     opening = Opening.objects.filter(title=title).first()
     w = Watchlist(user=request.user, opening=opening)
     w.save()
-    return index(request)
+    return HttpResponseRedirect(reverse('index'))
 
 def delete_watchlist(request, title):
     if not request.user.is_authenticated:
@@ -214,7 +219,7 @@ def delete_watchlist(request, title):
     opening = Opening.objects.filter(title=title).first()
     w = Watchlist.objects.filter(user=request.user, opening=opening)
     w.delete()
-    return watchlist(request)
+    return HttpResponseRedirect(reverse('watchlist'))
 
 def modules(request):
     if not request.user.is_authenticated:
@@ -283,12 +288,6 @@ def forum(request):
         "queries": lst, "history": history
     })
 
-def view_review(request, id):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('login'))
-    review = Review.objects.get(id=id)
-    return render(request, "sep/view_review.html", {"review": review})
-
 def forum_post(request, id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
@@ -309,6 +308,23 @@ def forum_post(request, id):
     return render(request, "sep/forum_post.html", {
         "forum_post": forum_post, "comments":lst, "history": history
     })
+
+def delete_forum(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    f = Forum.objects.filter(id=id).first()
+    f.delete()
+    time.sleep(1.5)
+    return HttpResponseRedirect(reverse("forum"))
+
+def delete_comment(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    c = Comment.objects.filter(id=id).first()
+    post = c.post
+    c.delete()
+    time.sleep(1.5)
+    return HttpResponseRedirect(reverse("forum_post", args=(post.id,)))
 
 def profile(request, username):
     if not request.user.is_authenticated:
@@ -356,3 +372,21 @@ def editing_profile(request, username):
     user = User.objects.get(username=username)
     return render(request, "sep/editing_profile.html",{
         "user": user})
+
+def del_forum_on_profile(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    f = Forum.objects.filter(id=id).first()
+    username = f.user.username
+    f.delete()
+    time.sleep(1.5)
+    return HttpResponseRedirect(reverse("profile", args=(username,)))
+
+def del_review_on_profile(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    r = Review.objects.filter(id=id).first()
+    username = r.user.username
+    r.delete()
+    time.sleep(1.5)
+    return HttpResponseRedirect(reverse("profile", args=(username,)))

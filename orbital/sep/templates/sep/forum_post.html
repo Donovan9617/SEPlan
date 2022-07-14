@@ -1,4 +1,15 @@
 {% extends "sep/layout.html" %} {% load static %} {% block body %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/htmx.org@1.7.0"></script>
+<script>
+  function sweetAlert() {
+    swal("Comment posted!", "", "success");
+  }
+  function sweetDelete() {
+    swal("Deleted post!", "", "success");
+  }
+</script>
+
 <link href="{% static '/forums.css' %}" rel="stylesheet" />
 
 <div class="container">
@@ -21,9 +32,10 @@
           />
           {% else %}
           <img
+            class="rounded-circle mr-2" 
             src="/media/index/undraw_profile.svg"
-            class="rounded-circle"
-            width="30"
+            width="36"
+            height="36"
             alt="User"
           />
           {% endif %}
@@ -32,13 +44,14 @@
               <a href={% url "profile" forum_post.user %}>{{ forum_post.user }}</a></strong></span>
             <span class="text-muted small"><strong>| {{ forum_post.date }} </strong></span>
 
-            {% if item.user != request.user %}
+            {% if forum_post.user != request.user %}
             <span class="text-muted small"
               >|
               <a href="{% url 'messages' forum_post.user.username %}"
                 ><i class="fas fa-comment ml-2"></i></a
             ></span>
             {% endif %}
+
           </div>
         </div>
 
@@ -61,6 +74,17 @@
               />
             </div>
           </div>
+
+          {% if forum_post.user == request.user %}
+          <span class="ml-auto p-2"
+            ><a href="{% url 'delete_forum' forum_post.id %}"
+              ><i
+                class="text-green-m1 fa fa-trash remove-note fa-lg"
+                onclick="sweetDelete()"
+              ></i
+            ></a
+          ></span>
+          {% endif %}
         </div>
       </div>
       <!-- /Forum Detail -->
@@ -87,9 +111,10 @@
                     />
                     {% else %}
                     <img
-                      class="rounded-circle"
+                      class="rounded-circle mr-2"
                       src="/media/index/undraw_profile.svg"
                       width="50"
+                      height="50"
                       alt="User"
                     />
                     {% endif %}
@@ -104,6 +129,17 @@
                       class="text-muted ml-2"
                       >{{comment.date}}
                       </small>
+
+                      {% if comment.user == request.user %}
+                      <span class="ml-auto p-2"
+                        ><a href="{% url 'delete_comment' comment.id %}"
+                          ><i
+                            class="text-green-m1 fa fa-trash remove-note"
+                          ></i
+                        ></a
+                      ></span>
+                      {% endif %}
+
                       <div 
                       class="font-size-sm">
                           <p>{{comment.comment}}</p>
@@ -117,6 +153,7 @@
         <span class="text-default-d3 text-90 text-600radius-1 p-2">
           No comments.
         </span>
+        <br />
 
         {% endfor %}
         <br />
