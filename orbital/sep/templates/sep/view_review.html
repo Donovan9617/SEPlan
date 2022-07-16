@@ -1,3 +1,4 @@
+<!-- View review modal -->
 <div
   id="modal-backdrop"
   class="modal-backdrop fade show"
@@ -6,9 +7,11 @@
 <div id="modal" class="modal fade show" tabindex="-1" style="display: block">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
+      <!-- Modal Header -->
       <div class="modal-header">
         <h5 class="modal-title">Your review dated on {{ review.date }}</h5>
       </div>
+      <!-- Modal Content -->
       <div class="modal-body">
         <div class="border text-sm text-muted p-2">
           <strong>Review: </strong><br />
@@ -29,6 +32,7 @@
           style="width: 50%; margin-right: 10px"
         />
       </div>
+      <!-- Close Modal -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="closeModal()">
           Close

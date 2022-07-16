@@ -20,6 +20,7 @@
               <form class="user" action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group row">
+                  <!-- Form Group (username) -->
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input
                       type="text"
@@ -28,6 +29,7 @@
                       placeholder="Username"
                     />
                   </div>
+                  <!-- Form Group (faculty) -->
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <select class="form-control" name="faculty">
                       <option value="College of Humanities and Sciences">
@@ -56,6 +58,7 @@
                   </div>
                 </div>
                 <div class="form-group row">
+                  <!-- Form Group (year) -->
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input
                       type="text"
@@ -64,6 +67,7 @@
                       placeholder="Year"
                     />
                   </div>
+                  <!-- Form Group (major) -->
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input
                       type="text"
@@ -73,6 +77,7 @@
                     />
                   </div>
                 </div>
+                <!-- Form Group (email) -->
                 <div class="form-group">
                   <input
                     type="text"
@@ -82,6 +87,7 @@
                   />
                 </div>
                 <div class="form-group row">
+                  <!-- Form Group (password) -->
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input
                       type="password"
@@ -90,6 +96,7 @@
                       placeholder="Password"
                     />
                   </div>
+                  <!-- Form Group (confirm password) -->
                   <div class="col-sm-6">
                     <input
                       type="password"
@@ -99,6 +106,7 @@
                     />
                   </div>
                 </div>
+                <!-- Submit Button -->
                 <input
                   type="submit"
                   value="Register Account"
@@ -106,12 +114,14 @@
                 />
               </form>
               <hr />
+              <!-- Error Message (if password doesn't meet requirements) -->
               <div class="small">
                 Please ensure your password contains a minimum of 8 characters
                 and at least 1 lower case letter, 1 upper case letter, 1 number,
                 and 1 special character.
               </div>
               <br />
+              <!-- Link to Login -->
               <div class="text-center">
                 <a class="small" href="{% url 'login' %}"
                   >Already have an account? Login!</a

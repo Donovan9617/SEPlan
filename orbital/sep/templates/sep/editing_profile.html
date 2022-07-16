@@ -4,11 +4,15 @@
 <div class="container-xl px-4 mt-4">
     <div class="col-12">
         <!-- Page title -->
-        <a href="{% url 'profile' request.user.username %}" class="btn btn-light btn-sm mb-3 has-icon"
-        ><i class="fa fa-arrow-left mr-2"></i>Back</a
-      >
-      <h4><strong>Edit Profile</strong></h4>
-      <h6 class="mb-3">Update your details!</h6>
+        <a 
+            href="{% url 'profile' request.user.username %}" 
+            class="btn btn-light btn-sm mb-3 has-icon"
+        >
+        <i class="fa fa-arrow-left mr-2"></i>
+        Back
+        </a>
+        <h4><strong>Edit Profile</strong></h4>
+        <h6 class="mb-3">Update your details!</h6>
     </div>
     <div class="row">
         <div class="col-xl-4">
@@ -16,7 +20,7 @@
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
-                    <!-- Profile picture image-->
+                    <!-- Profile picture image -->
                     {% if user.picture %}
                     <img
                         class="rounded-circle mr-2"
@@ -76,11 +80,15 @@
                         onsubmit="sweetAlert()"
                     >
                         {% csrf_token %}
-                        <!-- Form Row-->
+                        <!-- Form Row -->
                         <div class="row gx-3 mb-3">
-                            <!-- Form Group (username)-->
+                            <!-- Form Group (username) -->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputUsername">Username</label>
+                                <label 
+                                    class="small mb-1" 
+                                    for="inputUsername"
+                                    >Username
+                                </label>
                                 <input readonly 
                                     class="form-control-plaintext" 
                                     id="inputUsername" 
@@ -90,9 +98,13 @@
                                     required
                                     >
                             </div>
-                            <!-- Form Group (year of study)-->
+                            <!-- Form Group (year of study) -->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputYear">Year of Study</label>
+                                <label 
+                                    class="small mb-1" 
+                                    for="inputYear"
+                                    >Year of Study
+                                </label>
                                 <input 
                                     class="form-control" 
                                     id="inputYear" 
@@ -106,14 +118,17 @@
                                     >
                             </div>
                         </div>
-                        <!-- Form Row        -->
+                        <!-- Form Row -->
                         <div class="row gx-3 mb-3">
-                            <!-- Form Group (faculty)-->
+                            <!-- Form Group (faculty) -->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputFaculty">Faculty</label>
-                                <!-- <input class="form-control" id="inputFaculty" name="inputFaculty" type="text" placeholder="Enter your faculty" value={{ user.faculty }} required> -->
+                                <label 
+                                    class="small mb-1" 
+                                    for="inputFaculty"
+                                    >Faculty
+                                </label>
                                 <select 
-                                class="form-control" 
+                                    class="form-control" 
                                     id="inputFaculty" 
                                     name="inputFaculty"
                                     required 
@@ -139,7 +154,9 @@
                                         <option value="College of Design and Engineering">
                                             College of Design and Engineering
                                         </option>
-                                        <option value="Faculty of Law">Faculty of Law</option>
+                                        <option value="Faculty of Law">
+                                            Faculty of Law
+                                        </option>
                                         <option value="Yong Loo Lin School of Medicine">
                                             Yong Loo Lin School of Medicine
                                         </option>
@@ -149,9 +166,13 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            <!-- Form Group (major)-->
+                            <!-- Form Group (major) -->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputMajor">Major</label>
+                                <label 
+                                    class="small mb-1" 
+                                    for="inputMajor"
+                                    >Major
+                                </label>
                                 <input 
                                     class="form-control" 
                                     id="inputMajor" 
@@ -163,9 +184,13 @@
                                     >
                             </div>
                         </div>
-                        <!-- Form Group (email)-->
+                        <!-- Form Group (email) -->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputEmail">Email</label>
+                            <label 
+                                class="small mb-1" 
+                                for="inputEmail"
+                                >Email
+                            </label>
                             <input 
                                 class="form-control" 
                                 id="inputEmail" 
@@ -176,8 +201,13 @@
                                 required
                                 >
                         </div>
-                        <!-- Save changes button-->
-                        <button type="submit" class="btn btn-primary" name="savechanges">Save changes</button>
+                        <!-- Save changes button -->
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary" 
+                            name="savechanges"
+                            >Save changes
+                        </button>
                     </form>
                 </div>
             </div>
@@ -195,49 +225,55 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form
-                    action="{% url 'editing_profile' user.username %}"
-                    method="POST"
-                    enctype="multipart/form-data"
-                    >
-                    {% csrf_token %}
-                    <div
-                        class="modal-header d-flex align-items-center bg-primary text-white"
-                    >
-                        <h6 class="modal-title mb-0" id="pictureModalLabel">
-                        Change Profile Picture
-                        </h6>
-                        <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
+                        action="{% url 'editing_profile' user.username %}"
+                        method="POST"
+                        enctype="multipart/form-data"
                         >
-                        <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                        <label for="inputPicture">Upload Photo</label>
-                        <input
-                            class="form-control"
-                            type="file"
-                            id="inputPicture"
-                            name="inputPicture"
-                            accept="image/png, image/jpeg"
-                        />
+                        {% csrf_token %}
+                        <div
+                            class="modal-header d-flex align-items-center bg-primary text-white"
+                        >
+                            <h6 class="modal-title mb-0" id="pictureModalLabel">
+                            Change Profile Picture
+                            </h6>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                                >
+                            <span aria-hidden="true">×</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">
-                        Cancel
-                        </button>
-                        <input
-                            type="submit"
-                            class="btn btn-primary"
-                            value="Upload"
-                            name="uploadpic" 
-                        />
-                    </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                            <label 
+                                for="inputPicture"
+                                >Upload Photo
+                            </label>
+                            <input
+                                class="form-control"
+                                type="file"
+                                id="inputPicture"
+                                name="inputPicture"
+                                accept="image/png, image/jpeg"
+                            />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button 
+                                type="button" 
+                                class="btn btn-light" 
+                                data-dismiss="modal"
+                                >Cancel
+                            </button>
+                            <input
+                                type="submit"
+                                class="btn btn-primary"
+                                value="Upload"
+                                name="uploadpic" 
+                            />
+                        </div>
                     </form>
                 </div>
             </div>

@@ -26,6 +26,7 @@
             <small>{{ item.opening.text }}</small>
           </div>
           <br />
+          <!-- Delete from watchlist -->
           <div class="d-flex align-items-center">
             <a href="{% url 'delete_watchlist' item.opening.title %}"
               ><span class="mr-1"

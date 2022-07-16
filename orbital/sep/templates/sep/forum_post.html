@@ -1,4 +1,6 @@
 {% extends "sep/layout.html" %} {% load static %} {% block body %}
+
+<!-- Posted comment alert & Post deleted alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 <script>
@@ -16,11 +18,17 @@
   <div class="main-body p-0">
     <div class="inner-wrapper">
 
-      <!-- Forum Detail -->
+      <!-- Forum Post Display -->
       <div class="inner-main-body p-2 p-sm-3">
-        <a href="{% url 'forum' %}" class="btn btn-light btn-sm mb-3 has-icon"
-          ><i class="fa fa-arrow-left mr-2"></i>Back</a
-        >
+        <a 
+          href="{% url 'forum' %}" 
+          class="btn btn-light btn-sm mb-3 has-icon"
+          >
+          <i class="fa fa-arrow-left mr-2"></i>
+          Back
+        </a>
+
+        <!-- Forum Post Header -->
         <div class="media forum-item">
           {% if forum_post.user.picture %}
           <img
@@ -41,15 +49,23 @@
           {% endif %}
           <div class="media-body ml-2">
             <span class="text-muted small"><strong>Posted by: 
-              <a href={% url "profile" forum_post.user %}>{{ forum_post.user }}</a></strong></span>
+              <a 
+                href={% url "profile" forum_post.user %}
+                >{{ forum_post.user }}
+              </a>
+            </strong></span>
             <span class="text-muted small"><strong>| {{ forum_post.date }} </strong></span>
 
+            <!-- Link to Chat -->
             {% if forum_post.user != request.user %}
             <span class="text-muted small"
               >|
-              <a href="{% url 'messages' forum_post.user.username %}"
-                ><i class="fas fa-comment ml-2"></i></a
-            ></span>
+              <a 
+                href="{% url 'messages' forum_post.user.username %}"
+                >
+                <i class="fas fa-comment ml-2"></i>
+              </a>
+            </span>
             {% endif %}
 
           </div>
@@ -58,6 +74,7 @@
         <div class="row mt-3">
         </div>
 
+        <!-- Forum Post Content -->
         <div class="card mb-2">
           <div class="card-body">
             <div class="mt-2 font-size-sm">
@@ -75,77 +92,75 @@
             </div>
           </div>
 
+          <!-- Delete Button -->
           {% if forum_post.user == request.user %}
-          <span class="ml-auto p-2"
-            ><a href="{% url 'delete_forum' forum_post.id %}"
-              ><i
+          <span class="ml-auto p-2">
+            <a href="{% url 'delete_forum' forum_post.id %}">
+              <i
                 class="text-green-m1 fa fa-trash remove-note fa-lg"
                 onclick="sweetDelete()"
-              ></i
-            ></a
-          ></span>
+              >
+              </i>
+            </a>
+          </span>
           {% endif %}
         </div>
       </div>
-      <!-- /Forum Detail -->
 
-      <!-- All comments -->
+      <!-- All Comments -->
       <strong class="ml-3">All Comments:</strong>
       <div class="inner-main-body">
  
         {% for comment in comments %}
         <div class="card mb-2">
           <div class="card-body">
-              <div class="media forum-item">
-                  <a 
+            <div class="media forum-item">
+              <a 
+              href={% url "profile" comment.user %} 
+              class="card-link"
+              >
+                {% if comment.user.picture %}
+                <img
+                  class="rounded-circle mr-2" 
+                  src={{ comment.user.picture }}
+                  width="50"
+                  height="50"
+                  alt="User"
+                />
+                {% else %}
+                <img
+                  class="rounded-circle mr-2"
+                  src="/media/index/undraw_profile.svg"
+                  width="50"
+                  height="50"
+                  alt="User"
+                />
+                {% endif %}
+              </a>
+              <div class="media-body ml-3">
+                <a 
                   href={% url "profile" comment.user %} 
-                  class="card-link"
-                  >
-                    {% if comment.user.picture %}
-                    <img
-                      class="rounded-circle mr-2" 
-                      src={{ comment.user.picture }}
-                      width="50"
-                      height="50"
-                      alt="User"
-                    />
-                    {% else %}
-                    <img
-                      class="rounded-circle mr-2"
-                      src="/media/index/undraw_profile.svg"
-                      width="50"
-                      height="50"
-                      alt="User"
-                    />
-                    {% endif %}
+                  class="text-secondary"
+                  >{{comment.user}}
+                </a>
+                <small 
+                  class="text-muted ml-2"
+                  >{{comment.date}}
+                </small>
+
+                {% if comment.user == request.user %}
+                <span class="ml-auto p-2">
+                  <a href="{% url 'delete_comment' comment.id %}">
+                    <i class="text-green-m1 fa fa-trash remove-note"></i>
                   </a>
-                  <div class="media-body ml-3">
-                      <a 
-                      href={% url "profile" comment.user %} 
-                      class="text-secondary"
-                      >{{comment.user}}
-                      </a>
-                      <small 
-                      class="text-muted ml-2"
-                      >{{comment.date}}
-                      </small>
+                </span>
+                {% endif %}
 
-                      {% if comment.user == request.user %}
-                      <span class="ml-auto p-2"
-                        ><a href="{% url 'delete_comment' comment.id %}"
-                          ><i
-                            class="text-green-m1 fa fa-trash remove-note"
-                          ></i
-                        ></a
-                      ></span>
-                      {% endif %}
-
-                      <div 
-                      class="font-size-sm">
-                          <p>{{comment.comment}}</p>
-                      </div>
-                  </div>
+                <div class="font-size-sm">
+                  <p>{{comment.comment}}</p>
+                </div>
               </div>
+            </div>
           </div>
         </div>
 
@@ -157,36 +172,45 @@
 
         {% endfor %}
         <br />
-        <!-- /All comments -->
 
         <!-- Add a comment -->
         <form
-        action="{% url 'forum_post' forum_post.id %}"
-        method="POST"
-        enctype="multipart/form-data"
-        onsubmit="sweetAlert()"
-        >
-        {% csrf_token %}
+          action="{% url 'forum_post' forum_post.id %}"
+          method="POST"
+          enctype="multipart/form-data"
+          onsubmit="sweetAlert()"
+          >
+          {% csrf_token %}
           <div class="form-group">
-            <label for="new_comment"><strong>Add a Comment...</strong></label>
+            <label 
+              for="new_comment">
+              <strong>Add a Comment...</strong>
+            </label>
             <textarea
               class="form-control"
               id="new_comment"
               name="new_comment"
               placeholder="Add a Comment..."
               required
-            ></textarea>
+              >
+            </textarea>
           </div>
           <textarea
             class="form-control summernote"
             style="display: none"
-          ></textarea>
-          </div>
+            >
+          </textarea>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Post</button>
+            <button 
+              type="submit" 
+              class="btn btn-primary"
+              >Post
+            </button>
           </div>
         </form>
-        <!-- /Add a comment -->
+
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

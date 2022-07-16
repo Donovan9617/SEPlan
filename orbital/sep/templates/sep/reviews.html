@@ -31,6 +31,7 @@
   <div class="row">
     <div class="col-md-5">
       <div class="card radius-t-0 h-100">
+        <!-- Post a review -->
         <div class="card-header pb-3 brc-secondary-l3 bg-primary">
           <h5 class="text-white">Write a Review...</h5>
         </div>
@@ -51,6 +52,7 @@
             enctype="multipart/form-data"
           >
             {% csrf_token %}
+            <!-- Form Group (university) -->
             <span class="text-default-d3 text-90 text-600">
               My SEP university
             </span>
@@ -223,6 +225,7 @@
                 </option>
               </select>
             </span>
+            <!-- Form Group (description) -->
             <div class="input-group pt-2 pb-1">
               <textarea
                 class="form-control bg-light border-0"
@@ -231,6 +234,7 @@
                 required
               ></textarea>
             </div>
+            <!-- Form Group (period of exchange) -->
             <span class="text-default-d3 text-90 text-600">
               Period of Exchange
             </span>
@@ -242,6 +246,7 @@
                 required
               ></textarea>
             </div>
+            <!-- Form Group (mapped modules) -->
             <span class="text-default-d3 text-90 text-600">
               Mapped Modules
             </span>
@@ -253,6 +258,7 @@
                 required
               ></textarea>
             </div>
+            <!-- Form Group (living environment, accommodation and finance) -->
             <span class="text-default-d3 text-90 text-600">
               Living Environment, Accommodation, and Finance
             </span>
@@ -264,6 +270,7 @@
                 required
               ></textarea>
             </div>
+            <!-- Form Group (things to prepare) -->
             <span class="text-default-d3 text-90 text-600">
               Things to Prepare
             </span>
@@ -275,6 +282,7 @@
                 required
               ></textarea>
             </div>
+            <!-- Form Group (favourite memory) -->
             <span class="text-default-d3 text-90 text-600">
               Favourite Memory
             </span>
@@ -286,6 +294,7 @@
                 accept="image/jpeg, image/png"
               />
             </div>
+            <!-- Submit Button -->
             <div class="ml-auto pt-2 pb-1">
               <input
                 type="submit"
@@ -298,6 +307,7 @@
       </div>
     </div>
 
+    <!-- View all exchange reviews -->
     <div class="col-md-4">
       <div class="card ccard radius-t-0 h-100">
         <div class="card-header pb-3 brc-secondary-l3 bg-primary">
@@ -327,6 +337,7 @@
               {% endif %}
             </span>
 
+            <!-- View detailed review -->
             <a href="{% url 'page' review %}">
               <span class="text-default-d3 text-90 text-600">
                 {{ review }}
@@ -345,6 +356,7 @@
       </div>
     </div>
 
+    <!-- View own exchange reviews -->
     <div class="col-md-3">
       <div class="card ccard radius-t-0 h-100">
         <div class="card-header pb-3 brc-secondary-l3 bg-primary">
@@ -358,6 +370,7 @@
             <div class="text-default-d3 text-90 text-600">
               {{ item.university }}
             </div>
+            <!-- Delete Button -->
             <small class="bgc-secondary-l4">{{ item.date }}</small><br />
             <a href="{% url 'delete_review' item.id %}"
               ><div>
@@ -367,6 +380,7 @@
                 ></i></div
             ></a>
 
+            <!-- View detailed review -->
             <button
               hx-get="{% url 'view_review' item.id %}"
               hx-target="#modals-here"

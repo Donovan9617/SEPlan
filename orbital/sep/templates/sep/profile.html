@@ -4,6 +4,7 @@
 <!-- User's Basic Profile -->
 <section class="about-section" id="about">
   <div class="container">
+    <!-- Page title -->
     <h4><strong>My Profile</strong></h4>
     <h6 class="mb-3">Where students know you!</h6>
     <div class="row align-items-center flex-row-reverse">
@@ -35,12 +36,16 @@
         </div>
         <div class="row mt-2">
         </div>
+
+        <!-- Edit Profile Button -->
         <div>
         {% if request.user == user %}
         <a class="btn btn-primary" href={% url "editing_profile" request.user.username %}>Edit profile</a>
         {% endif %}
         </div>
       </div>
+
+      <!-- Profile Picture -->
       <div class="col-lg-6">
         <div class="about-avatar">
           {% if user.picture %}
@@ -64,7 +69,6 @@
       </div>
     </div>
   </section>
-  <!-- /User's Basic Profile -->
 
   <div class="row mt-4">
   </div>
@@ -109,6 +113,7 @@
                   > | {{ post.date }}</span
                 >
 
+                <!-- Link to Chat -->
                 {% if post.user != request.user %}
                 <span class="text-muted small"
                   >|
@@ -117,6 +122,7 @@
                 ></span>
                 {% endif %}
 
+                <!-- Delete Button -->
                 {% if post.user == request.user %}
                 <span class="text-muted small"
                   >|
@@ -129,6 +135,7 @@
                 {% endif %}
 
                 <br />
+                <!-- Link to Post -->
                 <strong style="font-size: 25px"
                   ><a href="{% url 'forum_post' post.id %}" class="text-body"
                     >Title: {{ post.title }}</a
@@ -181,6 +188,7 @@
                   > | {{ review.date }}</span
                 >
   
+                <!-- Link to Chat -->
                 {% if review.user != request.user %}
                 <span class="text-muted small"
                   >|
@@ -189,6 +197,7 @@
                 ></span>
                 {% endif %}
 
+                <!-- Delete Button -->
                 {% if review.user == request.user %}
                 <span class="text-muted small"
                   >|
@@ -201,6 +210,7 @@
                 {% endif %}
   
                 <br />
+                <!-- Link to Review -->
                 <strong style="font-size: 25px"
                   ><a href="{% url 'page' review.university %}" class="text-body"
                     >Review: {{ review.university }}</a
@@ -220,37 +230,4 @@
 
     </div>
   </div>
-  <!-- /User's Posts & Reviews -->
-
-    <!--
-    <div class="counter">
-      <div class="row">
-        <div class="col-6 col-lg-3">
-          <div class="count-data text-center">
-            <h6 class="count h2" data-to="500" data-speed="500">500</h6>
-            <p class="m-0px font-w-600">Happy Clients</p>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="count-data text-center">
-            <h6 class="count h2" data-to="150" data-speed="150">150</h6>
-            <p class="m-0px font-w-600">Project Completed</p>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="count-data text-center">
-            <h6 class="count h2" data-to="850" data-speed="850">850</h6>
-            <p class="m-0px font-w-600">Photo Capture</p>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="count-data text-center">
-            <h6 class="count h2" data-to="190" data-speed="190">190</h6>
-            <p class="m-0px font-w-600">Telephonic Talk</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
 {% endblock %}
