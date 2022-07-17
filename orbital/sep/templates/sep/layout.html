@@ -148,23 +148,26 @@
         </div></a
       >
     </div>
-    <div style="margin-left: 5%">
+    <div style="margin-left: 5%;">
       <a
         class="navbar-brand text-white centralise menu-item"
         href="{% url 'profile' request.user.username %}">
-        {% if user.picture %}
+        <div>
+          {% if user.picture %}
           <img
-            class="rounded-circle mr-2" 
+            class="rounded-circle mr-2 mx-auto d-block" 
             src={{ user.picture }}
-            style="max-width: 200%; margin-right: 5px"
-            alt="User"
+            style="width: 70px;
+            height: 70px;"
           />
-        {% else %}
+          {% else %}
           <img
             src="/media/index/undraw_profile.svg"
-            style="max-width: 200%; margin-right: 5px"
+            style="width: 70px;
+            height: 70px;"
           />
-        {% endif %}
+          {% endif %}
+        </div>
         <div class="mr-4 d-none d-lg-inline text-white">
           {{ request.user.username }}
         </div></a
@@ -203,12 +206,19 @@
       </a>
 
       {% if user.is_authenticated %}
-
+      {% if user.picture %}
       <img
-        class="ml-4"
-        style="max-width: 50%"
-        src="/media/index/undraw_profile.svg"
+        class="rounded-circle mr-2 mx-auto d-block" 
+        src={{ user.picture }}
+        style="width: 100px; height: 100px;"
       />
+      {% else %}
+      <img
+        class="mx-auto d-block" 
+        src="/media/index/undraw_profile.svg"
+        style="width: 100px; height: 100px;"
+      />
+      {% endif %}
       <a href="{% url 'profile' request.user.username %}" id="account">{{ request.user.username }}</a>
       <a href="{% url 'forum' %}">Forum</a>
       <a href="{% url 'reviews' %}">Reviews</a>
