@@ -148,6 +148,7 @@
                   >{{comment.date}}
                 </small>
 
+                <!-- Delete Button -->
                 {% if comment.user == request.user %}
                 <span class="ml-auto p-2">
                   <a href="{% url 'delete_comment' comment.id %}">
