@@ -6,6 +6,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 import time
 
 from .models import Comment, Forum, User, Chat, Review, Opening, Watchlist, PartnerUniversity, Shortlist
@@ -35,12 +37,25 @@ def index(request):
 def register(request):
     if request.method == "POST":
         username = request.POST['username']
-        major = request.POST['major']
+        major = request.POST.get('major', False)
         year = request.POST['year']
         faculty = request.POST['faculty']
         email = request.POST['email']
         password = request.POST['password']
         confirmation = request.POST['confirmation']
+        try:
+            user = User.objects.create_user(username=username, major=major, year=year, faculty=faculty, email=email, password=password)
+            user.save()
+        except IntegrityError:
+            return render(request, "sep/register.html", {
+                "message": "*Error: This username has already been taken, please choose another username!"
+            })
+        try:
+            validate_email(email)
+        except ValidationError:
+            return render(request, "sep/register.html", {
+                "message": "*Error: Please enter a valid email!"
+            })
         capitalalphabets="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         smallalphabets="abcdefghijklmnopqrstuvwxyz"
         specialchar="~`!@#$%^&*()-_+=}{][|\/:;'><'.?"
@@ -66,13 +81,6 @@ def register(request):
         if password != confirmation:
             return render(request, "sep/register.html", {
                 "message": "*Error: Please ensure password and confirmation password is the same!"
-            })
-        try:
-            user = User.objects.create_user(username=username, major=major, year=year, faculty=faculty, email=email, password=password)
-            user.save()
-        except IntegrityError:
-            return render(request, "sep/register.html", {
-                "message": "*Error: This username has already been taken, please choose another username!"
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
