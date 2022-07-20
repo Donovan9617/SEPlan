@@ -235,15 +235,16 @@ def modules(request):
     if request.method == "POST":
         faculty = request.user.faculty
         module = request.POST['module']
+        module_uc = module.upper()
         search = True
-        mappable = PartnerUniversity.objects.filter(forfaculty=faculty, nusmodulecode=module)
+        mappable = PartnerUniversity.objects.filter(forfaculty=faculty, nusmodulecode=module_uc)
         shortlist = Shortlist.objects.filter(user=request.user)
         added = []
         for item in shortlist:
             added.append(item.partneruniversity.nusmodulecode)
         time.sleep(1.5)
         return render(request, "sep/modules.html", {
-            "mappable": mappable, "module": module, "search": search, "added": added
+            "mappable": mappable, "module": module_uc, "search": search, "added": added
         })
     search = False
     return render(request, "sep/modules.html", {
