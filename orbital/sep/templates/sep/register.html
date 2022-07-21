@@ -27,13 +27,14 @@
                       class="form-control form-control-user"
                       name="username"
                       placeholder="Username"
+                      {% if username %} value="{{username}}" {% endif %}
                     />
                   </div>
                   <!-- Form Group (faculty) -->
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <select class="form-control" name="faculty">
-                      <option value="College of Humanities and Sciences">
-                        College of Humanities and Sciences
+                      <option {% if faculty %} value="{{faculty}}" {% else %} value="College of Humanities and Sciences" {% endif %}>
+                        {% if faculty %} {{ faculty }} {% else %} College of Humanities and Sciences {% endif %}
                       </option>
                       <option value="NUS Business School">
                         NUS Business School
@@ -67,13 +68,14 @@
                       class="form-control form-control-user"
                       name="year"
                       placeholder="Year of Study"
+                      {% if year %} value="{{year}}" {% endif %}
                     />
                   </div>
                   <!-- Form Group (major) -->
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <select class="form-control" name="faculty">
-                      <option value="Undecided">
-                        Undecided
+                    <select class="form-control" name="major">
+                      <option {% if major %} value="{{major}}" {% else %} value="Undecided" {% endif %}>
+                        {% if major %} {{ major }} {% else %} Undecided {% endif %}
                       </option>
                       <!-- Optgroup (XDP) -->
                       <optgroup label="CHS (Cross-Disciplinary Programmes)">
@@ -325,6 +327,7 @@
                     class="form-control form-control-user"
                     name="email"
                     placeholder="Email Address"
+                    {% if email %}value="{{ email }}"{% endif %}
                   />
                 </div>
                 <div class="form-group row">
@@ -335,6 +338,7 @@
                       class="form-control form-control-user"
                       name="password"
                       placeholder="Password"
+                      {% if password %}value="{{ password }}"{% endif %}
                     />
                   </div>
                   <!-- Form Group (confirm password) -->
@@ -344,6 +348,7 @@
                       class="form-control form-control-user"
                       name="confirmation"
                       placeholder="Confirm Password"
+                      {% if confirmation %}value="{{ confirmation }}"{% endif %}
                     />
                   </div>
                 </div>

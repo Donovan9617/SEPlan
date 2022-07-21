@@ -44,17 +44,16 @@ def register(request):
         password = request.POST['password']
         confirmation = request.POST['confirmation']
         try:
-            user = User.objects.create_user(username=username, major=major, year=year, faculty=faculty, email=email, password=password)
-            user.save()
-        except IntegrityError:
-            return render(request, "sep/register.html", {
-                "message": "*Error: This username has already been taken, please choose another username!"
-            })
-        try:
             validate_email(email)
         except ValidationError:
             return render(request, "sep/register.html", {
-                "message": "*Error: Please enter a valid email!"
+                "message": "*Error: Please enter a valid email!",
+                "username": username,
+                "year": year,
+                "faculty": faculty,
+                "major": major,
+                "password": password,
+                "confirmation": confirmation,
             })
         capitalalphabets="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         smallalphabets="abcdefghijklmnopqrstuvwxyz"
@@ -63,7 +62,12 @@ def register(request):
         l, u, p, d = 0, 0, 0, 0
         if len(password) < 8:
             return render(request, "sep/register.html", {
-                "message": "*Error: Password needs to have a minimum of 8 characters!"
+                "message": "*Error: Password needs to have a minimum of 8 characters!",
+                "username": username,
+                "year": year,
+                "faculty": faculty,
+                "email": email,
+                "major": major,
             })
         for character in password:        
             if (character in smallalphabets):
@@ -76,11 +80,34 @@ def register(request):
                 p+=1
         if not (l>=1 and u>=1 and p>=1 and d>=1 and l+p+u+d==len(password)):
             return render(request, "sep/register.html", {
-                "message": "*Error: Password needs to contain at least 1 lower case letter, 1 upper case letter, 1 number, and 1 special character!"
+                "message": "*Error: Password needs to contain at least 1 lower case letter, 1 upper case letter, 1 number, and 1 special character!",
+                "username": username,
+                "year": year,
+                "faculty": faculty,
+                "email": email,
+                "major": major,
             })
         if password != confirmation:
             return render(request, "sep/register.html", {
-                "message": "*Error: Please ensure password and confirmation password is the same!"
+                "message": "*Error: Please ensure password and confirmation password is the same!",
+                "username": username,
+                "year": year,
+                "faculty": faculty,
+                "email": email,
+                "major": major,
+            })
+        try:
+            user = User.objects.create_user(username=username, major=major, year=year, faculty=faculty, email=email, password=password)
+            user.save()
+        except IntegrityError:
+            return render(request, "sep/register.html", {
+                "message": "*Error: This username has already been taken, please choose another username!",
+                "year": year,
+                "faculty": faculty,
+                "email": email,
+                "major": major,
+                "password": password,
+                "confirmation": confirmation,
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
