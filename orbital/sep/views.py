@@ -141,6 +141,8 @@ def messages(request, to):
         text = request.POST["text"]
         if text == "":
             return HttpResponseRedirect(reverse('messages', args=[to]))
+        if len(text) > 700:
+            return HttpResponseRedirect(reverse('messages', args=[to]))
         chat = Chat.objects.create(fromAddress=fromAddress, toAddress=toAddress, text=text)
         chat.save()
         return HttpResponseRedirect(reverse('messages', args=[to]))
@@ -329,6 +331,8 @@ def forum_post(request, id):
         return HttpResponseRedirect(reverse('login'))
     if request.method == "POST":
         comment = request.POST.get('new_comment', False)
+        if len(comment) > 700:
+            return HttpResponseRedirect(reverse('forum_post', args=(id,)))
         post = Forum.objects.get(pk=id)
         new_comment = Comment(user=request.user, post=post, comment=comment)
         new_comment.save()
