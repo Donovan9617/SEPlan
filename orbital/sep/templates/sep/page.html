@@ -106,14 +106,14 @@
             {% if reviews.has_previous %}
             <a
               href="?page={{ reviews.previous_page_number }}"
-              class="float-left text-white"
+              class="float-left"
               >Previous</a
             >
             {% endif %} Page {{ reviews.number }} of
             {{reviews.paginator.num_pages}} {% if reviews.has_next %}
             <a
               href="?page={{ reviews.next_page_number }}"
-              class="float-right text-white"
+              class="float-right"
               >Next</a
             >
             {% endif %}
