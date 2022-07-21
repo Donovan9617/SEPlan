@@ -173,15 +173,258 @@
                                     for="inputMajor"
                                     >Major
                                 </label>
-                                <input 
+                                <select 
                                     class="form-control" 
                                     id="inputMajor" 
-                                    name="inputMajor" 
-                                    type="text" 
-                                    placeholder="Enter your major" 
-                                    value="{{ user.major }}"
+                                    name="inputMajor"
                                     required
                                     >
+                                    <optgroup label="Current Major">
+                                        <option value="{{ user.major }}" selected>
+                                            {{ user.major }}
+                                        </option>
+                                    </optgroup>
+                                    <!-- Optgroup (XDP) -->
+                                    <optgroup label="CHS (Cross-Disciplinary Programmes)">
+                                        <option value="Data Science and Economics">
+                                          Data Science and Economics
+                                        </option>
+                                        <option value="Environmental Studies">
+                                          Environmental Studies
+                                        </option>
+                                        <option value="Philosophy, Politics, and Economics">
+                                          Philosophy, Politics, and Economics
+                                        </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Arts) -->
+                                    <optgroup label="CHS (Asian Studies and Humanities)">
+                                      <option value="Chinese Language">
+                                        Chinese Language
+                                      </option>
+                                      <option value="Chinese Studies">
+                                        Chinese Studies
+                                      </option>
+                                      <option value="English Language and Linguistics">
+                                        English Language and Linguistics
+                                      </option>
+                                      <option value="English Literature">
+                                        English Literature
+                                      </option>
+                                      <option value="Global Studies">
+                                        Global Studies
+                                      </option>
+                                      <option value="History">
+                                        History
+                                      </option>
+                                      <option value="Japanese Studies">
+                                        Japanese Studies
+                                      </option>
+                                      <option value="Malay Studies">
+                                        Malay Studies
+                                      </option>
+                                      <option value="Philosophy">
+                                        Philosophy
+                                      </option>
+                                      <option value="South Asian Studies">
+                                        South Asian Studies
+                                      </option>
+                                      <option value="Southeast Asian Studies">
+                                        Southeast Asian Studies
+                                      </option>
+                                      <option value="Theatre and Performance Studies">
+                                        Theatre and Performance Studies
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Social Sciences) -->
+                                    <optgroup label="CHS (Social Sciences)">
+                                      <option value="Anthropology">
+                                        Anthropology
+                                      </option>
+                                      <option value="Communications and New Media">
+                                        Communications and New Media
+                                      </option>
+                                      <option value="Economics">
+                                        Economics
+                                      </option>
+                                      <option value="Geography">
+                                        Geography
+                                      </option>
+                                      <option value="Political Science">
+                                        Political Science
+                                      </option>
+                                      <option value="Psychology">
+                                        Psychology
+                                      </option>
+                                      <option value="Social Work">
+                                        Social Work
+                                      </option>
+                                      <option value="Sociology">
+                                        Sociology
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Sciences) -->
+                                    <optgroup label="CHS (Sciences)">
+                                      <option value="Chemistry">
+                                        Chemistry
+                                      </option>
+                                      <option value="Data Science and Analytics">
+                                        Data Science and Analytics
+                                      </option>
+                                      <option value="Food Science and Technology">
+                                        Food Science and Technology
+                                      </option>
+                                      <option value="Life Sciences">
+                                        Life Sciences
+                                      </option>
+                                      <option value="Mathematics">
+                                        Mathematics
+                                      </option>
+                                      <option value="Pharmaceutical Science">
+                                        Pharmaceutical Science
+                                      </option>
+                                      <option value="Physics">
+                                        Physics
+                                      </option>
+                                      <option value="Quantitative Finance">
+                                        Quantitative Finance
+                                      </option>
+                                      <option value="Statistics">
+                                        Statistics
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Business) -->
+                                    <optgroup label="NUS Business School">
+                                      <option value="Business Administration (Accountancy)">
+                                        Business Administration (Accountancy)
+                                      </option>
+                                      <option value="Business Administration">
+                                        Business Administration
+                                      </option>
+                                      <option value="Real Estate">
+                                        Real Estate
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Computing) -->
+                                    <optgroup label="School of Computing">
+                                      <option value="Business Analytics">
+                                        Business Analytics
+                                      </option>
+                                      <option value="Computer Science">
+                                        Computer Science
+                                      </option>
+                                      <option value="Information Security">
+                                        Information Security
+                                      </option>
+                                      <option value="Information Systems">
+                                        Information Systems
+                                      </option>
+                                      <option value="Computer Engineering">
+                                        Computer Engineering
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Dentistry) -->
+                                    <optgroup label="Faculty of Dentistry">
+                                      <option value="Dentistry">
+                                        Dentistry
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Design)-->
+                                    <optgroup label="CDE (Design)">
+                                      <option value="Architecture">
+                                        Architecture
+                                      </option>
+                                      <option value="Industrial Design">
+                                        Industrial Design
+                                      </option>
+                                      <option value="Infrastructure and Project Management">
+                                        Infrastructure and Project Management
+                                      </option>
+                                      <option value="Landscape Architecture">
+                                        Landscape Architecture
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Engineering) -->
+                                    <optgroup label="CDE (Engineering)">
+                                      <option value="Biomedical Engineering">
+                                        Biomedical Engineering
+                                      </option>
+                                      <option value="Chemical Engineering">
+                                        Chemical Engineering
+                                      </option>
+                                      <option value="Civil Engineering">
+                                        Civil Engineering
+                                      </option>
+                                      <option value="Electrical Engineering">
+                                        Electrical Engineering
+                                      </option>
+                                      <option value="Engineering Science">
+                                        Engineering Science
+                                      </option>
+                                      <option value="Environmental Engineering">
+                                        Environmental Engineering
+                                      </option>
+                                      <option value="Industrial and Systems Engineering">
+                                        Industrial and Systems Engineering
+                                      </option>
+                                      <option value="Material Science and Engineering">
+                                        Material Science and Engineering
+                                      </option>
+                                      <option value="Mechanical Engineering">
+                                        Mechanical Engineering
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Law -->
+                                    <optgroup label="Faculty of Law">
+                                      <option value="Law">
+                                        Law
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Medicine) -->
+                                    <optgroup label="Yong Loo Lin School of Medicine">
+                                      <option value="Medicine">
+                                        Medicine
+                                      </option>
+                                      <option value="Nursing">
+                                        Nursing
+                                      </option>
+                                      <option value="Pharmacy">
+                                        Pharmacy
+                                      </option>
+                                    </optgroup>
+                                    <!-- Optgroup (Music) -->
+                                    <optgroup label="Yong Siew Toh Conservatory of Music">
+                                      <option value="Audio Arts and Sciences">
+                                        Audio Arts and Sciences
+                                      </option>
+                                      <option value="Brass">
+                                        Brass
+                                      </option>
+                                      <option value="Composition">
+                                        Composition
+                                      </option>
+                                      <option value="Music and Society">
+                                        Music and Society
+                                      </option>
+                                      <option value="Music, Collaboration and Production">
+                                        Music, Collaboration and Production
+                                      </option>
+                                      <option value="Percussion">
+                                        Percussion
+                                      </option>
+                                      <option value="Piano">
+                                        Piano
+                                      </option>
+                                      <option value="Strings and Harp">
+                                        Strings and Harp
+                                      </option>
+                                      <option value="Voice">
+                                        Voice
+                                      </option>
+                                      <option value="Woodwinds">
+                                        Woodwinds
+                                      </option>
+                                    </optgroup>
+                                </select>
                             </div>
                         </div>
                         <!-- Form Group (email) -->
