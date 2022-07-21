@@ -304,7 +304,10 @@ def forum(request):
     if request.method == "POST":
         title = request.POST.get('threadTitle', False)
         query = request.POST.get('threadQuery', False)
-
+        if len(title) > 30:
+            return HttpResponseRedirect(reverse("forum"))
+        if len(query) > 700:
+            return HttpResponseRedirect(reverse("forum"))
         myfile = request.FILES.get('threadFile', False)
         url=""
         if myfile:
