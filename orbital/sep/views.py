@@ -266,7 +266,7 @@ def modules(request):
         module = request.POST['module']
         module_uc = module.upper()
         search = True
-        mappable = PartnerUniversity.objects.filter(forfaculty=faculty, nusmodulecode=module_uc)
+        mappable = PartnerUniversity.objects.filter(nusmodulecode=module_uc)
         shortlist = Shortlist.objects.filter(user=request.user)
         added = []
         for item in shortlist:
